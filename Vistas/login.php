@@ -13,5 +13,6 @@
             <br>
             <button type="submit" class="btn btn-outline-light">Iniciar Sesión</button>
         </form>
+        <a href="">¿No tienes cuenta? ¡Registrate!</a>
     </section>
 </main>

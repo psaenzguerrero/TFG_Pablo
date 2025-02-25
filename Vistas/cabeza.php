@@ -7,5 +7,10 @@
 </head>
 <body>
     <header>
-        
+        <div>
+            <img src="" alt="">
+        </div>
+        <nav>
+
+        </nav>
     </header>
