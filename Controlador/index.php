@@ -38,11 +38,17 @@
             require_once("../vistas/pie.html");
         }
     }
+    function inicio(){
+        session_start();
+            require_once("../vistas/cabeza.php");
+            require_once("../vistas/inicio.html");
+            require_once("../vistas/pie.html");
+    }
     //Esto es la piedra angular del controlador, con esto llamo y me muevo entre las funciones usando los action como variable.
     if (isset($_REQUEST["action"])) {
         $action = strtolower($_REQUEST["action"]);
         $action(); // Llama a la función correspondiente
     } else {
-        login(); // Muestra la pantalla de inicio de sesión por defecto
+        inicio(); // Muestra la pantalla de inicio de sesión por defecto
     }
 ?>

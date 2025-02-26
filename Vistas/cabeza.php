@@ -4,13 +4,68 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <style>
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+        }
+        .carousel-wrapper {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        .carousel-item {
+            min-width: 100%;
+            height: 400px; 
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <div>
-            <img src="" alt="">
+<header class="bg-black text-white fixed z-10 w-full">
+    <nav class="flex justify-between items-center p-4 bg-black text-white">
+        <div class="flex space-x-4">
+            <a href="#" class="text-lg"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="text-lg"><i class="fab fa-facebook"></i></a>
+            <a href="#" class="text-lg"><i class="fab fa-instagram"></i></a>
         </div>
-        <nav>
+        <div class="hidden lg:flex space-x-6" id="nav-menu">
+            <a href="#" class="hover:text-gray-400">Reserva tu sitio</a>
+            <a href="#" class="hover:text-gray-400">Realidad Virtual</a>
+            <img src="#" alt="">
+            <a href="#" class="hover:text-gray-400">Alquiler de Equipo</a>
+            <a href="#" class="hover:text-gray-400">Tienda</a>
+        </div>
+        <div>
+            <a href="#" class="text-lg"><i class="fas fa-shopping-bag"></i></a>
+        </div>
+        <div class="lg:hidden">
+            <button id="menu-toggle" class="text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+    </nav>
+    <div id="side-menu" class="fixed top-0 right-0 w-64 h-full bg-black bg-opacity-90 text-white transform translate-x-full transition-transform duration-300 flex flex-col items-center justify-center space-y-4 z-10">
+        <button id="close-menu" class="absolute top-4 left-4 text-white text-2xl">&times;</button>
+        <a href="#" class="hover:text-gray-400 transition-transform duration-300 transform hover:scale-110">Reserva tu sitio</a>
+        <a href="#" class="hover:text-gray-400 transition-transform duration-300 transform hover:scale-110">Realidad Virtual</a>
+        <a href="#" class="hover:text-gray-400 transition-transform duration-300 transform hover:scale-110">Alquiler de Equipo</a>
+        <a href="#" class="hover:text-gray-400 transition-transform duration-300 transform hover:scale-110">Tienda</a>
+    </div>
+    <script>
+        document.getElementById("menu-toggle").addEventListener("click", function() {
+            document.getElementById("side-menu").classList.toggle("translate-x-full");
+        });
+        document.getElementById("close-menu").addEventListener("click", function() {
+            document.getElementById("side-menu").classList.add("translate-x-full");
+        });
+    </script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</header>
 
-        </nav>
-    </header>
+
+
