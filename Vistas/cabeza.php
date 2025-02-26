@@ -17,7 +17,6 @@
         }
         .carousel-item {
             min-width: 100%;
-            height: 400px; 
             background-size: cover;
             background-position: center;
         }
@@ -64,7 +63,6 @@
             document.getElementById("side-menu").classList.add("translate-x-full");
         });
     </script>
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </header>
 
 
