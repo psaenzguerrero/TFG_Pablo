@@ -5,40 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <script defer src="../index.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <style>
-        .carousel-container {
-            position: relative;
-            width: 100%;
-            overflow: hidden;
-        }
-        .carousel-wrapper {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
-        }
-        .carousel-item {
-            min-width: 100%;
-            background-size: cover;
-            background-position: center;
-        }
-        .clip-path-custom {
-            clip-path: polygon(0% 0%, 100% 0%, 90% 100%, 0% 100%);
-        }
-        a i {
-            font-size: 30px;
-            width: 50px;
-            height: 8px;
-        }
-        .fa-twitter {
-            color: #1DA1F2;
-        }
-        .fa-facebook {
-            color: #1877F2;
-        }
-        .fa-instagram {
-            color: #E1306C;
-        }
-    </style>
+    <link rel="stylesheet" href="../estilos.css">
 </head>
 <body>
 <header class="bg-black text-white fixed z-10 w-full">
@@ -82,16 +51,9 @@
         <a href="#" class="hover:text-gray-400 transition-transform duration-300 transform hover:scale-110">Alquiler de Equipo</a>
         <a href="#" class="hover:text-gray-400 transition-transform duration-300 transform hover:scale-110">Tienda</a>
         <a href="./inicio.html"><img src="../img/paginacion/minilogo.png" alt="" class="hover:text-gray-400 transition-transform duration-300 transform hover:scale-110"></a>
-    </div>
-    <script>
-        document.getElementById("menu-toggle").addEventListener("click", function() {
-            document.getElementById("side-menu").classList.toggle("translate-x-full");
-        });
-        document.getElementById("close-menu").addEventListener("click", function() {
-            document.getElementById("side-menu").classList.add("translate-x-full");
-        });
-    </script>
+    </div>    
 </header>
+
 
 
 

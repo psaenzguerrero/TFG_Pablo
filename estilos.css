@@ -1,0 +1,31 @@
+.carousel-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+.carousel-wrapper {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+.carousel-item {
+    min-width: 100%;
+    background-size: cover;
+    background-position: center;
+}
+.clip-path-custom {
+    clip-path: polygon(0% 0%, 100% 0%, 90% 100%, 0% 100%);
+}
+a i {
+    font-size: 30px;
+    width: 50px;
+    height: 8px;
+}
+.fa-twitter {
+    color: #1DA1F2;
+}
+.fa-facebook {
+    color: #1877F2;
+}
+.fa-instagram {
+    color: #E1306C;
+}
