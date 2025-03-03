@@ -3,7 +3,7 @@
         session_start();
         session_unset();
         session_destroy();
-        header("Location: index.php?action=login");
+        header("Location: index.php?action=inicio");
     }
     // Función para manejar el inicio de sesión
     function login() {
@@ -45,40 +45,29 @@
             $pass_usuario = $_POST["pass_usuario"];
             $pass_usuario2 = $_POST["pass_usuario2"];
             $usuario = new Usuario();
-    
-            // Verificar si el usuario ya existe
-            if ($usuario->existeUsuario($nombre_usuario)) {
-                echo "<script>
-                        alert('El usuario ya existe. Por favor, elige otro nombre de usuario.');
-                        window.location.href = 'registro.php';
-                      </script>";
-                exit();
+
+            if ($usuario->obtenerId($nombre_usuario)) {
+                $error = "Nombre de usuario ya en uso.";
+                require_once("../vistas/cabeza.php");
+                require_once("../vistas/registro.php");
+                require_once("../vistas/pie.html");
+            }else {
+                if ($pass_usuario != $pass_usuario2) {
+                    $error = "Las contraseñas no son iguales.";
+                    require_once("../vistas/cabeza.php");
+                    require_once("../vistas/registro.php");
+                    require_once("../vistas/pie.html");
+                }else {
+                    $usuario->registrarUsuario($nombre_usuario, $pass_usuario);
+                    require_once("../vistas/cabeza.php");
+                    require_once("../vistas/login.php");
+                    require_once("../vistas/pie.html");
+                }
             }
     
-            // Verificar si las contraseñas coinciden
-            if ($pass_usuario !== $pass_usuario2) {
-                echo "<script>
-                        alert('Las contraseñas no coinciden.');
-                        window.location.href = 'registro.php';
-                      </script>";
-                exit();
-            }
-    
-            // Registrar el nuevo usuario (aquí puedes agregar el método para guardarlo en la base de datos)
-            if ($usuario->registrarUsuario($nombre_usuario, $pass_usuario)) {
-                echo "<script>
-                        alert('Registro exitoso. Ahora puedes iniciar sesión.');
-                        window.location.href = 'login.php';
-                      </script>";
-                exit();
-            } else {
-                echo "<script>
-                        alert('Hubo un error en el registro. Inténtalo de nuevo.');
-                        window.location.href = 'registro.php';
-                      </script>";
-                exit();
-            }
+            
         } else {
+            session_start();
             require_once("../vistas/cabeza.php");
             require_once("../vistas/registro.php");
             require_once("../vistas/pie.html");

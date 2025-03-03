@@ -76,27 +76,12 @@
             $consulta->close();
         }
 
-        public function existeUsuario($nombre_usuario) {
-            $sentencia = "SELECT id_usuario FROM usuario WHERE nombre_usuario = ?";
-            $consulta = $this->conn->__get("conn")->prepare($sentencia);
-            $consulta->bind_param("s", $nombre_usuario);
-            $consulta->execute();
-            $consulta->bind_result($id_usuario);
-            
-            $existe = false;
-            if ($consulta->fetch()) {
-                $existe = true;
-            }
-    
-            $consulta->close();
-            return $existe;
-        }
     
         public function registrarUsuario($nombre_usuario, $pass_usuario) {
-            $hashed_password = password_hash($pass_usuario, PASSWORD_BCRYPT);
+            // $hashed_password = password_hash($pass_usuario, PASSWORD_BCRYPT);
             $sentencia = "INSERT INTO usuario (nombre_usuario, pass_usuario) VALUES (?, ?)";
             $consulta = $this->conn->__get("conn")->prepare($sentencia);
-            $consulta->bind_param("ss", $nombre_usuario, $hashed_password);
+            $consulta->bind_param("ss", $nombre_usuario, $pass_usuario);
             
             $resultado = $consulta->execute();
             $consulta->close();

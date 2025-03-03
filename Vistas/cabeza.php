@@ -24,13 +24,27 @@
             </a>
         </div>
         <div class="hidden lg:flex lg:items-center space-x-6 mr-15" id="nav-menu">
-            <a href="./index.php?action=login" class="hover:text-gray-400">Inicia tu Cuenta</a>
-            <a href="#" class="hover:text-gray-400">Registrate y juega</a>
-            <a href="./index.php?action=inicio"><img src="../img/paginacion/minilogo.png" alt=""></a>
-            
-            <a href="#" class="hover:text-gray-400">Reserva tu sitio</a>
-            <a href="#" class="hover:text-gray-400">Alquiler de Equipo</a>
-            <a href="#" class="hover:text-gray-400">Tienda</a>
+            <?php
+                if (isset($_SESSION["id_usuario"])) {
+            ?>
+                <a href="./index.php?action=cerrarSesion" class="hover:text-gray-400">Cerrar tu Cuenta</a>
+                <a href="#" class="hover:text-gray-400">Eventos y Torneos</a>
+                <a href="./index.php?action=inicio"><img src="../img/paginacion/minilogo.png" alt=""></a>
+                <a href="#" class="hover:text-gray-400">Reserva tu sitio</a>
+                <a href="#" class="hover:text-gray-400">Alquiler de Equipo</a>
+                <a href="#" class="hover:text-gray-400">Tienda</a>
+            <?php
+                }else{
+            ?>
+                <a href="./index.php?action=login" class="hover:text-gray-400">Inicia tu Cuenta</a>
+                <a href="./index.php?action=registro" class="hover:text-gray-400">Registrate y juega</a>
+                <a href="./index.php?action=inicio"><img src="../img/paginacion/minilogo.png" alt=""></a>
+                <a href="./index.php?action=login" class="hover:text-gray-400">Reserva tu sitio</a>
+                <a href="./index.php?action=login" class="hover:text-gray-400">Alquiler de Equipo</a>
+                <a href="./index.php?action=login" class="hover:text-gray-400">Tienda</a>
+            <?php
+                }
+            ?>
         </div>
         <div>
             <a href="#" class="text-lg"><i class="fas fa-shopping-bag"></i></a>
