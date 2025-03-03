@@ -1,12 +1,12 @@
 document.querySelector("#menu-toggle").addEventListener("click", ()=>{
-    document.getElementById("side-menu").classList.toggle("translate-x-full");
+    document.querySelector("#side-menu").classList.toggle("translate-x-full");
 });
-document.getElementById("close-menu").addEventListener("click", function() {
-    document.getElementById("side-menu").classList.add("translate-x-full");
+document.querySelector("#close-menu").addEventListener("click", function() {
+    document.querySelector("#side-menu").classList.add("translate-x-full");
 });
 
 // Variables de control del carrusel
-const carousel = document.getElementById("carousel");
+const carousel = document.querySelector("#carousel");
 const dots = document.querySelectorAll(".carousel-nav-dot"); // Los puntos de navegación
 let currentIndex = 0;
 const totalItems = dots.length;
@@ -41,8 +41,8 @@ const prevItem = () => {
 };
 
 // Funciones de control de flechas
-document.getElementById("prev-btn").addEventListener("click", prevItem);
-document.getElementById("next-btn").addEventListener("click", nextItem);
+document.querySelector("#prev-btn").addEventListener("click", prevItem);
+document.querySelector("#next-btn").addEventListener("click", nextItem);
 
 // Puntos de control
 dots.forEach((dot, index) => {
@@ -57,3 +57,4 @@ setInterval(nextItem, 10000);
 
 // Iniciar el carrusel en la primera imagen
 moveCarousel(currentIndex);
+

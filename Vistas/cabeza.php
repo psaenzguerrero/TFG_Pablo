@@ -32,7 +32,7 @@
                 <a href="./index.php?action=inicio"><img src="../img/paginacion/minilogo.png" alt=""></a>
                 <a href="#" class="hover:text-gray-400">Reserva tu sitio</a>
                 <a href="#" class="hover:text-gray-400">Alquiler de Equipo</a>
-                <a href="#" class="hover:text-gray-400">Tienda</a>
+                <a href="./index.php?action=tienda" class="hover:text-gray-400">Tienda</a>
             <?php
                 }else{
             ?>

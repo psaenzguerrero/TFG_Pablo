@@ -98,13 +98,77 @@
     }
 
 
-
-
-
+    function tienda() {
+        require_once("../Modelos/producto.php");
+        session_start();
+        if (!isset($_SESSION["id_usuario"])) {
+            header("Location: index.php?action=login");
+            exit;
+        }
+    
+        // Obtener los filtros del formulario
+        $filtros = [
+            'nombre' => isset($_GET['nombre']) ? trim($_GET['nombre']) : null,
+            'minPrecio' => isset($_GET['minPrecio']) ? floatval($_GET['minPrecio']) : null,
+            'maxPrecio' => isset($_GET['maxPrecio']) ? floatval($_GET['maxPrecio']) : null,
+            'minPuntos' => isset($_GET['minPuntos']) ? intval($_GET['minPuntos']) : null,
+            'maxPuntos' => isset($_GET['maxPuntos']) ? intval($_GET['maxPuntos']) : null,
+            'tipo' => isset($_GET['tipo']) ? $_GET['tipo'] : [],
+        ];
+    
+        // Obtener los productos filtrados
+        $producto = new Producto();
+        $productos = $producto->filtrarProductos($filtros);
+    
+        // Pasar los productos a la vista
+        require_once("../vistas/cabeza.php");
+        require_once("../vistas/tienda.php");
+        require_once("../vistas/pie.html");
+    }
+    
+    function buscarProductos() {
+        require_once("../Modelos/producto.php");
+        session_start();
+        if (!isset($_SESSION["id_usuario"])) {
+            header("Location: index.php?action=login");
+            exit;
+        }
+    
+        $producto = new Producto();
+        $filtros = [];
+    
+        if ($_SERVER["REQUEST_METHOD"] === "POST") {
+            $nombre = isset($_POST["nombre"]) ? trim($_POST["nombre"]) : null;
+            $precio_min = isset($_POST["precio_min"]) ? floatval($_POST["precio_min"]) : null;
+            $precio_max = isset($_POST["precio_max"]) ? floatval($_POST["precio_max"]) : null;
+            $tipo = isset($_POST["tipo"]) ? trim($_POST["tipo"]) : null;
+    
+            $filtros = [
+                'nombre' => $nombre,
+                'precio_min' => $precio_min,
+                'precio_max' => $precio_max,
+                'tipo' => $tipo
+            ];
+    
+            $productos = $producto->buscarProductos($filtros);
+        } else {
+            $productos = $producto->obtenerProductos();
+        }
+    
+        require_once("../vistas/cabeza.php");
+        require_once("../vistas/tienda.php");
+        require_once("../vistas/pie.html");
+    }
     //Esto es la piedra angular del controlador, con esto llamo y me muevo entre las funciones usando los action como variable.
     if (isset($_REQUEST["action"])) {
         $action = strtolower($_REQUEST["action"]);
-        $action(); // Llama a la función correspondiente
+        if ($action === "tienda") {
+            tienda();
+        } elseif ($action === "buscarproductos") {
+            buscarProductos();
+        } else {
+            $action(); // Llama a la función correspondiente
+        }
     } else {
         inicio(); // Muestra la pantalla de inicio de sesión por defecto
     }
