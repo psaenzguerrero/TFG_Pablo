@@ -6,6 +6,9 @@
     <title>Document</title>
     <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
     <script defer src="../index.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="../estilos.css">
 </head>
@@ -29,7 +32,7 @@
             ?>
                 <a href="./index.php?action=cerrarSesion" class="hover:text-gray-400">Cerrar tu Cuenta</a>
                 <a href="#" class="hover:text-gray-400">Eventos y Torneos</a>
-                <a href="./index.php?action=inicio"><img src="../img/paginacion/minilogo.png" alt=""></a>
+                <a href="./index.php?action=inicio"><img src="../img/paginacion/logo2.webp" class="w-20 h-20" alt=""></a>
                 <a href="#" class="hover:text-gray-400">Reserva tu sitio</a>
                 <a href="#" class="hover:text-gray-400">Alquiler de Equipo</a>
                 <a href="./index.php?action=tienda" class="hover:text-gray-400">Tienda</a>
@@ -38,7 +41,7 @@
             ?>
                 <a href="./index.php?action=login" class="hover:text-gray-400">Inicia tu Cuenta</a>
                 <a href="./index.php?action=registro" class="hover:text-gray-400">Registrate y juega</a>
-                <a href="./index.php?action=inicio"><img src="../img/paginacion/minilogo.png" alt=""></a>
+                <a href="./index.php?action=inicio"><img src="../img/paginacion/logo2.webp" class="w-20 h-20" alt=""></a>
                 <a href="./index.php?action=login" class="hover:text-gray-400">Reserva tu sitio</a>
                 <a href="./index.php?action=login" class="hover:text-gray-400">Alquiler de Equipo</a>
                 <a href="./index.php?action=login" class="hover:text-gray-400">Tienda</a>
@@ -67,7 +70,7 @@
         <a href="#" class="hover:text-gray-400 transition-transform duration-300 transform hover:scale-110">Reserva tu sitio</a>
         <a href="#" class="hover:text-gray-400 transition-transform duration-300 transform hover:scale-110">Alquiler de Equipo</a>
         <a href="#" class="hover:text-gray-400 transition-transform duration-300 transform hover:scale-110">Tienda</a>
-        <a href="./inicio.html"><img src="../img/paginacion/minilogo.png" alt="" class="hover:text-gray-400 transition-transform duration-300 transform hover:scale-110"></a>
+        <a href="./inicio.html"><img src="../img/paginacion/logo2.webp" alt="" class="hover:text-gray-400 transition-transform duration-300 transform hover:scale-110 w-20 h-20"></a>
         <?php
             }else{
         ?>
@@ -77,7 +80,7 @@
                 <a href="#" class="hover:text-gray-400">Reserva tu sitio</a>
                 <a href="#" class="hover:text-gray-400">Alquiler de Equipo</a>
                 <a href="./index.php?action=tienda" class="hover:text-gray-400">Tienda</a>
-                <a href="./inicio.html"><img src="../img/paginacion/minilogo.png" alt="" class="hover:text-gray-400 transition-transform duration-300 transform hover:scale-110"></a>
+                <a href="./inicio.html"><img src="../img/paginacion/logo2.webp" alt="" class="hover:text-gray-400 transition-transform duration-300 transform hover:scale-110 w-20 h-20"></a>
         <?php
             }
         ?>
