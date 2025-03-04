@@ -3,23 +3,20 @@
         <div class="flex">
             <!-- menu lateral de filtros -->
             <div class="w-64 bg-gray-50 p-6 border-r border-gray-200 fixed h-screen overflow-y-auto">
-                <form method="GET" action="index.php">
+                <form method="POST" action="index.php">
                     <input type="hidden" name="action" value="tienda">
-
-                    <!--  "borrar filtros" -->
-                    <!-- <h2 class="text-lg font-semibold text-gray-800 mb-6">Borrar filtros</h2> -->
-
+                    
                     <!-- busqueda  por nombre -->
                     <div class="mb-6">
-                        <input type="text" name="nombre" placeholder="Buscar producto..." class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" value="<?php echo isset($_GET['nombre']) ? htmlspecialchars($_GET['nombre']) : ''; ?>"/>
+                        <input type="text" name="nombre" placeholder="Buscar producto..." class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" value="<?php echo isset($_POST['nombre']) ? htmlspecialchars($_POST['nombre']) : ''; ?>"/>
                     </div>
 
                     <!-- fltro de precio -->
                     <div class="mb-6">
                         <h3 class="text-md font-medium text-gray-700 mb-3">Precio</h3>
                         <div class="flex gap-2">
-                            <input type="number" name="minPrecio" placeholder="Mínimo" class="w-1/2 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" value="<?php echo isset($_GET['minPrecio']) ? htmlspecialchars($_GET['minPrecio']) : ''; ?>"/>
-                            <input type="number" name="maxPrecio" placeholder="Máximo" class="w-1/2 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" value="<?php echo isset($_GET['maxPrecio']) ? htmlspecialchars($_GET['maxPrecio']) : ''; ?>"/>
+                            <input type="number" name="minPrecio" placeholder="Mínimo" class="w-1/2 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" value="<?php echo isset($_POST['minPrecio']) ? htmlspecialchars($_POST['minPrecio']) : ''; ?>"/>
+                            <input type="number" name="maxPrecio" placeholder="Máximo" class="w-1/2 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" value="<?php echo isset($_POST['maxPrecio']) ? htmlspecialchars($_POST['maxPrecio']) : ''; ?>"/>
                         </div>
                     </div>
 
@@ -28,15 +25,15 @@
                         <h3 class="text-md font-medium text-gray-700 mb-3">Tipo de Producto</h3>
                         <div class="space-y-2">
                             <label class="flex items-center text-gray-600">
-                                <input type="checkbox" name="tipo[]" value="Consolas" class="mr-2" <?php echo (isset($_GET['tipo']) && in_array('Consolas', $_GET['tipo'])) ? 'checked' : ''; ?>/>
+                                <input type="checkbox" name="tipo[]" value="Consolas" class="mr-2" <?php echo (isset($_POST['tipo']) && in_array('Consolas', $_POST['tipo'])) ? 'checked' : ''; ?>/>
                                 Consolas
                             </label>
                             <label class="flex items-center text-gray-600">
-                                <input type="checkbox" name="tipo[]" value="Equipo Tecnológico" class="mr-2" <?php echo (isset($_GET['tipo']) && in_array('Equipo Tecnológico', $_GET['tipo'])) ? 'checked' : ''; ?>/>
+                                <input type="checkbox" name="tipo[]" value="Equipo Tecnológico" class="mr-2" <?php echo (isset($_POST['tipo']) && in_array('Equipo Tecnológico', $_POST['tipo'])) ? 'checked' : ''; ?>/>
                                 Equipo Tecnológico
                             </label>
                             <label class="flex items-center text-gray-600">
-                                <input type="checkbox" name="tipo[]" value="Accesorios" class="mr-2" <?php echo (isset($_GET['tipo']) && in_array('Accesorios', $_GET['tipo'])) ? 'checked' : ''; ?>/>
+                                <input type="checkbox" name="tipo[]" value="Accesorios" class="mr-2" <?php echo (isset($_POST['tipo']) && in_array('Accesorios', $_POST['tipo'])) ? 'checked' : ''; ?>/>
                                 Accesorios
                             </label>
                         </div>
@@ -46,8 +43,8 @@
                     <div class="mb-6">
                         <h3 class="text-md font-medium text-gray-700 mb-3">Puntos de Compra</h3>
                         <div class="flex gap-2">
-                            <input type="number" name="minPuntos" placeholder="Mínimo" class="w-1/2 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" value="<?php echo isset($_GET['minPuntos']) ? htmlspecialchars($_GET['minPuntos']) : ''; ?>"/>
-                            <input type="number" name="maxPuntos" placeholder="Máximo" class="w-1/2 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" value="<?php echo isset($_GET['maxPuntos']) ? htmlspecialchars($_GET['maxPuntos']) : ''; ?>"/>
+                            <input type="number" name="minPuntos" placeholder="Mínimo" class="w-1/2 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" value="<?php echo isset($_POST['minPuntos']) ? htmlspecialchars($_POST['minPuntos']) : ''; ?>"/>
+                            <input type="number" name="maxPuntos" placeholder="Máximo" class="w-1/2 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" value="<?php echo isset($_POST['maxPuntos']) ? htmlspecialchars($_POST['maxPuntos']) : ''; ?>"/>
                         </div>
                     </div>
 

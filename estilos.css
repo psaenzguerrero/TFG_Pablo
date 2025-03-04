@@ -29,3 +29,26 @@ a i {
 .fa-instagram {
     color: #E1306C;
 }
+@keyframes gradientAnimation {
+    0% { background: #1a202c; }
+    25% { background: #2d3748; }
+    50% { background: #4a5568; }
+    75% { background: #2d3748; }
+    100% { background: #1a202c; }
+}
+.animated-bg {
+    animation: gradientAnimation 6s infinite alternate ease-in-out;
+}
+.scroll-container {
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+    cursor: grab;
+    scrollbar-width: none; /* Ocultar scrollbar en Firefox */
+}
+.scroll-container::-webkit-scrollbar {
+    display: none; /* Ocultar scrollbar en Chrome y Safari */
+}
+.scroll-container:active {
+    cursor: grabbing;
+}

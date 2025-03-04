@@ -91,9 +91,8 @@
         }
         $tipo = new Usuario();
         $_SESSION["tipo_usuario"] = $tipo->obtenerTipoUsu($_SESSION["id_usuario"]);
-        var_dump($_SESSION);
         require_once("../vistas/cabeza.php");
-        require_once("../vistas/paginaInicio.php");
+        require_once("../vistas/inicio.html");
         require_once("../vistas/pie.html");   
     }
 
@@ -108,12 +107,12 @@
     
         // Obtener los filtros del formulario
         $filtros = [
-            'nombre' => isset($_GET['nombre']) ? trim($_GET['nombre']) : null,
-            'minPrecio' => isset($_GET['minPrecio']) ? floatval($_GET['minPrecio']) : null,
-            'maxPrecio' => isset($_GET['maxPrecio']) ? floatval($_GET['maxPrecio']) : null,
-            'minPuntos' => isset($_GET['minPuntos']) ? intval($_GET['minPuntos']) : null,
-            'maxPuntos' => isset($_GET['maxPuntos']) ? intval($_GET['maxPuntos']) : null,
-            'tipo' => isset($_GET['tipo']) ? $_GET['tipo'] : [],
+            'nombre' => isset($_POST['nombre']) ? trim($_POST['nombre']) : null,
+            'minPrecio' => isset($_POST['minPrecio']) ? floatval($_POST['minPrecio']) : null,
+            'maxPrecio' => isset($_POST['maxPrecio']) ? floatval($_POST['maxPrecio']) : null,
+            'minPuntos' => isset($_POST['minPuntos']) ? intval($_POST['minPuntos']) : null,
+            'maxPuntos' => isset($_POST['maxPuntos']) ? intval($_POST['maxPuntos']) : null,
+            'tipo' => isset($_POST['tipo']) ? $_POST['tipo'] : [],
         ];
     
         // Obtener los productos filtrados

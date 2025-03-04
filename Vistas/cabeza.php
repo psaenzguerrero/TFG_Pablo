@@ -57,7 +57,10 @@
             </button>
         </div>
     </nav>
-    <div id="side-menu" class="fixed top-0 right-0 w-full h-full bg-black bg-opacity-90 text-white transform translate-x-full transition-transform duration-300 flex flex-col items-center justify-center space-y-4 z-10">
+    <div id="side-menu" class="fixed top-0 right-0 w-full md:w-1/2 h-full bg-black bg-opacity-90 text-white transform translate-x-full transition-transform duration-300 flex flex-col items-center justify-center space-y-4 z-10">
+        <?php
+            if (!isset($_SESSION["id_usuario"])) {
+        ?>
         <button id="close-menu" class="absolute top-4 left-4 text-white text-2xl">&times;</button>
         <a href="./index.php?action=login" class="hover:text-gray-400 transition-transform duration-300 transform hover:scale-110">Inicia tu Cuenta</a>
         <a href="#" class="hover:text-gray-400 transition-transform duration-300 transform hover:scale-110">Registrate y juega</a>
@@ -65,6 +68,19 @@
         <a href="#" class="hover:text-gray-400 transition-transform duration-300 transform hover:scale-110">Alquiler de Equipo</a>
         <a href="#" class="hover:text-gray-400 transition-transform duration-300 transform hover:scale-110">Tienda</a>
         <a href="./inicio.html"><img src="../img/paginacion/minilogo.png" alt="" class="hover:text-gray-400 transition-transform duration-300 transform hover:scale-110"></a>
+        <?php
+            }else{
+        ?>
+                <button id="close-menu" class="absolute top-4 left-4 text-white text-2xl">&times;</button>
+                <a href="./index.php?action=cerrarSesion" class="hover:text-gray-400">Cerrar tu Cuenta</a>
+                <a href="#" class="hover:text-gray-400">Eventos y Torneos</a>
+                <a href="#" class="hover:text-gray-400">Reserva tu sitio</a>
+                <a href="#" class="hover:text-gray-400">Alquiler de Equipo</a>
+                <a href="./index.php?action=tienda" class="hover:text-gray-400">Tienda</a>
+                <a href="./inicio.html"><img src="../img/paginacion/minilogo.png" alt="" class="hover:text-gray-400 transition-transform duration-300 transform hover:scale-110"></a>
+        <?php
+            }
+        ?>
     </div>    
 </header>
 
