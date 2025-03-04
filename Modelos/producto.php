@@ -12,11 +12,11 @@
         public function obtenerProductos() {
             $sentencia = "SELECT id_producto, nombre_producto, precio_producto, tipo_producto, puntos_compra FROM producto";
             $consulta = $this->conn->__get("conn")->prepare($sentencia);
-            $consulta->bind_result($id, $nombre, $precio, $tipo, $puntos);
+            $consulta->bind_result($id_producto, $nombre_producto, $precio_producto, $tipo_producto, $puntos_compra);
             $productos = array();
             $consulta->execute();
             while($consulta->fetch()) {
-                array_push($productos, [$id, $nombre, $precio, $tipo, $puntos]);
+                array_push($productos, [$id_producto, $nombre_producto, $precio_producto, $tipo_producto, $puntos_compra]);
             }
             $consulta->close();
             return $productos;
@@ -63,20 +63,6 @@
             $consulta->close();
             return $resultado;
         }
-        // public function obtenerProductos() {
-        //     $sentencia = "SELECT id_producto, nombre_producto, precio_producto, tipo_producto, puntos_compra FROM producto";
-        //     $consulta = $this->conn->__get("conn")->prepare($sentencia);
-        //     $consulta->execute();
-        //     $resultado = $consulta->get_result();
-        //     $productos = [];
-        
-        //     while ($fila = $resultado->fetch_assoc()) {
-        //         $productos[] = $fila;
-        //     }
-        
-        //     $consulta->close();
-        //     return $productos;
-        // }
         public function buscarProductos($filtros) {
             $sentencia = "SELECT id_producto, nombre_producto, precio_producto, tipo_producto, puntos_compra FROM producto WHERE 1=1";
             $tipos = "";
@@ -125,14 +111,14 @@
             $params = [];
             $tipos = "";
         
-            // Filtrar por nombre
+            // filtrar por nombre
             if (!empty($filtros['nombre'])) {
                 $sentencia .= " AND nombre_producto LIKE ?";
                 $params[] = "%" . $filtros['nombre'] . "%";
                 $tipos .= "s";
             }
         
-            // Filtrar por precio
+            // filtra por precio
             if (!empty($filtros['minPrecio'])) {
                 $sentencia .= " AND precio_producto >= ?";
                 $params[] = $filtros['minPrecio'];
@@ -144,7 +130,7 @@
                 $tipos .= "d";
             }
         
-            // Filtrar por puntos
+            // filtra por puntos
             if (!empty($filtros['minPuntos'])) {
                 $sentencia .= " AND puntos_compra >= ?";
                 $params[] = $filtros['minPuntos'];
@@ -156,7 +142,7 @@
                 $tipos .= "i";
             }
         
-            // Filtrar por tipo
+            // filtra por tipo
             if (!empty($filtros['tipo'])) {
                 $placeholders = implode(",", array_fill(0, count($filtros['tipo']), "?"));
                 $sentencia .= " AND tipo_producto IN ($placeholders)";
