@@ -39,7 +39,7 @@
             ?>
                 <a href="./index.php?action=cerrarSesion" class="hover:text-gray-400">Cerrar tu Cuenta</a>
                 <a href="#" class="hover:text-gray-400">Eventos y Torneos</a>
-                <a href="./index.php?action=inicio"><img src="../img/paginacion/logo2.webp" class="w-20 h-20" alt=""></a>
+                <a href="./index.php?action=dashboard"><img src="../img/paginacion/logo2.webp" class="w-20 h-20" alt=""></a>
                 <a href="#" class="hover:text-gray-400">Reserva tu sitio</a>
                 <a href="#" class="hover:text-gray-400">Alquiler de Equipo</a>
                 <a href="./index.php?action=tienda" class="hover:text-gray-400">Tienda</a>
@@ -87,7 +87,7 @@
                 <a href="#" class="hover:text-gray-400">Reserva tu sitio</a>
                 <a href="#" class="hover:text-gray-400">Alquiler de Equipo</a>
                 <a href="./index.php?action=tienda" class="hover:text-gray-400">Tienda</a>
-                <a href="./inicio.html"><img src="../img/paginacion/logo2.webp" alt="" class="hover:text-gray-400 transition-transform duration-300 transform hover:scale-110 w-20 h-20"></a>
+                <a href="./index.php?action=dashboard"><img src="../img/paginacion/logo2.webp" alt="" class="hover:text-gray-400 transition-transform duration-300 transform hover:scale-110 w-20 h-20"></a>
         <?php
             }
         ?>
