@@ -1,18 +1,16 @@
 <main>
     <?php
-        if (strcmp($_SESSION["tipo_usuario"], "admin")) {
+        if (strcmp($_SESSION["tipo_usuario"], "Admin") == 0) {
+          
+
+
     ?>
         <section class="pt-50">
-            <h1>123456789</h1>
+            
         </section>
     <?php
         }else {
-    ?>
-        <section class="pt-50">
-            <h1>jugrsaoihesio</h1>
-
-        </section>
-    <?php        
+            header("Location: index.php?action=inicio");
         }
     ?>
 </main>

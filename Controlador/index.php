@@ -73,7 +73,6 @@
             require_once("../vistas/pie.html");
         }
     }
-    
 
     function inicio(){
         session_start();
@@ -91,11 +90,11 @@
         }
         $tipo = new Usuario();
         $_SESSION["tipo_usuario"] = $tipo->obtenerTipoUsu($_SESSION["id_usuario"]);
+        var_dump($_SESSION);
         require_once("../vistas/cabeza.php");
-        require_once("../vistas/inicio.html");
+        require_once("../vistas/paginaInicio.php");
         require_once("../vistas/pie.html");   
     }
-
 
     function tienda() {
         require_once("../Modelos/producto.php");
@@ -158,6 +157,75 @@
         require_once("../vistas/tienda.php");
         require_once("../vistas/pie.html");
     }
+     // Funciones de evento
+
+     function obtenerEventos() {
+        require_once("../Modelos/evento.php");
+        $evento = new Evento();
+        $eventos = $evento->obtenerEventos();
+
+        require_once("../vistas/cabeza.php");
+        require_once("../vistas/eventos.php");  // Vista donde se listan los eventos
+        require_once("../vistas/pie.html");
+    }
+
+    function registrarEvento() {
+        require_once("../Modelos/evento.php");
+        
+        if ($_SERVER["REQUEST_METHOD"] === "POST") {
+            $nombre_evento = $_POST["nombre_evento"];
+            $tipo_evento = $_POST["tipo_evento"];
+            $fecha_evento = $_POST["fecha_evento"];
+            $premio = $_POST["premio"];
+            $patrocinadores = $_POST["patrocinadores"];
+            
+            $evento = new Evento();
+            $evento->guardarEvento(null, $nombre_evento, $tipo_evento, $fecha_evento, $premio, $patrocinadores);  // id_evento se genera automáticamente
+            
+            header("Location: index.php?action=obtenerEventos");
+        } else {
+            require_once("../vistas/cabeza.php");
+            require_once("../vistas/registrarEvento.php"); // Vista para registrar evento
+            require_once("../vistas/pie.html");
+        }
+    }
+
+    function modificarEvento() {
+        require_once("../Modelos/evento.php");
+        
+        if ($_SERVER["REQUEST_METHOD"] === "POST") {
+            $id_evento = $_POST["id_evento"];
+            $nombre_evento = $_POST["nombre_evento"];
+            $tipo_evento = $_POST["tipo_evento"];
+            $fecha_evento = $_POST["fecha_evento"];
+            $premio = $_POST["premio"];
+            $patrocinadores = $_POST["patrocinadores"];
+            
+            $evento = new Evento();
+            $evento->modificarEvento($id_evento, $nombre_evento, $tipo_evento, $fecha_evento, $premio, $patrocinadores);
+
+            header("Location: index.php?action=obtenerEventos");
+        } else {
+            $id_evento = $_GET["id_evento"];
+            $evento = new Evento();
+            $evento_details = $evento->obtenerEventoPorId($id_evento);  // Crear método que obtiene el evento por ID
+
+            require_once("../vistas/cabeza.php");
+            require_once("../vistas/modificarEvento.php");  // Vista para modificar evento
+            require_once("../vistas/pie.html");
+        }
+    }
+
+    function eliminarEvento() {
+        require_once("../Modelos/evento.php");
+        
+        $id_evento = $_GET["id_evento"];
+        $evento = new Evento();
+        $evento->eliminarEvento($id_evento);
+
+        header("Location: index.php?action=obtenerEventos");
+    }
+
     //Esto es la piedra angular del controlador, con esto llamo y me muevo entre las funciones usando los action como variable.
     if (isset($_REQUEST["action"])) {
         $action = strtolower($_REQUEST["action"]);
