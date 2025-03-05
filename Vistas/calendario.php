@@ -44,11 +44,13 @@
 
                     // Verificar si el día tiene eventos
                     if ($eventoDelDia) {
-                        echo "<div class='day bg-green-500 text-white rounded-full p-2 cursor-pointer' 
-                                data-fecha='" . $anioActual . "-" . $mesActual . "-" . $fechaDia . "' 
+                        echo "<div class='day bg-green-500 text-white rounded-full p-2 cursor-pointer' data-fecha='" . $anioActual . "-" . $mesActual . "-" . $fechaDia . "' 
                                 data-id_evento='" . $eventoDelDia[0]['id_evento'] . "' 
-                                data-nombre_evento='" . $eventoDelDia[0]['nombre_evento'] . "'>
-                                " . $fechaDia . "</div>";
+                                data-nombre_evento='" . $eventoDelDia[0]['nombre_evento'] . "'
+                                data-tipo_evento='" . $eventoDelDia[0]['tipo_evento'] . "'
+                                data-premio='" . $eventoDelDia[0]['premio'] . "'
+                                data-patrocinadores='" . $eventoDelDia[0]['patrocinadores'] . "'
+                                >" . $fechaDia . "</div>";
                     } else {
                         echo "<div class='day p-2 cursor-pointer' data-fecha='" . $anioActual . "-" . $mesActual . "-" . $fechaDia . "'>
                                 " . $fechaDia . "</div>";
@@ -73,6 +75,14 @@
                         <label class="block">Tipo de evento</label>
                         <input type="text" name="tipo_evento" required class="w-full p-2 border border-gray-300 rounded-lg" />
                     </div>
+                    <div class="mb-4">
+                        <label class="block">Premio</label>
+                        <input type="text" name="premio" required class="w-full p-2 border border-gray-300 rounded-lg" />
+                    </div>
+                    <div class="mb-4">
+                        <label class="block">Patrocinadores</label>
+                        <input type="text" name="patrocinadores" required class="w-full p-2 border border-gray-300 rounded-lg" />
+                    </div>
                     <button type="submit" class="bg-blue-500 text-white p-2 rounded-lg">Guardar</button>
                     <button type="button" class="bg-gray-500 text-white p-2 rounded-lg" id="cerrarModalCrear">Cancelar</button>
                 </form>
@@ -92,6 +102,14 @@
                     <div class="mb-4">
                         <label class="block">Tipo de evento</label>
                         <input type="text" name="tipo_evento" id="tipoEventoModificar" required class="w-full p-2 border border-gray-300 rounded-lg" />
+                    </div>
+                    <div class="mb-4">
+                        <label class="block">Premio</label>
+                        <input type="text" name="premio" id="premioEventoModificar" class="w-full p-2 border border-gray-300 rounded-lg" />
+                    </div>
+                    <div class="mb-4">
+                        <label class="block">Patrocinadores</label>
+                        <input type="text" name="patrocinadores" id="patrocinadoresEventoModificar" class="w-full p-2 border border-gray-300 rounded-lg" />
                     </div>
                     <button type="submit" class="bg-blue-500 text-white p-2 rounded-lg">Guardar cambios</button>
                     <button type="button" class="bg-red-500 text-white p-2 rounded-lg" id="eliminarEvento">Eliminar</button>
@@ -116,14 +134,19 @@
             });
 
             // JavaScript para abrir el modal de modificación de evento
-            document.querySelectorAll('.day').forEach(function(day) {
-                day.addEventListener('dblclick', function() {
+            document.querySelectorAll('.bg-green-500').forEach(function(day) {
+                day.addEventListener('click', function() {
                     const idEvento = this.getAttribute('data-id_evento');
                     const nombreEvento = this.getAttribute('data-nombre_evento');
+                    const tipoEvento = this.getAttribute('data-tipo_evento');
+                    const premioEvento = this.getAttribute('data-premio');
+                    const patrocinadoresEvento = this.getAttribute('data-patrocinadores');
                     const fechaEvento = this.getAttribute('data-fecha');
                     document.getElementById('idEventoModificar').value = idEvento;
                     document.getElementById('nombreEventoModificar').value = nombreEvento;
-                    document.getElementById('tipoEventoModificar').value = '';
+                    document.getElementById('tipoEventoModificar').value = tipoEvento; 
+                    document.getElementById('premioEventoModificar').value = premioEvento;
+                    document.getElementById('patrocinadoresEventoModificar').value = patrocinadoresEvento;
                     document.getElementById('modalModificar').classList.remove('hidden');
                 });
             });
@@ -131,6 +154,7 @@
             // JavaScript para cerrar el modal de modificación de evento
             document.getElementById('cerrarModalModificar').addEventListener('click', function() {
                 document.getElementById('modalModificar').classList.add('hidden');
+                document.getElementById('modalCrear').classList.add('hidden');
             });
 
             // JavaScript para eliminar el evento
@@ -141,3 +165,4 @@
         </script>
     </section>
 </main>
+

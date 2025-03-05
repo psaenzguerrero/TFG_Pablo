@@ -5,7 +5,7 @@
         session_destroy();
         header("Location: index.php?action=inicio");
     }
-    // Función para manejar el inicio de sesión
+    // FUNCIONES DE INICIO Y REGISTRO
     function login() {
         require_once("../Modelos/usuario.php");
         if ($_SERVER["REQUEST_METHOD"] === "POST") {  
@@ -96,6 +96,8 @@
         require_once("../vistas/pie.html");   
     }
 
+    //FUNCIONES DE TIENDA VERSION USUARIO
+    
     function tienda() {
         require_once("../Modelos/producto.php");
         session_start();
@@ -159,7 +161,7 @@
     }
     
     
-
+    //EVENTOS VERSION ADMIN//
 
 
     function eventos() {
@@ -207,23 +209,33 @@
     function guardarEvento() {
         require_once("../Modelos/evento.php");
         session_start();
+        
+        // Verificar si el usuario es admin
         if (!isset($_SESSION["id_usuario"]) || $_SESSION["tipo_usuario"] != 'Admin') {
             header("Location: index.php?action=login");
             exit;
         }
     
+        // Comprobar si el formulario se ha enviado por POST
         if ($_SERVER["REQUEST_METHOD"] === "POST") {
+            // Obtener los valores del formulario
             $nombre_evento = $_POST["nombre_evento"];
             $tipo_evento = $_POST["tipo_evento"];
             $fecha_evento = $_POST["fecha_evento"];
+            $premio = $_POST["premio"];
+            $patrocinadores = $_POST["patrocinadores"];
     
+            // Crear una instancia del modelo Evento
             $evento = new Evento();
-            $resultado = $evento->guardarEvento($nombre_evento, $tipo_evento, $fecha_evento);
     
+            // Llamar al método guardarEvento para insertar los datos en la base de datos
+            $resultado = $evento->guardarEvento($nombre_evento, $tipo_evento, $fecha_evento, $premio, $patrocinadores);
+    
+            // Comprobar si la inserción fue exitosa
             if ($resultado) {
-                header("Location: index.php?action=eventos");
+                header("Location: index.php?action=eventos"); // Redirigir si todo salió bien
             } else {
-                echo "Hubo un error al guardar el evento.";
+                echo "Hubo un error al guardar el evento."; // Mostrar error si algo salió mal
             }
         }
     }

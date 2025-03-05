@@ -32,14 +32,19 @@ class Evento {
     }
 
     // Guardar un nuevo evento
-    public function guardarEvento($nombre_evento, $tipo_evento, $fecha_evento) {
-        $sentencia = "INSERT INTO evento (nombre_evento, tipo_evento, fecha_evento) VALUES (?, ?, ?)";
+    public function guardarEvento($nombre_evento, $tipo_evento, $fecha_evento, $premio, $patrocinadores) {
+        
+        $sentencia = "INSERT INTO evento (nombre_evento, tipo_evento, fecha_evento, premio, patrocinadores) 
+                      VALUES (?, ?, ?, ?, ?)";
+        
         $consulta = $this->conn->__get("conn")->prepare($sentencia);
-        $consulta->bind_param("sss", $nombre_evento, $tipo_evento, $fecha_evento);
+        $consulta->bind_param("sssss", $nombre_evento, $tipo_evento, $fecha_evento, $premio, $patrocinadores);
         $resultado = $consulta->execute();
         $consulta->close();
+        
         return $resultado;
     }
+    
 
     // Eliminar un evento
     public function eliminarEvento($id_evento) {

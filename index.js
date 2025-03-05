@@ -86,4 +86,3 @@ document.querySelectorAll(".scroll-container").forEach(container => {
         container.scrollLeft = scrollLeft - walk;
     });
 });
-
