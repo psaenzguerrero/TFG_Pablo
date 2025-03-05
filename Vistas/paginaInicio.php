@@ -6,7 +6,9 @@
 
     ?>
         <section class="pt-50">
-            
+            <a href="index.php?action=eventos">eventos</a>
+            <a href=""></a>
+            <a href=""></a>
         </section>
     <?php
         }else {
