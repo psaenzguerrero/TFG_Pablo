@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-03-2025 a las 08:45:10
+-- Tiempo de generación: 05-03-2025 a las 12:02:54
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -86,7 +86,12 @@ CREATE TABLE `evento` (
 
 INSERT INTO `evento` (`id_evento`, `nombre_evento`, `tipo_evento`, `fecha_evento`, `premio`, `patrocinadores`) VALUES
 (1, 'Torneo FIFA', 'Videojuegos', '2025-03-15', 'Trofeo + 100 puntos', 'Sony'),
-(2, 'Concurso VR', 'Realidad Virtual', '2025-04-20', 'Casco VR', 'Oculus');
+(2, 'Concurso VR', 'Realidad Virtual', '2025-04-20', 'Casco VR', 'Oculus'),
+(3, 'Torneo FIFA', 'Videojuegos', '2025-03-15', 'Trofeo + 100 puntos', 'Sony'),
+(4, 'Concurso VR', 'Realidad Virtual', '2025-04-20', 'Casco VR', 'Oculus'),
+(5, 'Competencia eSports', 'Videojuegos', '2025-06-10', 'Medalla + $3000', 'Razer'),
+(6, 'Carrera de Drones', 'Tecnología', '2025-07-05', 'Drone Profesional', 'DJI'),
+(7, 'Torneo de Smash', 'Videojuegos', '2025-08-12', 'Trofeo + Suscripción Online', 'Nintendo');
 
 -- --------------------------------------------------------
 
@@ -282,7 +287,7 @@ ALTER TABLE `equipo`
 -- AUTO_INCREMENT de la tabla `evento`
 --
 ALTER TABLE `evento`
-  MODIFY `id_evento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_evento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `pago`
