@@ -53,6 +53,13 @@
                         Aplicar Filtros
                     </button>
                 </form>
+                <?php
+                    if (isset($_SESSION["id_usuario"]) && strcmp($_SESSION["tipo_usuario"], "Admin") == 0) {
+                ?>
+                        <a href="./index.php?action=agregarProducto">agregar</a>
+                <?php
+                    }
+                ?>
             </div>
 
             <!-- Lista de productos -->

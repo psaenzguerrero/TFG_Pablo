@@ -37,12 +37,28 @@
             <?php
                 if (isset($_SESSION["id_usuario"])) {
             ?>
-                <a href="./index.php?action=cerrarSesion" class="hover:text-gray-400">Cerrar tu Cuenta</a>
-                <a href="#" class="hover:text-gray-400">Eventos y Torneos</a>
-                <a href="./index.php?action=dashboard"><img src="../img/paginacion/logo2.webp" class="w-20 h-20" alt=""></a>
-                <a href="#" class="hover:text-gray-400">Reserva tu sitio</a>
-                <a href="#" class="hover:text-gray-400">Alquiler de Equipo</a>
-                <a href="./index.php?action=tienda" class="hover:text-gray-400">Tienda</a>
+                <?php
+                    if (strcmp($_SESSION["tipo_usuario"], "Admin") == 0) {
+                ?>
+                        <a href="./index.php?action=cerrarSesion" class="hover:text-gray-400">Cerrar tu Cuenta</a>
+                        <a href="./index.php?action=eventos" class="hover:text-gray-400">Eventos y Torneos</a>
+                        <a href="./index.php?action=dashboard"><img src="../img/paginacion/logo2.webp" class="w-20 h-20" alt=""></a>
+                        <a href="#" class="hover:text-gray-400">Reserva tu sitio</a>
+                        <a href="#" class="hover:text-gray-400">Alquiler de Equipo</a>
+                        <a href="./index.php?action=tienda" class="hover:text-gray-400">Tienda</a>
+                <?php
+                    }else{
+                ?>
+                        <a href="./index.php?action=cerrarSesion" class="hover:text-gray-400">Cerrar tu Cuenta</a>
+                        <a href="./index.php?action=eventosUsuario" class="hover:text-gray-400">Eventos y Torneos</a>
+                        <a href="./index.php?action=dashboard"><img src="../img/paginacion/logo2.webp" class="w-20 h-20" alt=""></a>
+                        <a href="#" class="hover:text-gray-400">Reserva tu sitio</a>
+                        <a href="#" class="hover:text-gray-400">Alquiler de Equipo</a>
+                        <a href="./index.php?action=tienda" class="hover:text-gray-400">Tienda</a>
+                <?php
+                    }
+                ?>
+                
             <?php
                 }else{
             ?>
@@ -51,7 +67,7 @@
                 <a href="./index.php?action=inicio"><img src="../img/paginacion/logo2.webp" class="w-20 h-20" alt=""></a>
                 <a href="./index.php?action=login" class="hover:text-gray-400">Reserva tu sitio</a>
                 <a href="./index.php?action=login" class="hover:text-gray-400">Alquiler de Equipo</a>
-                <a href="./index.php?action=login" class="hover:text-gray-400">Tienda</a>
+                <a href="./index.php?action=tienda" class="hover:text-gray-400">Tienda</a>
             <?php
                 }
             ?>
@@ -71,23 +87,34 @@
         <?php
             if (!isset($_SESSION["id_usuario"])) {
         ?>
-        <button id="close-menu" class="absolute top-4 left-4 text-white text-2xl">&times;</button>
-        <a href="./index.php?action=login" class="hover:text-gray-400 transition-transform duration-300 transform hover:scale-110">Inicia tu Cuenta</a>
-        <a href="#" class="hover:text-gray-400 transition-transform duration-300 transform hover:scale-110">Registrate y juega</a>
-        <a href="#" class="hover:text-gray-400 transition-transform duration-300 transform hover:scale-110">Reserva tu sitio</a>
-        <a href="#" class="hover:text-gray-400 transition-transform duration-300 transform hover:scale-110">Alquiler de Equipo</a>
-        <a href="#" class="hover:text-gray-400 transition-transform duration-300 transform hover:scale-110">Tienda</a>
-        <a href="./inicio.html"><img src="../img/paginacion/logo2.webp" alt="" class="hover:text-gray-400 transition-transform duration-300 transform hover:scale-110 w-20 h-20"></a>
+                <button id="close-menu" class="absolute top-4 left-4 text-white text-2xl">&times;</button>
+                <a href="./index.php?action=login" class="hover:text-gray-400 transition-transform duration-300 transform hover:scale-110">Inicia tu Cuenta</a>
+                <a href="./index.php?action=registro" class="hover:text-gray-400 transition-transform duration-300 transform hover:scale-110">Registrate y juega</a>
+                <a href="#" class="hover:text-gray-400 transition-transform duration-300 transform hover:scale-110">Reserva tu sitio</a>
+                <a href="#" class="hover:text-gray-400 transition-transform duration-300 transform hover:scale-110">Alquiler de Equipo</a>
+                <a href="./index.php?action=tienda" class="hover:text-gray-400 transition-transform duration-300 transform hover:scale-110">Tienda</a>
+                <a href="./index.php?action=inicio"><img src="../img/paginacion/logo2.webp" alt="" class="hover:text-gray-400 transition-transform duration-300 transform hover:scale-110 w-20 h-20"></a>
         <?php
             }else{
         ?>
                 <button id="close-menu" class="absolute top-4 left-4 text-white text-2xl">&times;</button>
                 <a href="./index.php?action=cerrarSesion" class="hover:text-gray-400">Cerrar tu Cuenta</a>
-                <a href="#" class="hover:text-gray-400">Eventos y Torneos</a>
+                <?php
+                    if (strcmp($_SESSION["tipo_usuario"], "Admin") == 0) {
+                ?>
+                        <a href="./index.php?action=eventos" class="hover:text-gray-400">Eventos y Torneos</a>
+                <?php
+                    }else{
+                ?>
+                        <a href="./index.php?action=eventosUsuario" class="hover:text-gray-400">Eventos y Torneos</a>
+                <?php
+                    }
+                ?>
                 <a href="#" class="hover:text-gray-400">Reserva tu sitio</a>
                 <a href="#" class="hover:text-gray-400">Alquiler de Equipo</a>
                 <a href="./index.php?action=tienda" class="hover:text-gray-400">Tienda</a>
                 <a href="./index.php?action=dashboard"><img src="../img/paginacion/logo2.webp" alt="" class="hover:text-gray-400 transition-transform duration-300 transform hover:scale-110 w-20 h-20"></a>
+                
         <?php
             }
         ?>

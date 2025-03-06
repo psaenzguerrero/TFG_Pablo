@@ -90,21 +90,17 @@
         }
         $tipo = new Usuario();
         $_SESSION["tipo_usuario"] = $tipo->obtenerTipoUsu($_SESSION["id_usuario"]);
-        var_dump($_SESSION);
+        // var_dump($_SESSION);
         require_once("../vistas/cabeza.php");
         require_once("../vistas/paginaInicio.php");
         require_once("../vistas/pie.html");   
     }
 
-    //FUNCIONES DE TIENDA VERSION USUARIO
+    //FUNCIONES DE BUSQUEDA EN TIENDA ¡¡¡¡NO HACE FALTA REGISTRO!!!!
     
     function tienda() {
         require_once("../Modelos/producto.php");
         session_start();
-        if (!isset($_SESSION["id_usuario"])) {
-            header("Location: index.php?action=login");
-            exit;
-        }
     
         // Obtener los filtros del formulario
         $filtros = [
@@ -125,14 +121,10 @@
         require_once("../vistas/tienda.php");
         require_once("../vistas/pie.html");
     }
-    
+
     function buscarProductos() {
         require_once("../Modelos/producto.php");
         session_start();
-        if (!isset($_SESSION["id_usuario"])) {
-            header("Location: index.php?action=login");
-            exit;
-        }
     
         $producto = new Producto();
         $filtros = [];
@@ -159,10 +151,52 @@
         require_once("../vistas/tienda.php");
         require_once("../vistas/pie.html");
     }
-    
-    
-    //EVENTOS VERSION ADMIN//
 
+    ////FUNCIONES TIENDA ADMIN////
+    
+    function agregarProducto() {
+        require_once("../Modelos/producto.php");
+        session_start();
+        if (!isset($_SESSION["id_usuario"]) || $_SESSION["tipo_usuario"] != 'Admin') {
+            header("Location: index.php?action=login");
+            exit;
+        }
+
+        if ($_SERVER["REQUEST_METHOD"] === "POST") {
+
+            $nombre_producto = trim($_POST["nombre_producto"]);
+            $precio_producto = floatval($_POST["precio_producto"]);
+            $tipo_producto = trim($_POST["tipo_producto"]);
+            $puntos_compra = intval($_POST["puntos_compra"]);
+
+            // Validar los datos
+            if (empty($nombre_producto) || $precio_producto <= 0 || empty($tipo_producto) || $puntos_compra < 0) {
+                $error = "Por favor, complete todos los campos correctamente.";
+                require_once("../vistas/cabeza.php");
+                require_once("../vistas/agregarProducto.php");
+                require_once("../vistas/pie.html");
+                return;
+            }
+
+            $producto = new Producto();
+            $resultado = $producto->insertar($nombre_producto, $precio_producto, $tipo_producto, $puntos_compra);
+
+            if ($resultado) {
+                header("Location: index.php?action=tienda");
+            } else {
+                $error = "Hubo un error al agregar el producto.";
+                require_once("../vistas/cabeza.php");
+                require_once("../vistas/agregarProducto.php");
+                require_once("../vistas/pie.html");
+            }
+        } else {
+            require_once("../vistas/cabeza.php");
+            require_once("../vistas/agregarProducto.php");
+            require_once("../vistas/pie.html");
+        }
+    }
+   
+    //////EVENTOS VERSION ADMIN//////
 
     function eventos() {
         require_once("../Modelos/evento.php");
@@ -174,8 +208,8 @@
         }
 
         // Obtener el mes y año actuales o los proporcionados por la URL
-        $mesActual = isset($_GET['mes']) ? $_GET['mes'] : date("m");
-        $anioActual = isset($_GET['anio']) ? $_GET['anio'] : date("Y");
+        $mesActual = isset($_POST['mes']) ? $_POST['mes'] : date("m");
+        $anioActual = isset($_POST['anio']) ? $_POST['anio'] : date("Y");
 
         // Asegurarse de que el mes esté dentro del rango de 1 a 12
         if ($mesActual < 1 || $mesActual > 12) {
@@ -248,8 +282,8 @@
             exit;
         }
     
-        if (isset($_GET["id_evento"])) {
-            $id_evento = $_GET["id_evento"];
+        if (isset($_POST["id_evento"])) {
+            $id_evento = $_POST["id_evento"];
             $evento = new Evento();
             $resultado = $evento->eliminarEvento($id_evento);
     
@@ -288,6 +322,30 @@
         }
     }
     
+    //EVEBTOS USUARIOS NORMALES Y VIP
+
+    function eventosUsuario() {
+        require_once("../Modelos/evento.php");
+        session_start();
+
+        if (!isset($_SESSION["id_usuario"])) {
+            header("Location: index.php?action=login");
+            exit;
+        }
+        $tipoUsuario = $_SESSION["tipo_usuario"];
+        $mesActual = isset($_POST['mes']) ? $_POST['mes'] : date("m");
+        $anioActual = isset($_POST['anio']) ? $_POST['anio'] : date("Y");
+
+        if ($mesActual < 1 || $mesActual > 12) {
+            $mesActual = date("m");
+        }
+        $evento = new Evento();
+        $eventos = $evento->obtenerEventosPorMes($anioActual, $mesActual);
+
+        require_once("../vistas/cabeza.php");
+        require_once("../vistas/eventosUsuarios.php");
+        require_once("../vistas/pie.html");
+    }
     
 
     //Esto es la piedra angular del controlador, con esto llamo y me muevo entre las funciones usando los action como variable.
