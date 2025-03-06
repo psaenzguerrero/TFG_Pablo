@@ -153,7 +153,7 @@
     }
 
     ////FUNCIONES TIENDA ADMIN////
-    
+
     function agregarProducto() {
         require_once("../Modelos/producto.php");
         session_start();
@@ -193,6 +193,71 @@
             require_once("../vistas/cabeza.php");
             require_once("../vistas/agregarProducto.php");
             require_once("../vistas/pie.html");
+        }
+    }
+    // En el controlador de productos (productos.php)
+
+    // En el controlador (productos.php)
+
+function editarProducto() {
+    require_once("../Modelos/producto.php");
+    session_start();
+
+    // Verificar si el usuario es administrador
+    if (!isset($_SESSION["id_usuario"]) || $_SESSION["tipo_usuario"] != 'Admin') {
+        header("Location: index.php?action=login");
+        exit;
+    }
+
+    // Obtener el ID del producto desde la URL
+    if (isset($_POST["id_producto"])) {
+        $id_producto = intval($_POST["id_producto"]);
+        // var_dump($_GET["id_producto"]);
+        // die();
+        // Obtener los datos del producto desde el modelo
+        $producto = new Producto();
+        $productoData = $producto->obtenerPorId($id_producto);
+
+        if ($productoData) {
+            var_dump($_GET["id_producto"]);
+            die();
+            // Pasar los datos del producto a la vista
+            require_once("../vistas/cabeza.php");
+            require_once("../vistas/editarProducto.php");
+            require_once("../vistas/pie.html");
+        } else {
+            // Si el producto no existe, redirigir a la tienda
+            header("Location: index.php?action=tienda");
+        }
+    } else {
+        // Si no se proporciona un ID, redirigir a la tienda
+        header("Location: index.php?action=tienda");
+    }
+}
+
+    function eliminarProducto() {
+        require_once("../Modelos/producto.php");
+        session_start();
+
+        // Verificar si el usuario es administrador
+        if (!isset($_SESSION["id_usuario"]) || $_SESSION["tipo_usuario"] != 'Admin') {
+            header("Location: index.php?action=login");
+            exit;
+        }
+
+        // Si se envió el ID del producto
+        if (isset($_GET["id_producto"])) {
+            $id_producto = intval($_GET["id_producto"]);
+            $producto = new Producto();
+            $resultado = $producto->eliminar($id_producto);
+
+            if ($resultado) {
+                header("Location: index.php?action=tienda");
+            } else {
+                echo "Hubo un error al eliminar el producto.";
+            }
+        } else {
+            header("Location: index.php?action=tienda");
         }
     }
    

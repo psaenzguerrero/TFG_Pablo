@@ -70,7 +70,9 @@
             <div class="ml-64 p-6 flex-1">
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <?php foreach ($productos as $producto): ?>
-                        <div class="bg-white p-4 border border-gray-200 rounded-lg shadow-sm">
+                        
+                        <div class="bg-white p-4 border border-gray-200 rounded-lg shadow-sm cursor-pointer" onclick="abrirModal(<?php echo htmlspecialchars($producto['id_producto']); ?>)">
+                            <p class="text-gray-600">id:<?php echo htmlspecialchars($producto['id_producto']); ?></p>
                             <h2 class="text-lg font-semibold text-gray-800"><?php echo htmlspecialchars($producto['nombre_producto']); ?></h2>
                             <p class="text-gray-600">Precio: <?php echo htmlspecialchars($producto['precio_producto']); ?>€</p>
                             <p class="text-gray-600">Tipo: <?php echo htmlspecialchars($producto['tipo_producto']); ?></p>
@@ -82,3 +84,8 @@
         </div>
     </section>
 </main>
+<script>
+    function abrirModal(idProducto) {
+        window.location.href = `index.php?action=editarProducto&id_producto=${idProducto}`;
+    }
+</script>

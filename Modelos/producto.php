@@ -24,7 +24,7 @@
 
         // Obtener un producto por su ID
         public function obtenerPorId($id_producto) {
-            $sentencia = "SELECT nombre_producto, precio_producto, tipo_producto, puntos_compra FROM producto WHERE id_producto = ?";
+            $sentencia = "SELECT id_producto ,nombre_producto, precio_producto, tipo_producto, puntos_compra FROM producto WHERE id_producto = ?";
             $consulta = $this->conn->__get("conn")->prepare($sentencia);
             $consulta->bind_param("i", $id_producto);
             $consulta->execute();
