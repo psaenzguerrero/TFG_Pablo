@@ -23,10 +23,10 @@
                 <div class="mb-4">
                     <label for="tipo_producto" class="block text-gray-700 font-semibold mb-2">Tipo de Producto</label>
                     <select id="tipo_producto" name="tipo_producto" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
-                        <option value="Electrónica">Electrónica</option>
-                        <option value="Ropa">Ropa</option>
-                        <option value="Hogar">Hogar</option>
-                        <option value="Juguetes">Juguetes</option>
+                        <option value="Equipo">Equipo</option>
+                        <option value="Consolas">Consolas</option>
+                        <option value="Accesorios">Accesorios</option>
+                        <option value="Juegos">Juegos</option>
                         <option value="Otros">Otros</option>
                     </select>
                 </div>

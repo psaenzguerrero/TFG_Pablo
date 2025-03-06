@@ -29,12 +29,16 @@
                                 Consolas
                             </label>
                             <label class="flex items-center text-gray-600">
-                                <input type="checkbox" name="tipo[]" value="Equipo Tecnológico" class="mr-2" <?php echo (isset($_POST['tipo']) && in_array('Equipo Tecnológico', $_POST['tipo'])) ? 'checked' : ''; ?>/>
-                                Equipo Tecnológico
+                                <input type="checkbox" name="tipo[]" value="Equipo " class="mr-2" <?php echo (isset($_POST['tipo']) && in_array('Equipo ', $_POST['tipo'])) ? 'checked' : ''; ?>/>
+                                Equipo 
                             </label>
                             <label class="flex items-center text-gray-600">
                                 <input type="checkbox" name="tipo[]" value="Accesorios" class="mr-2" <?php echo (isset($_POST['tipo']) && in_array('Accesorios', $_POST['tipo'])) ? 'checked' : ''; ?>/>
                                 Accesorios
+                            </label>
+                            <label class="flex items-center text-gray-600">
+                                <input type="checkbox" name="tipo[]" value="Juegos" class="mr-2" <?php echo (isset($_POST['tipo']) && in_array('Juegos', $_POST['tipo'])) ? 'checked' : ''; ?>/>
+                                Juegos
                             </label>
                         </div>
                     </div>
