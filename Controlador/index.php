@@ -230,7 +230,6 @@
     
             // Llamar al método guardarEvento para insertar los datos en la base de datos
             $resultado = $evento->guardarEvento($nombre_evento, $tipo_evento, $fecha_evento, $premio, $patrocinadores);
-    
             // Comprobar si la inserción fue exitosa
             if ($resultado) {
                 header("Location: index.php?action=eventos"); // Redirigir si todo salió bien
@@ -275,10 +274,11 @@
             $id_evento = $_POST["id_evento"];
             $nombre_evento = $_POST["nombre_evento"];
             $tipo_evento = $_POST["tipo_evento"];
-            $fecha_evento = $_POST["fecha_evento"];
+            $premio = $_POST["premio"];
+            $patrocinadores = $_POST["patrocinadores"];
     
             $evento = new Evento();
-            $resultado = $evento->modificarEvento($id_evento, $nombre_evento, $tipo_evento, $fecha_evento);
+            $resultado = $evento->modificarEvento($id_evento, $nombre_evento, $tipo_evento, $premio, $patrocinadores);
     
             if ($resultado) {
                 header("Location: index.php?action=eventos");

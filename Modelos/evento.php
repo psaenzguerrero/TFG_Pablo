@@ -12,8 +12,8 @@ class Evento {
     // Obtener todos los eventos de un año
     public function obtenerEventosPorMes($anio, $mes) {
         // Definir el primer y último día del mes
-        $fechaInicio = "$anio-$mes-01";  // Primer día del mes
-        $fechaFin = date("Y-m-t", strtotime($fechaInicio));  // Último día del mes
+        $fechaInicio = "$anio-$mes-01";                         // Primer día del mes
+        $fechaFin = date("Y-m-t", strtotime($fechaInicio));     // Último día del mes
 
         // Consultar eventos en la base de datos dentro del rango de fechas
         $sentencia = "SELECT * FROM evento WHERE fecha_evento BETWEEN '$fechaInicio' AND '$fechaFin' ORDER BY fecha_evento";
@@ -57,10 +57,10 @@ class Evento {
     }
 
     // Modificar un evento
-    public function modificarEvento($id_evento, $nombre_evento, $tipo_evento, $fecha_evento) {
-        $sentencia = "UPDATE evento SET nombre_evento = ?, tipo_evento = ?, fecha_evento = ? WHERE id_evento = ?";
+    public function modificarEvento($id_evento, $nombre_evento, $tipo_evento, $premio,$patrocinadores) {
+        $sentencia = "UPDATE evento SET nombre_evento = ?, tipo_evento = ?, premio = ?, patrocinadores = ? WHERE id_evento = ?";
         $consulta = $this->conn->__get("conn")->prepare($sentencia);
-        $consulta->bind_param("sssi", $nombre_evento, $tipo_evento, $fecha_evento, $id_evento);
+        $consulta->bind_param("ssssi", $nombre_evento, $tipo_evento, $premio,$patrocinadores, $id_evento);
         $resultado = $consulta->execute();
         $consulta->close();
         return $resultado;
