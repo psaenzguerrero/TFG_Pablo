@@ -273,8 +273,8 @@ function editarProducto() {
         }
 
         // Obtener el mes y año actuales o los proporcionados por la URL
-        $mesActual = isset($_POST['mes']) ? $_POST['mes'] : date("m");
-        $anioActual = isset($_POST['anio']) ? $_POST['anio'] : date("Y");
+        $mesActual = isset($_GET['mes']) ? $_GET['mes'] : date("m");
+        $anioActual = isset($_GET['anio']) ? $_GET['anio'] : date("Y");
 
         // Asegurarse de que el mes esté dentro del rango de 1 a 12
         if ($mesActual < 1 || $mesActual > 12) {
@@ -410,6 +410,17 @@ function editarProducto() {
         require_once("../vistas/cabeza.php");
         require_once("../vistas/eventosUsuarios.php");
         require_once("../vistas/pie.html");
+    }
+    function inscribir(){
+        require_once("../Modelos/evento.php");
+        require_once("../Modelos/usuario.php");
+        session_start();
+        if (!isset($_SESSION["id_usuario"])) {
+            header("Location: index.php?action=login");
+            exit;
+        }
+        
+
     }
     
 

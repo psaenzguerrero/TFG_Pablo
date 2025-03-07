@@ -14,6 +14,7 @@
                             <p class="text-gray-600 mb-2">Fecha: <?php echo date("d/m/Y", strtotime($evento['fecha_evento'])); ?></p>
                             <p class="text-gray-600 mb-2">Premio: <?php echo htmlspecialchars($evento['premio']); ?></p>
                             <p class="text-gray-600 mb-2">Patrocinadores: <?php echo htmlspecialchars($evento['patrocinadores']); ?></p>
+                            <a href="index.php?action=inscribir">¡Inscribite!</a>
                         </div>
                     <?php endforeach; ?>
                 <?php endif; ?>
