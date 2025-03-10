@@ -511,16 +511,32 @@
         require_once("../vistas/eventosUsuarios.php");
         require_once("../vistas/pie.html");
     }
-    function inscribir(){
+
+    function inscribir() {
+        require_once("../Modelos/inscripcionEvento.php");
         require_once("../Modelos/evento.php");
-        require_once("../Modelos/usuario.php");
         session_start();
+    
+        // Verificar si el usuario está logueado
         if (!isset($_SESSION["id_usuario"])) {
             header("Location: index.php?action=login");
             exit;
         }
-        
-
+    
+        // Obtener el ID del usuario y el ID del evento
+        $id_usuario = $_SESSION["id_usuario"];
+        $id_evento = $_GET["id_evento"];
+    
+        // Crear una instancia del modelo Inscripcion
+        global $conn; // Asegúrate de que $conn es tu conexión a la base de datos
+        $inscripcionModel = new InscripcionEvento();
+    
+        // Intentar inscribir al usuario
+        if ($inscripcionModel->inscribirUsuario($id_usuario, $id_evento)) {
+            echo "Inscripción realizada con éxito.";
+        } else {
+            echo "Error al realizar la inscripción.";
+        }
     }
     
 
