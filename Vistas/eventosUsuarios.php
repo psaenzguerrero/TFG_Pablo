@@ -1,5 +1,5 @@
 <main>
-    <section class="pt-12 bg-gray-50">
+    <section class="pt-50 bg-gray-50">
         <div class="container mx-auto px-4 py-8">
             <h1 class="text-4xl font-bold text-center text-gray-800 mb-12">Eventos del Mes</h1>
 
@@ -29,8 +29,7 @@
                                     <?php echo htmlspecialchars($evento['patrocinadores']); ?>
                                 </p>
                                 <div class="mt-6">
-                                    <a href="index.php?action=inscribir&id_evento=<?php echo $evento['id_evento']; ?>"
-                                       class="inline-block w-full text-center bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors duration-300">
+                                    <a href="index.php?action=inscribir&id_evento=<?php echo $evento['id_evento']; ?>" class="inline-block w-full text-center bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors duration-300">
                                         ¡Inscríbete!
                                     </a>
                                 </div>

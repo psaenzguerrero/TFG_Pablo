@@ -237,14 +237,11 @@
             header("Location: index.php?action=login");
             exit;
         }
-
         if ($_SERVER["REQUEST_METHOD"] === "POST") {
-
             $nombre_producto = trim($_POST["nombre_producto"]);
             $precio_producto = floatval($_POST["precio_producto"]);
             $tipo_producto = trim($_POST["tipo_producto"]);
             $puntos_compra = intval($_POST["puntos_compra"]);
-
             // Validar los datos
             if (empty($nombre_producto) || $precio_producto <= 0 || empty($tipo_producto) || $puntos_compra < 0) {
                 $error = "Por favor, complete todos los campos correctamente.";
@@ -253,10 +250,8 @@
                 require_once("../vistas/pie.html");
                 return;
             }
-
             $producto = new Producto();
             $resultado = $producto->insertar($nombre_producto, $precio_producto, $tipo_producto, $puntos_compra);
-
             if ($resultado) {
                 header("Location: index.php?action=tienda");
             } else {
@@ -275,31 +270,40 @@
     function editarProducto() {
         require_once("../Modelos/producto.php");
         session_start();
-
-        // Verificar si el usuario es administrador
-        if (!isset($_SESSION["id_usuario"]) || $_SESSION["tipo_usuario"] != 'Admin') {
+        if (!isset($_SESSION["id_usuario"])) {
             header("Location: index.php?action=login");
             exit;
         }
-
-        // Obtener el ID del producto desde la URL
-        if (isset($_GET["id_producto"])) {
-            $id_producto = intval($_GET["id_producto"]);
-            $producto = new Producto();
-            $productoData = $producto->obtenerPorId($id_producto);
-
-            if ($productoData) {                
-                // Pasar los datos del producto a la vista
-                require_once("../vistas/cabeza.php");
-                require_once("../vistas/editarProducto.php");
-                require_once("../vistas/pie.html");
+        if ($_SESSION["tipo_usuario"] == 'Admin') {
+            if (isset($_GET["id_producto"])) {
+                $id_producto = intval($_GET["id_producto"]);
+                $producto = new Producto();
+                $productoData = $producto->obtenerPorId($id_producto);
+                if ($productoData) {                
+                    require_once("../vistas/cabeza.php");
+                    require_once("../vistas/editarProducto.php");
+                    require_once("../vistas/pie.html");
+                } else {
+                    header("Location: index.php?action=tienda");
+                }
             } else {
-                // Si el producto no existe, redirigir a la tienda
                 header("Location: index.php?action=tienda");
             }
-        } else {
-            // Si no se proporciona un ID, redirigir a la tienda
-            header("Location: index.php?action=tienda");
+        }else{
+            if (isset($_GET["id_producto"])) {
+                $id_producto = intval($_GET["id_producto"]);
+                $producto = new Producto();
+                $productoData = $producto->obtenerPorId($id_producto);
+                if ($productoData) {                
+                    require_once("../vistas/cabeza.php");
+                    require_once("../vistas/detallesProducto.php");
+                    require_once("../vistas/pie.html");
+                } else {
+                    header("Location: index.php?action=tienda");
+                }
+            }else {
+                header("Location: index.php?action=tienda");
+            }
         }
     }
 
