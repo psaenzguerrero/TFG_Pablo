@@ -73,6 +73,52 @@
             require_once("../vistas/pie.html");
         }
     }
+    function registroAdmin(){
+        require_once("../Modelos/usuario.php");
+        
+        if ($_SERVER["REQUEST_METHOD"] === "POST") {  
+            $nombre_usuario = trim($_POST["nombre_usuario"]);
+            $pass_usuario = $_POST["pass_usuario"];
+            $pass_usuario2 = $_POST["pass_usuario2"];
+            $DNI = $_POST["DNI"];
+            $usuario = new Usuario();
+
+            if ($usuario->obtenerId($nombre_usuario)) {
+                $error = "Nombre de usuario ya en uso.";
+                require_once("../vistas/cabeza.php");
+                require_once("../vistas/registro.php");
+                require_once("../vistas/pie.html");
+            }else {
+                if ($pass_usuario != $pass_usuario2) {
+                    $error = "Las contraseñas no son iguales.";
+                    require_once("../vistas/cabeza.php");
+                    require_once("../vistas/registro.php");
+                    require_once("../vistas/pie.html");
+                }else {
+                    // $usuario->registrarUsuario($nombre_usuario, $pass_usuario);
+
+                    if (preg_match('/^\d{8}[A-Z]$/', $DNI)) {
+                        $usuario->insertarAdmin($nombre_usuario, $DNI, $pass_usuario);
+                        header("Location: index.php?action=dashboard");
+                        
+                    }else{
+                        $error = "El DNI no es valido.";
+                        require_once("../vistas/cabeza.php");
+                        require_once("../vistas/registro.php");
+                        require_once("../vistas/pie.html");
+                    }
+
+                }
+            }
+    
+            
+        } else {
+            session_start();
+            require_once("../vistas/cabeza.php");
+            require_once("../vistas/registro.php");
+            require_once("../vistas/pie.html");
+        }
+    }
 
     function inicio(){
         session_start();
@@ -195,45 +241,37 @@
             require_once("../vistas/pie.html");
         }
     }
-    // En el controlador de productos (productos.php)
 
-    // En el controlador (productos.php)
+    function editarProducto() {
+        require_once("../Modelos/producto.php");
+        session_start();
 
-function editarProducto() {
-    require_once("../Modelos/producto.php");
-    session_start();
+        // Verificar si el usuario es administrador
+        if (!isset($_SESSION["id_usuario"]) || $_SESSION["tipo_usuario"] != 'Admin') {
+            header("Location: index.php?action=login");
+            exit;
+        }
 
-    // Verificar si el usuario es administrador
-    if (!isset($_SESSION["id_usuario"]) || $_SESSION["tipo_usuario"] != 'Admin') {
-        header("Location: index.php?action=login");
-        exit;
-    }
+        // Obtener el ID del producto desde la URL
+        if (isset($_GET["id_producto"])) {
+            $id_producto = intval($_GET["id_producto"]);
+            $producto = new Producto();
+            $productoData = $producto->obtenerPorId($id_producto);
 
-    // Obtener el ID del producto desde la URL
-    if (isset($_POST["id_producto"])) {
-        $id_producto = intval($_POST["id_producto"]);
-        // var_dump($_GET["id_producto"]);
-        // die();
-        // Obtener los datos del producto desde el modelo
-        $producto = new Producto();
-        $productoData = $producto->obtenerPorId($id_producto);
-
-        if ($productoData) {
-            var_dump($_GET["id_producto"]);
-            die();
-            // Pasar los datos del producto a la vista
-            require_once("../vistas/cabeza.php");
-            require_once("../vistas/editarProducto.php");
-            require_once("../vistas/pie.html");
+            if ($productoData) {                
+                // Pasar los datos del producto a la vista
+                require_once("../vistas/cabeza.php");
+                require_once("../vistas/editarProducto.php");
+                require_once("../vistas/pie.html");
+            } else {
+                // Si el producto no existe, redirigir a la tienda
+                header("Location: index.php?action=tienda");
+            }
         } else {
-            // Si el producto no existe, redirigir a la tienda
+            // Si no se proporciona un ID, redirigir a la tienda
             header("Location: index.php?action=tienda");
         }
-    } else {
-        // Si no se proporciona un ID, redirigir a la tienda
-        header("Location: index.php?action=tienda");
     }
-}
 
     function eliminarProducto() {
         require_once("../Modelos/producto.php");
@@ -257,6 +295,38 @@ function editarProducto() {
                 echo "Hubo un error al eliminar el producto.";
             }
         } else {
+            header("Location: index.php?action=tienda");
+        }
+    }
+
+    function modificarProducto(){
+        require_once("../Modelos/producto.php");
+        session_start();
+
+        if (!isset($_SESSION["id_usuario"]) || $_SESSION["tipo_usuario"] != 'Admin') {
+            header("Location: index.php?action=login");
+            exit;
+        }
+        if ($_SERVER["REQUEST_METHOD"] === "POST") {
+            // Obtener los valores del formulario
+            $id_producto = $_POST["id_producto"];
+            $nombre_producto = $_POST["nombre_producto"];
+            $precio_producto = $_POST["precio_producto"];
+            $tipo_producto = $_POST["tipo_producto"];
+            $puntos_compra = $_POST["puntos_compra"];
+    
+            // Crear una instancia del modelo Evento
+            $producto = new Producto();
+    
+            // Llamar al método guardarEvento para insertar los datos en la base de datos
+            $resultado = $producto->actualizar($id_producto,$nombre_producto,$precio_producto,$tipo_producto,$puntos_compra);
+            // Comprobar si la inserción fue exitosa
+            if ($resultado) {
+                header("Location: index.php?action=tienda");
+            } else {
+                echo "<p>Hubo un error al modificar el producto.</p>";
+            }
+        }else {
             header("Location: index.php?action=tienda");
         }
     }

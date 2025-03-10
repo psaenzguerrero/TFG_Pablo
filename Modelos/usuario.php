@@ -56,6 +56,12 @@
             $consulta->bind_param("sss", $nombre_usuario, $DNI, $pass_usuario);
             return $consulta->execute();
         }
+        public function insertarAdmin($nombre_usuario, $DNI, $pass_usuario) {
+            $sentencia = "INSERT INTO usuario (nombre_usuario, DNI, pass_usuario) VALUES (?, ?, ?)";
+            $consulta = $this->conn->__get("conn")->prepare($sentencia);
+            $consulta->bind_param("sss", $nombre_usuario, $DNI, $pass_usuario);
+            return $consulta->execute();
+        }
         //Obtener los datos del usuarios
         public function obtenerPorId($id_usuario) {
             $sentencia = "SELECT nombre_usuario, pass_usuario FROM usuario WHERE id_usuario = ?";
@@ -68,10 +74,10 @@
             return $usuario;
         }
         //Modificar los usarios
-        public function actualizar($nombre_usuario, $pass_usuario, $id_usuario) {
-            $sentencia = "UPDATE usuario SET nombre_usuario = ?, pass_usuario = ? WHERE id_usuario = ?";
+        public function actualizar($nombre_usuario, $DNI, $pass_usuario, $id_usuario) {
+            $sentencia = "UPDATE usuario SET nombre_usuario = ?, DNI = ?, pass_usuario = ? WHERE id_usuario = ?";
             $consulta = $this->conn->__get('conn')->prepare($sentencia);
-            $consulta->bind_param('ssi', $nombre_usuario, $pass_usuario, $id_usuario);
+            $consulta->bind_param('sssi', $nombre_usuario, $DNI, $pass_usuario, $id_usuario);
             $consulta->execute();
             $consulta->close();
         }

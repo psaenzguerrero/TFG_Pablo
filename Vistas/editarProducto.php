@@ -11,7 +11,7 @@
                     </div>
                 <?php endif; ?>
 
-                <form action="index.php?action=editarProducto" method="POST">
+                <form action="index.php?action=modificarProducto" method="POST">
                     <input type="hidden" name="id_producto" value="<?php echo htmlspecialchars($productoData['id_producto'] ); ?>">
 
                     <div class="mb-4">
