@@ -49,6 +49,18 @@
             $consulta->fetch();
             return $id_usuario;
         }
+        public function obtenerUsuariosNull(){
+            $sentencia ="SELECT id_usuario, nombre_usuario, DNI, pass_usuario, tipo_usuario, puntos_usuario FROM usuario WHERE DNI IS NULL";
+            $consulta=$this->conn->__get("conn")->prepare($sentencia);
+            $consulta->bind_result($res, $res2, $res3, $res4, $res5, $res6);
+            $usuarios = array();
+            $consulta->execute();
+            while($consulta->fetch()){
+                array_push($usuarios, [$res, $res2, $res3, $res4, $res5, $res6]);
+            };
+            $consulta->close();
+            return $usuarios;
+        }
         //Insertar usuario
         public function insertar($nombre_usuario, $pass_usuario) {
             $sentencia = "INSERT INTO usuario (nombre_usuario, DNI, pass_usuario) VALUES (?, ?, ?)";
@@ -74,10 +86,10 @@
             return $usuario;
         }
         //Modificar los usarios
-        public function actualizar($nombre_usuario, $DNI, $pass_usuario, $id_usuario) {
-            $sentencia = "UPDATE usuario SET nombre_usuario = ?, DNI = ?, pass_usuario = ? WHERE id_usuario = ?";
+        public function actualizar($DNI, $id_usuario) {
+            $sentencia = "UPDATE usuario SET DNI = ? WHERE id_usuario = ?";
             $consulta = $this->conn->__get('conn')->prepare($sentencia);
-            $consulta->bind_param('sssi', $nombre_usuario, $DNI, $pass_usuario, $id_usuario);
+            $consulta->bind_param('si', $DNI, $id_usuario);
             $consulta->execute();
             $consulta->close();
         }

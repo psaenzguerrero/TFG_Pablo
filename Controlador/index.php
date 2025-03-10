@@ -120,6 +120,36 @@
         }
     }
 
+    function activarUsuario(){
+        require_once("../Modelos/usuario.php");
+        session_start();
+        $usuario = new Usuario();
+        $usuarios = $usuario->obtenerUsuariosNull();
+
+        if ($_SERVER["REQUEST_METHOD"] === "POST") {  
+            $id_usuario = $_POST["id_usuario"];
+            $DNI = $_POST["DNI"];
+            
+            if (preg_match('/^\d{8}[A-Z]$/', $DNI)) {
+                $usuario->actualizar( $DNI, $id_usuario);
+                header("Location: index.php?action=dashboard");
+                        
+            }else{
+                $error = "El DNI no es valido.";
+                require_once("../vistas/cabeza.php");
+                require_once("../vistas/registro.php");
+                require_once("../vistas/pie.html");
+            }
+
+        }else {
+            require_once("../vistas/cabeza.php");
+            require_once("../vistas/activarUsuario.php");
+            require_once("../vistas/pie.html");
+        }
+            
+        
+    }
+
     function inicio(){
         session_start();
             require_once("../vistas/cabeza.php");

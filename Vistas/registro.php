@@ -36,7 +36,7 @@
                 </form>
             </section>
     <?php
-            }
+            
         }else{
     ?>
     <section class="pt-50">
@@ -68,5 +68,6 @@
     </section>
     <?php
         }
+    }
     ?>
 </main>
