@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 05-03-2025 a las 12:02:54
+-- Tiempo de generación: 10-03-2025 a las 12:23:04
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -24,6 +24,19 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `alquiler`
+--
+
+CREATE TABLE `alquiler` (
+  `id_usuario` int(11) NOT NULL,
+  `id_equipo` int(11) NOT NULL,
+  `fecha_limite` date NOT NULL,
+  `pago` decimal(10,0) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `compra`
 --
 
@@ -38,7 +51,6 @@ CREATE TABLE `compra` (
 --
 
 INSERT INTO `compra` (`id_usuario`, `id_producto`, `fecha_compra`) VALUES
-(1, 1, '2025-02-10'),
 (2, 2, '2025-02-11'),
 (3, 3, '2025-02-12');
 
@@ -86,12 +98,13 @@ CREATE TABLE `evento` (
 
 INSERT INTO `evento` (`id_evento`, `nombre_evento`, `tipo_evento`, `fecha_evento`, `premio`, `patrocinadores`) VALUES
 (1, 'Torneo FIFA', 'Videojuegos', '2025-03-15', 'Trofeo + 100 puntos', 'Sony'),
-(2, 'Concurso VR', 'Realidad Virtual', '2025-04-20', 'Casco VR', 'Oculus'),
-(3, 'Torneo FIFA', 'Videojuegos', '2025-03-15', 'Trofeo + 100 puntos', 'Sony'),
+(2, 'Concurso VR', 'Realidad Virtual', '2025-03-28', '200€', 'Oculuss'),
+(3, 'Torneo FIFA', 'Videojuegos', '2025-03-21', 'Trofeo + 100 puntos', 'Soni'),
 (4, 'Concurso VR', 'Realidad Virtual', '2025-04-20', 'Casco VR', 'Oculus'),
 (5, 'Competencia eSports', 'Videojuegos', '2025-06-10', 'Medalla + $3000', 'Razer'),
 (6, 'Carrera de Drones', 'Tecnología', '2025-07-05', 'Drone Profesional', 'DJI'),
-(7, 'Torneo de Smash', 'Videojuegos', '2025-08-12', 'Trofeo + Suscripción Online', 'Nintendo');
+(7, 'Torneo de Smash', 'Videojuegos', '2025-08-12', 'Trofeo + Suscripción Online', 'Nintendo'),
+(13, 'maite', 'videojuegos', '2025-03-04', '100€', 'Sony');
 
 -- --------------------------------------------------------
 
@@ -109,9 +122,10 @@ CREATE TABLE `inscribe` (
 --
 
 INSERT INTO `inscribe` (`id_usuario`, `id_evento`) VALUES
-(1, 1),
 (2, 2),
-(3, 1);
+(3, 1),
+(13, 1),
+(13, 13);
 
 -- --------------------------------------------------------
 
@@ -146,7 +160,7 @@ CREATE TABLE `producto` (
   `id_producto` int(11) NOT NULL,
   `nombre_producto` varchar(100) NOT NULL,
   `precio_producto` decimal(10,2) NOT NULL,
-  `tipo_producto` enum('Equipo Tecnológico','Juegos','Consolas') NOT NULL,
+  `tipo_producto` enum('Equipo','Accesorios','Juegos','Consolas') NOT NULL,
   `puntos_compra` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
@@ -155,19 +169,20 @@ CREATE TABLE `producto` (
 --
 
 INSERT INTO `producto` (`id_producto`, `nombre_producto`, `precio_producto`, `tipo_producto`, `puntos_compra`) VALUES
-(1, 'PlayStation 5', 499.99, 'Consolas', 500),
 (2, 'Xbox Series X', 499.99, 'Consolas', 500),
-(3, 'Monitor Gaming', 299.99, 'Equipo Tecnológico', 300),
+(3, 'Monitor Gaming', 299.99, '', 300),
 (4, 'PlayStation 5', 499.99, 'Consolas', 500),
 (5, 'Xbox Series X', 499.99, 'Consolas', 500),
-(6, 'Monitor Gaming', 299.99, 'Equipo Tecnológico', 300),
+(6, 'Monitor Gaming', 299.99, '', 300),
 (7, 'Nintendo Switch', 299.99, 'Consolas', 300),
 (8, 'Teclado Mecánico', 89.99, '', 90),
 (9, 'Ratón Gaming', 59.99, '', 60),
-(10, 'Auriculares Inalámbricos', 129.99, '', 130),
-(11, 'Proyector 4K', 399.99, 'Equipo Tecnológico', 400),
-(12, 'Smart TV 55\"', 699.99, 'Equipo Tecnológico', 700),
-(13, 'Tablet Android', 199.99, 'Equipo Tecnológico', 200);
+(10, 'Auriculares Inalámbricos', 129.99, 'Equipo', 130),
+(11, 'Proyector 4K', 399.99, 'Equipo', 400),
+(12, 'Smart TV 55\"', 699.99, 'Equipo', 700),
+(13, 'Tablet Android', 199.99, 'Equipo', 200),
+(14, 'wi', 80.00, 'Consolas', 40),
+(17, 'agch', 1000.00, 'Equipo', 101);
 
 -- --------------------------------------------------------
 
@@ -179,6 +194,8 @@ CREATE TABLE `reserva` (
   `id_usuario` int(11) NOT NULL,
   `id_equipo` int(11) NOT NULL,
   `fecha_reserva` date NOT NULL,
+  `horaIni` time NOT NULL,
+  `horaFin` time NOT NULL,
   `snack` tinyint(1) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
@@ -186,10 +203,9 @@ CREATE TABLE `reserva` (
 -- Volcado de datos para la tabla `reserva`
 --
 
-INSERT INTO `reserva` (`id_usuario`, `id_equipo`, `fecha_reserva`, `snack`) VALUES
-(1, 1, '2025-03-01', 1),
-(2, 2, '2025-03-02', 0),
-(3, 3, '2025-03-03', 1);
+INSERT INTO `reserva` (`id_usuario`, `id_equipo`, `fecha_reserva`, `horaIni`, `horaFin`, `snack`) VALUES
+(2, 2, '2025-03-02', '00:00:00', '00:00:00', 0),
+(3, 3, '2025-03-03', '00:00:00', '00:00:00', 1);
 
 -- --------------------------------------------------------
 
@@ -214,7 +230,11 @@ INSERT INTO `usuario` (`id_usuario`, `nombre_usuario`, `DNI`, `pass_usuario`, `t
 (1, 'Juan Pérez', '12345678A', 'pass123', 'Admin', 100),
 (2, 'María López', '87654321B', 'pass456', 'Vip', 200),
 (3, 'Carlos García', '45612378C', 'pass789', 'Normal', 50),
-(8, 'pablo', NULL, '123', 'Normal', 0);
+(13, 'Pablo', '75570672D', '12345', 'Normal', 0),
+(14, 'AGCH', '11111111D', '12345', 'Normal', 0),
+(15, 'Maite', '11111112D', '12345', 'Normal', 0),
+(16, 'Pepe', '12121212D', '12345', 'Normal', 0),
+(17, 'Manu', '12345678D', '12345', 'Normal', 0);
 
 --
 -- Índices para tablas volcadas
@@ -287,7 +307,7 @@ ALTER TABLE `equipo`
 -- AUTO_INCREMENT de la tabla `evento`
 --
 ALTER TABLE `evento`
-  MODIFY `id_evento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_evento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `pago`
@@ -299,13 +319,13 @@ ALTER TABLE `pago`
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- Restricciones para tablas volcadas
