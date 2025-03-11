@@ -73,7 +73,7 @@
             ?>
         </div>
         <div>
-            <a href="#" class="text-lg"><i class="fas fa-shopping-bag"></i></a>
+            <a href="./index.php?action=verCarrito" class="text-lg"><i class="fas fa-shopping-bag"></i></a>
         </div>
         <div class="lg:hidden">
             <button id="menu-toggle" class="text-white">

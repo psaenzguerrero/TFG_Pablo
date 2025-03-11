@@ -544,6 +544,71 @@
     }
     
 
+    function agregarAlCarrito() {
+        require_once("../Modelos/carrito.php");
+        session_start();
+        if (!isset($_SESSION["id_usuario"])) {
+            header("Location: index.php?action=login");
+            exit;
+        }
+
+        if ($_SERVER["REQUEST_METHOD"] === "POST") {
+            $id_usuario = $_SESSION["id_usuario"];
+            $id_producto = $_POST["id_producto"];
+            $fecha_compra = date("Y-m-d H:i:s");
+
+            $carrito = new Carrito();
+            $resultado = $carrito->insertar($id_usuario, $id_producto, $fecha_compra);
+
+            if ($resultado) {
+                header("Location: index.php?action=verCarrito");
+            } else {
+                echo "Error al agregar el producto al carrito.";
+            }
+        }
+    }
+
+    function eliminarDelCarrito() {
+        require_once("../Modelos/carrito.php");
+        session_start();
+        if (!isset($_SESSION["id_usuario"])) {
+            header("Location: index.php?action=login");
+            exit;
+        }
+
+        if ($_SERVER["REQUEST_METHOD"] === "POST") {
+            $id_usuario = $_SESSION["id_usuario"];
+            $id_producto = $_POST["id_producto"];
+
+            $carrito = new Carrito();
+            $resultado = $carrito->eliminar($id_usuario, $id_producto);
+
+            if ($resultado) {
+                header("Location: index.php?action=verCarrito");
+            } else {
+                echo "Error al eliminar el producto del carrito.";
+            }
+        }
+    }
+
+    function verCarrito() {
+        require_once("../Modelos/carrito.php");
+        session_start();
+        if (!isset($_SESSION["id_usuario"])) {
+            header("Location: index.php?action=login");
+            exit;
+        }
+
+        $id_usuario = $_SESSION["id_usuario"];
+        $carrito = new Carrito();
+        $compras = $carrito->obtenerPorUsuario($id_usuario);
+
+        require_once("../vistas/cabeza.php");
+        require_once("../vistas/carritoUsu.php");
+        require_once("../vistas/pie.html");
+    }
+    
+
     //Esto es la piedra angular del controlador, con esto llamo y me muevo entre las funciones usando los action como variable.
     if (isset($_REQUEST["action"])) {
         $action = strtolower($_REQUEST["action"]);
