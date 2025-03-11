@@ -532,15 +532,24 @@
         $id_evento = $_GET["id_evento"];
     
         // Crear una instancia del modelo Inscripcion
-        global $conn; // Asegúrate de que $conn es tu conexión a la base de datos
-        $inscripcionModel = new InscripcionEvento();
-    
-        // Intentar inscribir al usuario
-        if ($inscripcionModel->inscribirUsuario($id_usuario, $id_evento)) {
-            echo "Inscripción realizada con éxito.";
-        } else {
-            echo "Error al realizar la inscripción.";
+        
+        $inscripcion = new InscripcionEvento();
+        $inscripciones = $inscripcion->listaInscrito($id_usuario, $id_evento);
+        if ($inscripciones) {
+            header("Location: index.php?action=eventosUsuario");
+            exit;
+            // echo "<p>problema1</p>";
+        }else{
+            // Intentar inscribir al usuario
+            if ($inscripcion->inscribirUsuario($id_usuario, $id_evento)) {
+                echo "Inscripción realizada con éxito.";
+                header("Location: index.php?action=eventosUsuario");
+            } else {
+                echo "Error al realizar la inscripción.";
+                header("Location: index.php?action=eventosUsuario");
+            }
         }
+        
     }
     
 
@@ -555,13 +564,15 @@
         if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $id_usuario = $_SESSION["id_usuario"];
             $id_producto = $_POST["id_producto"];
+            // echo "<p>$id_producto</p>";
+            // die();
             $fecha_compra = date("Y-m-d H:i:s");
 
             $carrito = new Carrito();
             $resultado = $carrito->insertar($id_usuario, $id_producto, $fecha_compra);
 
             if ($resultado) {
-                header("Location: index.php?action=verCarrito");
+                header("Location: index.php?action=editarProducto");
             } else {
                 echo "Error al agregar el producto al carrito.";
             }
