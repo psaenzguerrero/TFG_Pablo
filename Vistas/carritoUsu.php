@@ -17,7 +17,7 @@
                     <tbody>
                         <?php foreach ($compras as $compra): ?>
                             <tr>
-                                <td class="border px-4 py-2"><?php echo $compra['id_producto']; ?></td>
+                                <td class="border px-4 py-2"><?php echo $compra['nombre_producto']; ?></td>
                                 <td class="border px-4 py-2"><?php echo $compra['precio_producto']; ?></td>
                                 <td class="border px-4 py-2"><?php echo $compra['fecha_compra']; ?></td>
                                 <td class="border px-4 py-2">

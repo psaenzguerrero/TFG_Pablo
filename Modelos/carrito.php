@@ -26,7 +26,7 @@ class Carrito {
 
     // Obtener compras por ID de usuario
     public function obtenerPorUsuario($id_usuario) {
-        $sentencia = "SELECT compra.id_usuario, compra.id_producto, compra.fecha_compra, producto.precio_producto FROM compra, producto WHERE producto.id_producto = compra.id_producto AND id_usuario = ?";
+        $sentencia = "SELECT compra.id_usuario, compra.id_producto, producto.nombre_producto, compra.fecha_compra, producto.precio_producto FROM compra, producto WHERE producto.id_producto = compra.id_producto AND id_usuario = ?";
         $consulta = $this->conn->__get("conn")->prepare($sentencia);
         $consulta->bind_param("i", $id_usuario);
         $consulta->execute();
