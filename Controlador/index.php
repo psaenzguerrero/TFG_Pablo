@@ -663,13 +663,3 @@
 
 <!-- CREATE EVENT borrar_tipos ON SCHEDULE EVERY 1 MONTH STARTS '2025-03-12 10:21:00' DO UPDATE usuario SET tipo_usuario = 'normal'; -->
 <!-- evento de tiempo para cambio de tipo usuario -->
-<!-- DELIMITER $$
-
-CREATE EVENT 'borrar_puntos'
-	ON SCHEDULE EVERY 1 MONTH STARTS '12/03/2025 10:20:00'
-	DO BEGIN
-	
-    UPDATE usuario SET tipo_usuario = 'normal';
-	
-    END */$$
-DELIMITER ; -->

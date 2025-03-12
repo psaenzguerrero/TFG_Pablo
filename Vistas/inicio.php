@@ -234,7 +234,8 @@
             <div>
                 <h2>Mejora tu experiencia</h2>
                 <?php
-                $tipo = $_SESSION["tipo_usuario"];
+                if (isset($_SESSION["id_usuario"])) {
+                    $tipo = $_SESSION["tipo_usuario"];
                     if (isset($_SESSION["id_usuario"]) && strcmp($tipo, 'normal') == 0) {
                 ?>
                         <a href="index.php?action=mejoraUsu">hazte vip</a>
@@ -244,6 +245,11 @@
                         <button disabled="disabled">hazte vip</button>
                 <?php
                     }
+                }else{
+                ?>
+                    <button disabled="disabled">hazte vip</button>
+                <?php
+                }
                 ?>
             </div>
         </div>
