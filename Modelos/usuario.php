@@ -39,6 +39,16 @@
             $consulta->fetch();
             return $tip;
         }
+
+        public function obtenerPuntos($id_usuario){
+            $sentencia ="SELECT puntos_usuario FROM usuario WHERE id_usuario=?;";
+            $consulta=$this->conn->__get("conn")->prepare($sentencia);
+            $consulta->bind_param("s",$id_usuario);
+            $consulta->bind_result($tip);
+            $consulta->execute();
+            $consulta->fetch();
+            return $tip;
+        }
         //obtener el id del usuario
         public function obtenerId($nombre_usuario){
             $sentencia="SELECT id_usuario FROM usuario WHERE nombre_usuario=?;";
@@ -90,6 +100,28 @@
             $sentencia = "UPDATE usuario SET DNI = ? WHERE id_usuario = ?";
             $consulta = $this->conn->__get('conn')->prepare($sentencia);
             $consulta->bind_param('si', $DNI, $id_usuario);
+            $consulta->execute();
+            $consulta->close();
+        }
+
+        public function actualizarPuntos($puntos_usuario, $id_usuario) {
+            $sentencia = "UPDATE usuario SET puntos_usuario = ? WHERE id_usuario = ?";
+            $consulta = $this->conn->__get('conn')->prepare($sentencia);
+            $consulta->bind_param('si', $puntos_usuario, $id_usuario);
+            $consulta->execute();
+            $consulta->close();
+        }
+        public function actualizarTipo($id_usuario) {
+            $sentencia = "UPDATE usuario SET tipo_usuario = 'Vip' WHERE id_usuario = ?";
+            $consulta = $this->conn->__get('conn')->prepare($sentencia);
+            $consulta->bind_param('i',  $id_usuario);
+            $consulta->execute();
+            $consulta->close();
+        }
+        public function restearTipo($tipo_usuario) {
+            $sentencia = "UPDATE usuario SET tipo_usuario = 'Normal' WHERE tipo_usuario = 'admin'";
+            $consulta = $this->conn->__get('conn')->prepare($sentencia);
+            $consulta->bind_param('i',  $id_usuario);
             $consulta->execute();
             $consulta->close();
         }

@@ -153,7 +153,7 @@
     function inicio(){
         session_start();
             require_once("../vistas/cabeza.php");
-            require_once("../vistas/inicio.html");
+            require_once("../vistas/inicio.php");
             require_once("../vistas/pie.html");
     }
 
@@ -170,6 +170,32 @@
         require_once("../vistas/cabeza.php");
         require_once("../vistas/paginaInicio.php");
         require_once("../vistas/pie.html");   
+    }
+
+    function mejoraUsu(){
+        require_once("../Modelos/usuario.php");
+        session_start();
+        if (!isset($_SESSION["id_usuario"])) {
+            header("Location: index.php?action=login");
+            exit;
+        }
+        $tipo = new Usuario();
+        $id_usuario = $_SESSION["id_usuario"];
+        $puntos = $tipo->obtenerPuntos($id_usuario);
+
+        if ($puntos >= 100) {
+            $puntos-=100;
+            
+            $puntosFinal = $tipo->actualizarPuntos($puntos, $id_usuario);
+            $tipo_usu = $tipo->actualizarTipo($id_usuario);
+            require_once("../vistas/cabeza.php");
+            require_once("../vistas/paginaInicio.php");
+            require_once("../vistas/pie.html"); 
+
+            
+        }else{
+            echo "<p>$puntos</p><p>2</p>";
+        }
     }
 
     //FUNCIONES DE BUSQUEDA EN TIENDA ¡¡¡¡NO HACE FALTA REGISTRO!!!!
@@ -634,3 +660,16 @@
         inicio(); // Muestra la pantalla de inicio de sesión por defecto
     }
 ?>
+
+<!-- CREATE EVENT borrar_tipos ON SCHEDULE EVERY 1 MONTH STARTS '2025-03-12 10:21:00' DO UPDATE usuario SET tipo_usuario = 'normal'; -->
+<!-- evento de tiempo para cambio de tipo usuario -->
+<!-- DELIMITER $$
+
+CREATE EVENT 'borrar_puntos'
+	ON SCHEDULE EVERY 1 MONTH STARTS '12/03/2025 10:20:00'
+	DO BEGIN
+	
+    UPDATE usuario SET tipo_usuario = 'normal';
+	
+    END */$$
+DELIMITER ; -->

@@ -129,7 +129,7 @@
         </div>
     </section>
     <section class="flex flex-col lg:flex-row">
-        <div  class="bg-gray-900 text-white flex flex-col items-center  min-h-screen">
+        <div  class="bg-gray-900 text-white flex flex-col items-center ">
             <div class="p-6 animated-bg shadow-lg w-full max-w-4xl flex items-center space-x-4 overflow-hidden my-6 clip-path-custom scroll-container">
                 <h2 class="text-xl font-bold text-center text-white">Sala Principal</h2>
                 <div class="flex space-x-4">
@@ -196,7 +196,7 @@
                     <img src="#" alt="Centro E-Sport en Granada" class="w-24">
                 </div>
             </div>
-            <div class="p-6 animated-bg shadow-lg w-full max-w-4xl flex items-center space-x-4 overflow-hidden my-6 clip-path-custom scroll-container">
+            <div class="p-6 animated-bg shadow-lg w-full max-w-4xl flex items-center space-x-4 overflow-hidden m-6 clip-path-custom scroll-container">
                 <h2 class="text-xl font-bold text-center text-white">Sala Principal</h2>
                 <div class="flex space-x-4">
                     <div class="flex flex-col items-center bg-gray-700 p-3 rounded-lg">
@@ -230,8 +230,22 @@
                 </div>
             </div>
         </div>
-        <div>
-
+        <div class="flex items-center justify-center lg:w-500 my-20 text-white">
+            <div>
+                <h2>Mejora tu experiencia</h2>
+                <?php
+                $tipo = $_SESSION["tipo_usuario"];
+                    if (isset($_SESSION["id_usuario"]) && strcmp($tipo, 'normal') == 0) {
+                ?>
+                        <a href="index.php?action=mejoraUsu">hazte vip</a>
+                <?php
+                    }else{
+                ?>
+                        <button disabled="disabled">hazte vip</button>
+                <?php
+                    }
+                ?>
+            </div>
         </div>
     </section>
 </main>
