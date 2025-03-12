@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 10-03-2025 a las 12:23:04
+-- Tiempo de generación: 12-03-2025 a las 11:51:44
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -24,19 +24,6 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `alquiler`
---
-
-CREATE TABLE `alquiler` (
-  `id_usuario` int(11) NOT NULL,
-  `id_equipo` int(11) NOT NULL,
-  `fecha_limite` date NOT NULL,
-  `pago` decimal(10,0) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `compra`
 --
 
@@ -51,8 +38,21 @@ CREATE TABLE `compra` (
 --
 
 INSERT INTO `compra` (`id_usuario`, `id_producto`, `fecha_compra`) VALUES
-(2, 2, '2025-02-11'),
-(3, 3, '2025-02-12');
+(3, 2, '2025-02-16'),
+(3, 3, '2025-02-12'),
+(3, 3, '2025-02-14'),
+(3, 3, '2025-02-18'),
+(3, 4, '2025-02-15'),
+(3, 5, '2025-02-20'),
+(13, 2, '2025-02-11'),
+(13, 2, '2025-02-20'),
+(13, 2, '2025-03-11'),
+(13, 3, '2025-02-12'),
+(13, 4, '2025-02-10'),
+(13, 5, '2025-02-13'),
+(13, 6, '2025-02-17'),
+(13, 7, '2025-02-19'),
+(13, 17, '2025-03-11');
 
 -- --------------------------------------------------------
 
@@ -63,6 +63,7 @@ INSERT INTO `compra` (`id_usuario`, `id_producto`, `fecha_compra`) VALUES
 CREATE TABLE `equipo` (
   `id_equipo` int(11) NOT NULL,
   `tipo_equipo` enum('Ordenador','VR','Consolas') NOT NULL,
+  `sala_equipo` varchar(20) NOT NULL,
   `estado` enum('Disponible','Ocupado') NOT NULL,
   `precio` decimal(10,2) NOT NULL,
   `puntos_equipo` int(11) NOT NULL
@@ -72,10 +73,19 @@ CREATE TABLE `equipo` (
 -- Volcado de datos para la tabla `equipo`
 --
 
-INSERT INTO `equipo` (`id_equipo`, `tipo_equipo`, `estado`, `precio`, `puntos_equipo`) VALUES
-(1, 'Ordenador', 'Disponible', 5.00, 10),
-(2, 'VR', 'Ocupado', 7.00, 15),
-(3, 'Consolas', 'Disponible', 4.00, 8);
+INSERT INTO `equipo` (`id_equipo`, `tipo_equipo`, `sala_equipo`, `estado`, `precio`, `puntos_equipo`) VALUES
+(1, 'Ordenador', 'pc_normal', 'Disponible', 5.00, 10),
+(2, 'VR', 'vr_normla', 'Ocupado', 7.00, 15),
+(3, 'Consolas', 'consola_normal', 'Disponible', 4.00, 8),
+(4, 'Ordenador', 'pc_vip', 'Disponible', 6.00, 12),
+(5, 'VR', 'vr_vip', 'Ocupado', 8.50, 18),
+(6, 'Consolas', 'consola_vip', 'Disponible', 5.00, 10),
+(7, 'Ordenador', 'pc_normal', 'Disponible', 5.50, 11),
+(8, 'VR', 'vr_normal', 'Ocupado', 7.50, 16),
+(9, 'Consolas', 'consola_normal', 'Disponible', 4.50, 9),
+(10, 'Ordenador', 'pc_vip', 'Disponible', 7.00, 14),
+(11, 'VR', 'vr_vip', 'Ocupado', 9.00, 20),
+(12, 'Consolas', 'consola_vip', 'Disponible', 6.00, 12);
 
 -- --------------------------------------------------------
 
@@ -125,6 +135,7 @@ INSERT INTO `inscribe` (`id_usuario`, `id_evento`) VALUES
 (2, 2),
 (3, 1),
 (13, 1),
+(13, 3),
 (13, 13);
 
 -- --------------------------------------------------------
@@ -204,8 +215,8 @@ CREATE TABLE `reserva` (
 --
 
 INSERT INTO `reserva` (`id_usuario`, `id_equipo`, `fecha_reserva`, `horaIni`, `horaFin`, `snack`) VALUES
-(2, 2, '2025-03-02', '00:00:00', '00:00:00', 0),
-(3, 3, '2025-03-03', '00:00:00', '00:00:00', 1);
+(2, 2, '2025-03-02', '15:00:00', '17:00:00', 0),
+(3, 3, '2025-03-03', '17:00:00', '19:00:00', 1);
 
 -- --------------------------------------------------------
 
@@ -228,11 +239,11 @@ CREATE TABLE `usuario` (
 
 INSERT INTO `usuario` (`id_usuario`, `nombre_usuario`, `DNI`, `pass_usuario`, `tipo_usuario`, `puntos_usuario`) VALUES
 (1, 'Juan Pérez', '12345678A', 'pass123', 'Admin', 100),
-(2, 'María López', '87654321B', 'pass456', 'Vip', 200),
+(2, 'María López', '87654321B', 'pass456', 'Normal', 200),
 (3, 'Carlos García', '45612378C', 'pass789', 'Normal', 50),
-(13, 'Pablo', '75570672D', '12345', 'Normal', 0),
+(13, 'Pablo', '75570672D', '12345', 'Vip', 200),
 (14, 'AGCH', '11111111D', '12345', 'Normal', 0),
-(15, 'Maite', '11111112D', '12345', 'Normal', 0),
+(15, 'Maite', '11111112D', '12345', 'Normal', 3000),
 (16, 'Pepe', '12121212D', '12345', 'Normal', 0),
 (17, 'Manu', '12345678D', '12345', 'Normal', 0);
 
@@ -301,7 +312,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `equipo`
 --
 ALTER TABLE `equipo`
-  MODIFY `id_equipo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_equipo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `evento`
@@ -357,6 +368,14 @@ ALTER TABLE `pago`
 ALTER TABLE `reserva`
   ADD CONSTRAINT `reserva_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`) ON DELETE CASCADE,
   ADD CONSTRAINT `reserva_ibfk_2` FOREIGN KEY (`id_equipo`) REFERENCES `equipo` (`id_equipo`) ON DELETE CASCADE;
+
+DELIMITER $$
+--
+-- Eventos
+--
+CREATE DEFINER=`root`@`localhost` EVENT `borrar_tipos` ON SCHEDULE EVERY 1 MONTH STARTS '2025-03-12 10:32:00' ON COMPLETION NOT PRESERVE ENABLE DO UPDATE usuario SET tipo_usuario = 'normal' WHERE tipo_usuario = 'Vip'$$
+
+DELIMITER ;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
