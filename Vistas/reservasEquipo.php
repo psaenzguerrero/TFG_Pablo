@@ -1,31 +1,61 @@
 <main>
     <section class="pt-50">
-        <h2>Reservar Equipo</h2>
+        <h1>Reservar Equipo</h1>
         <?php if (isset($error)): ?>
-            <p style="color: red;"><?php echo $error; ?></p>
+            <div class="alert alert-danger"><?php echo $error; ?></div>
         <?php endif; ?>
-        <form method="POST" action="index.php?action=reservarequipo">
-            <label for="id_equipo">ID Equipo:</label>
-            <input type="number" id="id_equipo" name="id_equipo" required><br>
-            <label for="fecha_reserva">Fecha de Reserva:</label>
-            <input type="date" id="fecha_reserva" name="fecha_reserva" required><br>
-            <select name="periodo" id="periodo" >
-                <option value="periodo1">9:00-10:00</option>
-                <option value="periodo2">10:00-11:00</option>
-                <option value="periodo3">11:00-12:00</option>
-                <option value="periodo4">12:00-13:00</option>
-                <option value="periodo5">13:00-14:00</option>
-                <option value="periodo6">14:00-15:00</option>
-                <option value="periodo7">15:00-16:00</option>
-                <option value="periodo8">16:00-17:00</option>
-                <option value="periodo9">17:00-18:00</option>
-                <option value="periodo10">18:00-19:00</option>
-            </select>
-            <label for="snack">Snack:</label>
-            <input type="checkbox" id="snack" name="snack"><br>
-            <button type="submit">Reservar</button>
+        <form method="POST" action="index.php?action=reservarEquipo">
+            <div class="form-group">
+                <label for="fecha_reserva">Fecha de Reserva:</label>
+                <input type="date" id="fecha_reserva" name="fecha_reserva" class="form-control" 
+                       value="<?php echo $fecha_seleccionada; ?>" required>
+            </div>
+
+            <div class="form-group">
+                <label for="equipo">Equipo:</label>
+                <select id="equipo" name="id_equipo" class="form-control" required>
+                    <?php if (isset($equipos) && is_array($equipos)): ?>
+                        <?php foreach ($equipos as $equipo): ?>
+                            <option value="<?php echo $equipo['id_equipo']; ?>"><?php echo $equipo['nombre_equipo']; ?></option>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="periodo">Periodo:</label>
+                <select id="periodo" name="periodo" class="form-control" required>
+                    <?php
+                    // Definir los periodos disponibles
+                    $periodos = ["periodo1", "periodo2", "periodo3", "periodo4", "periodo5", 
+                                 "periodo6", "periodo7", "periodo8", "periodo9", "periodo10"];
+
+                    foreach ($periodos as $periodo) {
+                        // Verificar si el periodo está ocupado para el equipo seleccionado
+                        $ocupado = isset($periodos_ocupados) && in_array($periodo, $periodos_ocupados);
+                        $color = $ocupado ? "red" : "green";
+                        echo "<option value='$periodo' style='color: $color;' " . ($ocupado ? "disabled" : "") . ">$periodo</option>";
+                    }
+                    ?>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="snack">Incluir Snack:</label>
+                <input type="checkbox" id="snack" name="snack">
+            </div>
+
+            <button type="submit" class="btn btn-primary">Reservar</button>
         </form>
+
+        <script>
+            // Actualizar la página cuando se cambie la fecha
+            document.getElementById("fecha_reserva").addEventListener("change", function() {
+                window.location.href = "index.php?action=reservarEquipo&fecha=" + this.value;
+            });
+        </script>
     </section>
+
     <section>
         <h2>Ver Reservas</h2>
         <table border="1">
@@ -36,15 +66,21 @@
                 <th>Periodo</th>
                 <th>Snack</th>
             </tr>
-            <?php foreach ($reservas as $reserva): ?>
-            <tr>
-                <td><?php echo $reserva[0]; ?></td>
-                <td><?php echo $reserva[1]; ?></td>
-                <td><?php echo $reserva[2]; ?></td>
-                <td><?php echo $reserva[3]; ?></td>
-                <td><?php echo $reserva[4] ? 'Sí' : 'No'; ?></td>
-            </tr>
-            <?php endforeach; ?>
+            <?php if (isset($reservas) && is_array($reservas)): ?>
+                <?php foreach ($reservas as $reserva): ?>
+                    <tr>
+                        <td><?php echo $reserva[0]; ?></td>
+                        <td><?php echo $reserva[1]; ?></td>
+                        <td><?php echo $reserva[2]; ?></td>
+                        <td><?php echo $reserva[3]; ?></td>
+                        <td><?php echo $reserva[4] ? 'Sí' : 'No'; ?></td>
+                    </tr>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <tr>
+                    <td colspan="5">No hay reservas disponibles.</td>
+                </tr>
+            <?php endif; ?>
         </table>
     </section>
 </main>

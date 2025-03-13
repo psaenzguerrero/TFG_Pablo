@@ -8,6 +8,20 @@ class Reserva {
         $this->conn = new bd();
     }
 
+    public function obtenerPeriodosOcupados($fecha_reserva) {
+        $sentencia = "SELECT periodo FROM reserva WHERE fecha_reserva = ?";
+        $consulta = $this->conn->__get("conn")->prepare($sentencia);
+        $consulta->bind_param("s", $fecha_reserva);
+        $consulta->bind_result($periodo);
+        $periodos_ocupados = array();
+        $consulta->execute();
+        while($consulta->fetch()) {
+            array_push($periodos_ocupados, $periodo);
+        }
+        $consulta->close();
+        return $periodos_ocupados;
+    }
+
     // Obtener todas las reservas
     public function obtenerReservas() {
         $sentencia = "SELECT id_usuario, id_equipo, fecha_reserva, periodo, snack FROM reserva";
@@ -54,20 +68,6 @@ class Reserva {
         $consulta->close();
         return $respuesta;
     }
-    public function obtenerPeriodosOcupados($id_equipo, $fecha_reserva) {
-        $sentencia = "SELECT periodo FROM reserva WHERE id_equipo = ? AND fecha_reserva = ?";
-        $consulta = $this->conn->__get("conn")->prepare($sentencia);
-        $consulta->bind_param("is", $id_equipo, $fecha_reserva);
-        $consulta->bind_result($periodo);
-        $periodosOcupados = array();
-        $consulta->execute();
-        while($consulta->fetch()) {
-            array_push($periodosOcupados, $periodo);
-        }
-        $consulta->close();
-        return $periodosOcupados;
-    }
-
     // Insertar una nueva reserva
     public function insertar($id_usuario, $id_equipo, $fecha_reserva, $periodo, $snack) {
         $sentencia = "INSERT INTO reserva (id_usuario, id_equipo, fecha_reserva, periodo, snack) VALUES (?, ?, ?, ?, ?)";
