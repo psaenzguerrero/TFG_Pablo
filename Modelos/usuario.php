@@ -18,13 +18,25 @@
         }
         //Obtener todos los usuarios de la base datos
         public function obtenerUsuarios(){
-            $sentencia ="SELECT id_usuario, nombre_usuario, DNI, pass_usuario, tipo_usuario, puntos_usuario FROM usuario";
+            $sentencia ="SELECT id_usuario, nombre_usuario, DNI, pass_usuario, tipo_usuario, puntos_usuario FROM usuario ";
             $consulta=$this->conn->__get("conn")->prepare($sentencia);
             $consulta->bind_result($res, $res2, $res3, $res4, $res5, $res6);
             $usuarios = array();
             $consulta->execute();
             while($consulta->fetch()){
                 array_push($usuarios, [$res, $res2, $res3, $res4, $res5, $res6]);
+            };
+            $consulta->close();
+            return $usuarios;
+        }
+        public function obtenerUsuariosNoAdmin(){
+            $sentencia ="SELECT id_usuario, nombre_usuario FROM usuario WHERE tipo_usuario != 'Admin';";
+            $consulta=$this->conn->__get("conn")->prepare($sentencia);
+            $consulta->bind_result($id_usuario, $nombre_usuario);
+            $usuarios = array();
+            $consulta->execute();
+            while($consulta->fetch()){
+                array_push($usuarios, [$id_usuario, $nombre_usuario]);
             };
             $consulta->close();
             return $usuarios;

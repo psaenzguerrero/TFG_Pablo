@@ -4,7 +4,20 @@
         <?php if (isset($error)): ?>
             <div class="alert alert-danger"><?php echo $error; ?></div>
         <?php endif; ?>
-        <form method="POST" action="index.php?action=reservarEquipo">
+        <form method="POST" action="index.php?action=reservarEquipoAdmin">
+            <div class="form-group">
+                <label for="usuario">Usuario:</label>
+                <select id="usuario" name="id_usuario" class="form-control" required>
+                    <option  selected disabled>SELECCIONA USUARIO</option>
+                    <?php if (isset($usuarios) && is_array($usuarios)): ?>
+                        <?php foreach ($usuarios as $usuario): ?>
+                            <option value="<?php echo $usuario[0]; ?>"><?php echo $usuario[1]; ?></option>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
+                </select>
+            </div>
+
+
             <div class="form-group">
                 <label for="fecha_reserva">Fecha de Reserva:</label>
                 <input type="date" id="fecha_reserva" name="fecha_reserva" class="form-control" 
@@ -16,7 +29,7 @@
                 <select id="equipo" name="id_equipo" class="form-control" required>
                     <?php if (isset($equipos) && is_array($equipos)): ?>
                         <?php foreach ($equipos as $equipo): ?>
-                            <option value="<?php echo $equipo['id_equipo']; ?>"><?php echo $equipo['nombre_equipo']; ?></option>
+                            <option value="<?php echo $equipo['id_equipo']; ?>"  <?php if(isset($_GET['equipo'])){ echo (($_GET['equipo'] == $equipo['id_equipo']) ?  'selected' : '');} ?> ><?php echo $equipo['nombre_equipo']; ?>  </option>
                         <?php endforeach; ?>
                     <?php endif; ?>
                 </select>
@@ -27,8 +40,7 @@
                 <select id="periodo" name="periodo" class="form-control" required>
                     <?php
                     // Definir los periodos disponibles
-                    $periodos = ["periodo1", "periodo2", "periodo3", "periodo4", "periodo5", 
-                                 "periodo6", "periodo7", "periodo8", "periodo9", "periodo10"];
+                    $periodos = ["periodo1", "periodo2", "periodo3", "periodo4", "periodo5", "periodo6", "periodo7", "periodo8", "periodo9", "periodo10"];
 
                     foreach ($periodos as $periodo) {
                         // Verificar si el periodo está ocupado para el equipo seleccionado
@@ -51,8 +63,16 @@
         <script>
             // Actualizar la página cuando se cambie la fecha
             document.getElementById("fecha_reserva").addEventListener("change", function() {
-                window.location.href = "index.php?action=reservarEquipo&fecha=" + this.value;
+                window.location.href = "index.php?action=reservarEquipoAdmin&fecha=" + this.value + "&equipo=" + equipo.value + "&usuario=" + usuario.value;
             });
+
+            document.getElementById("equipo").addEventListener("change", function() {
+                window.location.href = "index.php?action=reservarEquipoAdmin&fecha=" + fecha_reserva.value + "&equipo=" + this.value + "&usuario=" + usuario.value;
+            });
+
+            // document.getElementById("usuario").addEventListener("change", function() {
+            //     window.location.href = "index.php?action=reservarEquipoAdmin&fecha=" + fecha_reserva.value + "&equipo=" + equipo.value + "&usuario=" + this.value;
+            // });
         </script>
     </section>
 

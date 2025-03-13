@@ -43,7 +43,7 @@
                         <a href="./index.php?action=cerrarSesion" class="hover:text-gray-400">Cerrar tu Cuenta</a>
                         <a href="./index.php?action=eventos" class="hover:text-gray-400">Eventos y Torneos</a>
                         <a href="./index.php?action=dashboard"><img src="../img/paginacion/logo2.webp" class="w-20 h-20" alt=""></a>
-                        <a href="#" class="hover:text-gray-400">Reserva tu sitio</a>
+                        <a href="./index.php?action=verReservas" class="hover:text-gray-400">Reserva tu sitio</a>
                         <a href="./index.php?action=alquila" class="hover:text-gray-400">Alquiler de Sala</a>
                         <a href="./index.php?action=tienda" class="hover:text-gray-400">Tienda</a>
                 <?php

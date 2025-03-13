@@ -645,17 +645,18 @@
         require_once("../vistas/pie.html");
     }
 
-    function reservarEquipo() {
+    function reservarEquipoAdmin() {
         require_once("../Modelos/reserva.php");
         require_once("../Modelos/equipo.php"); // Asegúrate de tener un modelo para equipos
         session_start();
     
-        if (!isset($_SESSION["id_usuario"])) {
+        if (!isset($_SESSION["id_usuario"]) || $_SESSION["tipo_usuario"] != 'Admin') {
             header("Location: index.php?action=login");
             exit;
         }
         if ($_SERVER["REQUEST_METHOD"] === "POST") {
-            $id_usuario = $_SESSION["id_usuario"];
+            print_r($_POST);
+            $id_usuario = $_POST["id_usuario"];
             $id_equipo = $_POST["id_equipo"];
             $fecha_reserva = $_POST["fecha_reserva"];
             $periodo = $_POST["periodo"];
@@ -674,6 +675,9 @@
                 }
             }
         }
+
+        verReservas();
+
         require_once("../vistas/cabeza.php");
         require_once("../vistas/reservasEquipo.php");
         require_once("../vistas/pie.html");
@@ -681,34 +685,68 @@
     
     function verReservas() {
         require_once("../Modelos/reserva.php");
+        require_once("../Modelos/usuario.php");
         require_once("../Modelos/equipo.php"); // Asegúrate de tener un modelo para equipos
-        session_start();
+        if(session_status() === PHP_SESSION_NONE) session_start();
     
         if (!isset($_SESSION["id_usuario"])) {
             header("Location: index.php?action=login");
             exit;
         }
-
-        $fecha_seleccionada = isset($_GET["fecha"]) ? $_GET["fecha"] : date("Y-m-d");
-    
-        // Obtener la lista de equipos disponibles
-        $equipo = new Equipo();
-        $equipos = $equipo->obtenerEquipos(); 
-    
-        // Obtener los periodos ocupados para la fecha seleccionada
-        $reserva = new Reserva();
-        $periodos_ocupados = $reserva->obtenerPeriodosOcupados($fecha_seleccionada);
-    
-        // Si no hay periodos ocupados, inicializar como array vacío
-        if (!$periodos_ocupados) {
-            $periodos_ocupados = [];
+        if (strcmp($_SESSION["tipo_usuario"], "Admin") == 0) {
+            $usuario = new Usuario();
+            $usuarios = $usuario->obtenerUsuariosNoAdmin();
+        
+            // Obtener la lista de equipos disponibles
+            $equipo = new Equipo();
+            $equipos = $equipo->obtenerEquipos(); 
+        
+            // Obtener los periodos ocupados para la fecha seleccionada
+            $usuario_seleccionado = isset($_GET["id_usuario"]) ? $_GET["id_usuario"] : 1;
+            $equipo_seleccionado = isset($_GET["id_equipo"]) ? $_GET["id_equipo"] : 1;
+            $fecha_seleccionada = isset($_GET["fecha"]) ? $_GET["fecha"] : date("Y-m-d");
+            $reserva = new Reserva();
+            $periodos_ocupados = $reserva->obtenerPeriodosOcupados($fecha_seleccionada, $equipo_seleccionado, $usuario_seleccionado);
+        
+            // Si no hay periodos ocupados, inicializar como array vacío
+            if (!$periodos_ocupados) {
+                $periodos_ocupados = [];
+            }
+        
+            $reserva = new Reserva();
+            $reservas = $reserva->obtenerReservas();
+        
+            require_once("../vistas/cabeza.php");
+            require_once("../vistas/reservasEquipo.php");
+            require_once("../vistas/pie.html");
         }
+
+        // $usuario = new Usuario();
+        // $usuarios = $usuario->obtenerUsuariosNoAdmin();
     
-        $reserva = new Reserva();
-        $reservas = $reserva->obtenerReservas();
+        // // Obtener la lista de equipos disponibles
+        // $equipo = new Equipo();
+        // $equipos = $equipo->obtenerEquipos(); 
     
+        // // Obtener los periodos ocupados para la fecha seleccionada
+        // $fecha_seleccionada = isset($_GET["fecha"]) ? $_GET["fecha"] : date("Y-m-d");
+        // $reserva = new Reserva();
+        // $periodos_ocupados = $reserva->obtenerPeriodosOcupados($fecha_seleccionada);
+    
+        // // Si no hay periodos ocupados, inicializar como array vacío
+        // if (!$periodos_ocupados) {
+        //     $periodos_ocupados = [];
+        // }
+    
+        // $reserva = new Reserva();
+        // $reservas = $reserva->obtenerReservas();
+    
+        // require_once("../vistas/cabeza.php");
+        // require_once("../vistas/reservasEquipo.php");
+        // require_once("../vistas/pie.html");
+
         require_once("../vistas/cabeza.php");
-        require_once("../vistas/reservasEquipo.php");
+        require_once("../vistas/login.php");
         require_once("../vistas/pie.html");
     }
     
