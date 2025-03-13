@@ -658,41 +658,33 @@
             $id_usuario = $_SESSION["id_usuario"];
             $id_equipo = $_POST["id_equipo"];
             $fecha_reserva = $_POST["fecha_reserva"];
-            $horaIni = $_POST["horaIni"];
-            $horaFin = $_POST["horaFin"];
+            $periodo = $_POST["periodo"];
             $snack = isset($_POST["snack"]) ? 1 : 0;
     
             $reserva = new Reserva();
-            $reservasExistentes = $reserva->obtenerReservasPorEquipoYFecha($id_equipo, $fecha_reserva);
-    
-            $solapamiento = false;
-            foreach ($reservasExistentes as $reservaExistente) {
-                if (($horaIni >= $reservaExistente[0] && $horaIni < $reservaExistente[1]) ||
-                    ($horaFin > $reservaExistente[0] && $horaFin <= $reservaExistente[1]) ||
-                    ($horaIni <= $reservaExistente[0] && $horaFin >= $reservaExistente[1])) {
-                    $solapamiento = true;
-                    break;
-                }
-            }
-    
-            if ($solapamiento) {
-                $error = "Las horas seleccionadas se solapan con otra reserva.";
+            $reservaExistente = $reserva->comprobarReserva($id_equipo, $fecha_reserva, $periodo);
+            echo $reservaExistente;
+            if ($reservaExistente) {
+                $error = "Este euipo en este periodo esta ocupado.";
                 require_once("../vistas/cabeza.php");
-                require_once("../vistas/reservas.php");
+                require_once("../vistas/reservasEquipo.php");
                 require_once("../vistas/pie.html");
-            } else {
-                if ($reserva->insertar($id_usuario, $id_equipo, $fecha_reserva, $horaIni, $horaFin, $snack)) {
+            }else{
+                
+                if ($reserva->insertar($id_usuario, $id_equipo, $fecha_reserva, $periodo, $snack)) {
                     header("Location: index.php?action=dashboard");
                 } else {
                     $error = "Hubo un error al realizar la reserva.";
                     require_once("../vistas/cabeza.php");
-                    require_once("../vistas/reservas.php");
+                    require_once("../vistas/reservasEquipo.php");
                     require_once("../vistas/pie.html");
                 }
             }
+    
         } else {
+
             require_once("../vistas/cabeza.php");
-            require_once("../vistas/reservas.php");
+            require_once("../vistas/reservasEquipo.php");
             require_once("../vistas/pie.html");
         }
     }
@@ -710,7 +702,7 @@
         $reservas = $reserva->obtenerReservas();
     
         require_once("../vistas/cabeza.php");
-        require_once("../vistas/reservas.php");
+        require_once("../vistas/reservasEquipo.php");
         require_once("../vistas/pie.html");
     }
     
