@@ -650,13 +650,14 @@
         require_once("../Modelos/equipo.php"); 
         session_start();
     
-        if (!isset($_SESSION["id_usuario"]) || $_SESSION["tipo_usuario"] != 'Admin') {
+        if (!isset($_SESSION["id_usuario"]) ) {
             header("Location: index.php?action=login");
             exit;
         }
         if ($_SERVER["REQUEST_METHOD"] === "POST") {
             print_r($_POST);
-            $id_usuario = $_POST["id_usuario"];
+            // $id_usuario = $_POST["id_usuario"];
+            $id_usuario = isset($_POST["id_usuario"]) ? $_POST["id_usuario"] : $_SESSION["id_usuario"];
             $id_equipo = $_POST["id_equipo"];
             $fecha_reserva = $_POST["fecha_reserva"];
             $periodo = $_POST["periodo"];
@@ -719,6 +720,42 @@
             require_once("../vistas/cabeza.php");
             require_once("../vistas/reservasEquipo.php");
             require_once("../vistas/pie.html");
+
+        }elseif (strcmp($_SESSION["tipo_usuario"], "Vip") == 0) {
+
+            // Obtener la lista de equipos disponibles
+            $equipo = new Equipo();
+            $equipos = $equipo->obtenerEquipos(); 
+        
+            // Obtener los periodos ocupados para la fecha seleccionada
+            $usuario_seleccionado = isset($_GET["id_usuario"]) ? $_GET["id_usuario"] : $_SESSION["id_usuario"];
+            $equipo_seleccionado = isset($_GET["id_equipo"]) ? $_GET["id_equipo"] : 1;
+            $fecha_seleccionada = isset($_GET["fecha"]) ? $_GET["fecha"] : date("Y-m-d");
+            $reserva = new Reserva();
+            $periodos_ocupados = $reserva->obtenerPeriodosOcupados($fecha_seleccionada, $equipo_seleccionado, $usuario_seleccionado);
+        
+            // Si no hay periodos ocupados, inicializar como array vacío
+            if (!$periodos_ocupados) {
+                $periodos_ocupados = [];
+            }
+        
+            $reserva = new Reserva();
+            $reservas = $reserva->obtenerReservas();
+
+
+            require_once("../vistas/cabeza.php");
+            require_once("../vistas/reservasEquipo.php");
+            require_once("../vistas/pie.html");
+
+        }elseif (strcmp($_SESSION["tipo_usuario"], "Normal") == 0){
+
+
+
+
+            require_once("../vistas/cabeza.php");
+            require_once("../vistas/reservasEquipo.php");
+            require_once("../vistas/pie.html");
+
         }
 
         // $usuario = new Usuario();
@@ -745,22 +782,22 @@
         // require_once("../vistas/reservasEquipo.php");
         // require_once("../vistas/pie.html");
 
-        require_once("../vistas/cabeza.php");
-        require_once("../vistas/login.php");
-        require_once("../vistas/pie.html");
+        // require_once("../vistas/cabeza.php");
+        // require_once("../vistas/login.php");
+        // require_once("../vistas/pie.html");
     }
     
 
     //Esto es la piedra angular del controlador, con esto llamo y me muevo entre las funciones usando los action como variable.
     if (isset($_REQUEST["action"])) {
         $action = strtolower($_REQUEST["action"]);
-        if ($action === "tienda") {
-            tienda();
-        } elseif ($action === "buscarproductos") {
-            buscarProductos();
-        } else {
+        // if ($action === "tienda") {
+        //     tienda();
+        // } elseif ($action === "buscarproductos") {
+        //     buscarProductos();
+        // } else {
             $action(); // Llama a la función correspondiente
-        }
+        // }
     } else {
         inicio(); // Muestra la pantalla de inicio de sesión por defecto
     }
