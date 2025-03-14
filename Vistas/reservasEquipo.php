@@ -11,7 +11,9 @@
                     <option  selected disabled>SELECCIONA USUARIO</option>
                     <?php if (isset($usuarios) && is_array($usuarios)): ?>
                         <?php foreach ($usuarios as $usuario): ?>
-                            <option value="<?php echo $usuario[0]; ?>"><?php echo $usuario[1]; ?></option>
+                            <option value="<?php echo $usuario[0]; ?>"
+                                <?php if(isset($_GET['usuario'])){ echo (($_GET['usuario'] == $usuario[0]) ?  'selected' : '');} ?> ><?php echo $usuario[1]; ?>
+                            </option>
                         <?php endforeach; ?>
                     <?php endif; ?>
                 </select>
@@ -20,8 +22,7 @@
 
             <div class="form-group">
                 <label for="fecha_reserva">Fecha de Reserva:</label>
-                <input type="date" id="fecha_reserva" name="fecha_reserva" class="form-control" 
-                       value="<?php echo $fecha_seleccionada; ?>" required>
+                <input type="date" id="fecha_reserva" name="fecha_reserva" class="form-control" value="<?php echo $fecha_seleccionada; ?>" required>
             </div>
 
             <div class="form-group">
@@ -63,16 +64,16 @@
         <script>
             // Actualizar la página cuando se cambie la fecha
             document.getElementById("fecha_reserva").addEventListener("change", function() {
-                window.location.href = "index.php?action=reservarEquipoAdmin&fecha=" + this.value + "&equipo=" + equipo.value + "&usuario=" + usuario.value;
+                window.location.href = "index.php?action=reservarEquipoAdmin&usuario=" + usuario.value + "&fecha=" + this.value + "&equipo=" + equipo.value;
             });
-
+            // Actualizar la página cuando se cambie el equipo
             document.getElementById("equipo").addEventListener("change", function() {
-                window.location.href = "index.php?action=reservarEquipoAdmin&fecha=" + fecha_reserva.value + "&equipo=" + this.value + "&usuario=" + usuario.value;
+                window.location.href = "index.php?action=reservarEquipoAdmin&usuario=" + usuario.value + "&fecha=" + fecha_reserva.value + "&equipo=" + this.value;
             });
-
-            // document.getElementById("usuario").addEventListener("change", function() {
-            //     window.location.href = "index.php?action=reservarEquipoAdmin&fecha=" + fecha_reserva.value + "&equipo=" + equipo.value + "&usuario=" + this.value;
-            // });
+            // Actualizar la página cuando se cambie el usuario
+            document.getElementById("usuario").addEventListener("change", function() {
+                window.location.href = "index.php?action=reservarEquipoAdmin&usuario=" + this.value + "&fecha=" + fecha_reserva.value + "&equipo=" + equipo.value;
+            });
         </script>
     </section>
 
