@@ -22,6 +22,21 @@
             return $equipos;
         }
 
+        // Obtener todos los equipos no vip
+        public function obtenerEquiposNoVip() {
+            $sentencia = "SELECT id_equipo, nombre_equipo, tipo_equipo, sala_equipo, precio, puntos_equipo FROM equipo WHERE nombre_equipo NOT LIKE '_V_'";
+            $consulta = $this->conn->__get("conn")->prepare($sentencia);
+            $consulta->execute();
+            $resultado = $consulta->get_result();
+            $equipos = [];
+            while ($fila = $resultado->fetch_assoc()) {
+                $equipos[] = $fila;
+            }
+            $consulta->close();
+            return $equipos;
+        }
+
+
         // Obtener un equipo por ID
         public function obtenerPorId($id_equipo) {
             $sentencia = "SELECT id_equipo, nombre_equipo, tipo_equipo, sala_equipo, precio, puntos_equipo FROM equipo WHERE id_equipo = ?";
