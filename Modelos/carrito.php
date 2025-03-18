@@ -26,24 +26,42 @@ class Carrito {
 
     // Obtener compras por ID de usuario
     public function obtenerPorUsuario($id_usuario) {
-        $sentencia = "SELECT compra.id_usuario, compra.id_producto, producto.nombre_producto, compra.fecha_compra, producto.precio_producto FROM compra, producto WHERE producto.id_producto = compra.id_producto AND id_usuario = ?";
+        $sentencia = "SELECT carrito.id_usuario, carrito.id_producto, producto.nombre_producto, carrito.fecha_compra, carrito.cantidad, producto.precio_producto FROM carrito, producto WHERE producto.id_producto = carrito.id_producto AND id_usuario = ?";
         $consulta = $this->conn->__get("conn")->prepare($sentencia);
         $consulta->bind_param("i", $id_usuario);
         $consulta->execute();
         $resultado = $consulta->get_result();
-        $compras = [];
+        $carrito = [];
 
         while ($fila = $resultado->fetch_assoc()) {
-            $compras[] = $fila;
+            $carrito[] = $fila;
         }
 
         $consulta->close();
-        return $compras;
+        return $carrito;
+    }
+
+    public function obtenerProductoCantidad($id_producto, $id_usuario){
+        $sentencia = "SELECT COUNT(*) FROM carrito WHERE id_producto = ? AND id_usuario = ?";
+        $consulta = $this->conn->__get("conn")->prepare($sentencia);
+        $consulta->bind_param("ii", $id_producto, $id_usuario);
+        $resultado = $consulta->execute();
+        $consulta->close();
+        return $resultado;
+    }
+
+    public function aumentarCantidad($id_producto, $id_usuario){
+        $sentencia = "UPDATE carrito SET cantidad = cantidad+1 WHERE id_producto = ? AND id_usuario = ?";
+        $consulta = $this->conn->__get("conn")->prepare($sentencia);
+        $consulta->bind_param("ii", $id_producto, $id_usuario);
+        $resultado = $consulta->execute();
+        $consulta->close();
+        return $resultado;
     }
 
     // Insertar una nueva compra
     public function insertar($id_usuario, $id_producto, $fecha_compra) {
-        $sentencia = "INSERT INTO compra (id_usuario, id_producto, fecha_compra) VALUES (?, ?, ?)";
+        $sentencia = "INSERT INTO carrito (id_usuario, id_producto, fecha_compra) VALUES (?, ?, ?)";
         $consulta = $this->conn->__get("conn")->prepare($sentencia);
         $consulta->bind_param("iis", $id_usuario, $id_producto, $fecha_compra);
         $resultado = $consulta->execute();
@@ -53,7 +71,7 @@ class Carrito {
 
     // Eliminar una compra por usuario y producto
     public function eliminar($id_usuario, $id_producto) {
-        $sentencia = "DELETE FROM compra WHERE id_usuario = ? AND id_producto = ?";
+        $sentencia = "DELETE FROM carrito WHERE id_usuario = ? AND id_producto = ?";
         $consulta = $this->conn->__get("conn")->prepare($sentencia);
         $consulta->bind_param("ii", $id_usuario, $id_producto);
         $resultado = $consulta->execute();

@@ -587,20 +587,29 @@
             exit;
         }
 
+        
+
+
+
         if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $id_usuario = $_SESSION["id_usuario"];
             $id_producto = $_POST["id_producto"];
             // echo "<p>$id_producto</p>";
             // die();
             $fecha_compra = date("Y-m-d H:i:s");
-
             $carrito = new Carrito();
-            $resultado = $carrito->insertar($id_usuario, $id_producto, $fecha_compra);
+            $contador = $carrito->obtenerProductoCantidad($id_producto, $id_usuario);
 
-            if ($resultado) {
-                header("Location: index.php?action=editarProducto");
-            } else {
-                echo "Error al agregar el producto al carrito.";
+            if ($contador != 0) {
+                $resultado = $carrito->aumentarCantidad($id_producto, $id_usuario);
+            }else{
+                $resultado = $carrito->insertar($id_usuario, $id_producto, $fecha_compra);
+
+                if ($resultado) {
+                    header("Location: index.php?action=editarProducto");
+                } else {
+                    echo "Error al agregar el producto al carrito.";
+                }
             }
         }
     }
@@ -638,7 +647,7 @@
 
         $id_usuario = $_SESSION["id_usuario"];
         $carrito = new Carrito();
-        $compras = $carrito->obtenerPorUsuario($id_usuario);
+        $carritos = $carrito->obtenerPorUsuario($id_usuario);
 
         require_once("../vistas/cabeza.php");
         require_once("../vistas/carritoUsu.php");

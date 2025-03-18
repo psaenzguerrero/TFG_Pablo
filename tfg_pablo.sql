@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 13-03-2025 a las 13:00:26
+-- Tiempo de generación: 18-03-2025 a las 19:14:29
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -24,35 +24,27 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `compra`
+-- Estructura de tabla para la tabla `carrito`
 --
 
-CREATE TABLE `compra` (
+CREATE TABLE `carrito` (
   `id_usuario` int(11) NOT NULL,
   `id_producto` int(11) NOT NULL,
+  `cantidad` int(11) NOT NULL,
   `fecha_compra` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Volcado de datos para la tabla `compra`
+-- Volcado de datos para la tabla `carrito`
 --
 
-INSERT INTO `compra` (`id_usuario`, `id_producto`, `fecha_compra`) VALUES
-(3, 2, '2025-02-16'),
-(3, 3, '2025-02-12'),
-(3, 3, '2025-02-14'),
-(3, 3, '2025-02-18'),
-(3, 4, '2025-02-15'),
-(3, 5, '2025-02-20'),
-(13, 2, '2025-02-11'),
-(13, 2, '2025-02-20'),
-(13, 2, '2025-03-11'),
-(13, 3, '2025-02-12'),
-(13, 4, '2025-02-10'),
-(13, 5, '2025-02-13'),
-(13, 6, '2025-02-17'),
-(13, 7, '2025-02-19'),
-(13, 17, '2025-03-11');
+INSERT INTO `carrito` (`id_usuario`, `id_producto`, `cantidad`, `fecha_compra`) VALUES
+(3, 2, 2, '2025-02-16'),
+(3, 3, 2, '2025-02-12'),
+(3, 4, 1, '2025-02-15'),
+(13, 2, 1, '2025-02-11'),
+(13, 3, 1, '2025-02-12'),
+(13, 17, 2, '2025-03-11');
 
 -- --------------------------------------------------------
 
@@ -222,10 +214,16 @@ CREATE TABLE `reserva` (
 INSERT INTO `reserva` (`id_usuario`, `id_equipo`, `fecha_reserva`, `periodo`, `snack`) VALUES
 (2, 2, '2025-03-02', 'periodo1', 0),
 (3, 3, '2025-03-03', 'periodo1', 1),
+(3, 10, '2025-03-15', 'periodo1', 1),
 (13, 1, '2025-03-13', 'periodo4', 0),
 (13, 1, '2025-03-13', 'periodo7', 1),
 (13, 1, '2025-03-14', 'periodo1', 1),
 (13, 1, '2025-03-14', 'periodo2', 1),
+(13, 1, '2025-03-14', 'periodo10', 0),
+(13, 1, '2025-03-15', 'periodo1', 0),
+(13, 1, '2025-03-31', 'periodo10', 0),
+(13, 2, '2025-03-15', 'periodo1', 0),
+(13, 2, '2025-03-15', 'periodo2', 0),
 (13, 3, '2025-03-13', 'periodo2', 0),
 (13, 5, '2025-03-13', 'periodo1', 1),
 (13, 5, '2025-03-13', 'periodo3', 0),
@@ -235,7 +233,9 @@ INSERT INTO `reserva` (`id_usuario`, `id_equipo`, `fecha_reserva`, `periodo`, `s
 (13, 5, '2025-03-13', 'periodo10', 0),
 (13, 9, '2025-03-14', 'periodo3', 0),
 (14, 4, '2025-03-14', 'periodo4', 1),
-(15, 5, '2025-03-22', 'periodo3', 0);
+(14, 18, '2025-03-21', 'periodo10', 0),
+(15, 5, '2025-03-22', 'periodo3', 0),
+(16, 13, '2025-03-20', 'periodo6', 1);
 
 -- --------------------------------------------------------
 
@@ -271,9 +271,9 @@ INSERT INTO `usuario` (`id_usuario`, `nombre_usuario`, `DNI`, `pass_usuario`, `t
 --
 
 --
--- Indices de la tabla `compra`
+-- Indices de la tabla `carrito`
 --
-ALTER TABLE `compra`
+ALTER TABLE `carrito`
   ADD PRIMARY KEY (`id_usuario`,`id_producto`,`fecha_compra`),
   ADD KEY `id_producto` (`id_producto`);
 
@@ -362,11 +362,11 @@ ALTER TABLE `usuario`
 --
 
 --
--- Filtros para la tabla `compra`
+-- Filtros para la tabla `carrito`
 --
-ALTER TABLE `compra`
-  ADD CONSTRAINT `compra_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`) ON DELETE CASCADE,
-  ADD CONSTRAINT `compra_ibfk_2` FOREIGN KEY (`id_producto`) REFERENCES `producto` (`id_producto`) ON DELETE CASCADE;
+ALTER TABLE `carrito`
+  ADD CONSTRAINT `carrito_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`) ON DELETE CASCADE,
+  ADD CONSTRAINT `carrito_ibfk_2` FOREIGN KEY (`id_producto`) REFERENCES `producto` (`id_producto`) ON DELETE CASCADE;
 
 --
 -- Filtros para la tabla `inscribe`
