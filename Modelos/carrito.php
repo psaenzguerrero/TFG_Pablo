@@ -8,7 +8,7 @@ class Carrito {
         $this->conn = new bd();
     }
 
-    // Obtener todas las compras
+    // // Obtener todas las compras
     public function obtenerCompras() {
         $sentencia = "SELECT compra.id_usuario, compra.id_producto, compra.fecha_compra, producto.precio_producto FROM compra, producto WHERE producto.id_producto = compra.id_producto";
         $consulta = $this->conn->__get("conn")->prepare($sentencia);
@@ -42,12 +42,14 @@ class Carrito {
     }
 
     public function obtenerProductoCantidad($id_producto, $id_usuario){
-        $sentencia = "SELECT COUNT(*) FROM carrito WHERE id_producto = ? AND id_usuario = ?";
+        $sentencia = "SELECT cantidad FROM carrito WHERE id_producto = ? AND id_usuario = ?";
         $consulta = $this->conn->__get("conn")->prepare($sentencia);
         $consulta->bind_param("ii", $id_producto, $id_usuario);
-        $resultado = $consulta->execute();
+        $consulta->bind_result($cont);
+        $consulta->execute();
+        $consulta->fetch();
         $consulta->close();
-        return $resultado;
+        return $cont;
     }
 
     public function aumentarCantidad($id_producto, $id_usuario){
@@ -58,12 +60,20 @@ class Carrito {
         $consulta->close();
         return $resultado;
     }
+    public function deducirCantidad($id_producto, $id_usuario){
+        $sentencia = "UPDATE carrito SET cantidad = cantidad-1 WHERE id_producto = ? AND id_usuario = ?";
+        $consulta = $this->conn->__get("conn")->prepare($sentencia);
+        $consulta->bind_param("ii", $id_producto, $id_usuario);
+        $resultado = $consulta->execute();
+        $consulta->close();
+        return $resultado;
+    }
 
     // Insertar una nueva compra
-    public function insertar($id_usuario, $id_producto, $fecha_compra) {
-        $sentencia = "INSERT INTO carrito (id_usuario, id_producto, fecha_compra) VALUES (?, ?, ?)";
+    public function insertar($id_usuario, $id_producto, $cantidad, $fecha_compra) {
+        $sentencia = "INSERT INTO carrito (id_usuario, id_producto, cantidad, fecha_compra) VALUES (?, ?, ?, ?)";
         $consulta = $this->conn->__get("conn")->prepare($sentencia);
-        $consulta->bind_param("iis", $id_usuario, $id_producto, $fecha_compra);
+        $consulta->bind_param("iiis", $id_usuario, $id_producto, $cantidad, $fecha_compra);
         $resultado = $consulta->execute();
         $consulta->close();
         return $resultado;

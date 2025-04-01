@@ -587,23 +587,21 @@
             exit;
         }
 
-        
-
-
-
         if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $id_usuario = $_SESSION["id_usuario"];
             $id_producto = $_POST["id_producto"];
-            // echo "<p>$id_producto</p>";
-            // die();
             $fecha_compra = date("Y-m-d H:i:s");
             $carrito = new Carrito();
             $contador = $carrito->obtenerProductoCantidad($id_producto, $id_usuario);
-
-            if ($contador != 0) {
+            
+            if ($contador != null) {
                 $resultado = $carrito->aumentarCantidad($id_producto, $id_usuario);
+                // echo "<p>$resultado</p>";
+                header("Location: index.php?action=tienda");
             }else{
-                $resultado = $carrito->insertar($id_usuario, $id_producto, $fecha_compra);
+                
+                $cantidad=1;
+                $resultado = $carrito->insertar($id_usuario, $id_producto, $cantidad, $fecha_compra);
 
                 if ($resultado) {
                     header("Location: index.php?action=editarProducto");
@@ -625,10 +623,15 @@
         if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $id_usuario = $_SESSION["id_usuario"];
             $id_producto = $_POST["id_producto"];
+            $cantidad = $_POST["cantidad"];
 
             $carrito = new Carrito();
-            $resultado = $carrito->eliminar($id_usuario, $id_producto);
 
+            if ($cantidad > 1) {
+                $resultado = $carrito->deducirCantidad($id_producto, $id_usuario);
+            }else{
+                $resultado = $carrito->eliminar($id_usuario, $id_producto);  
+            }
             if ($resultado) {
                 header("Location: index.php?action=verCarrito");
             } else {

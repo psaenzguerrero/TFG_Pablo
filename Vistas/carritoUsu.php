@@ -25,6 +25,7 @@
                                 <td class="border px-4 py-2">
                                     <form action="index.php?action=eliminarDelCarrito" method="POST">
                                         <input type="hidden" name="id_producto" value="<?php echo $carrito['id_producto']; ?>">
+                                        <input type="hidden" name="cantidad" value="<?php echo $carrito['cantidad']; ?>">
                                         <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded">Eliminar</button>
                                     </form>
                                 </td>
