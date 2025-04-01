@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 18-03-2025 a las 19:14:29
+-- Tiempo de generación: 01-04-2025 a las 18:47:56
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -42,9 +42,22 @@ INSERT INTO `carrito` (`id_usuario`, `id_producto`, `cantidad`, `fecha_compra`) 
 (3, 2, 2, '2025-02-16'),
 (3, 3, 2, '2025-02-12'),
 (3, 4, 1, '2025-02-15'),
-(13, 2, 1, '2025-02-11'),
+(13, 2, 2, '2025-02-12'),
 (13, 3, 1, '2025-02-12'),
-(13, 17, 2, '2025-03-11');
+(13, 4, 4, '2025-02-12'),
+(13, 17, 2, '2025-04-01');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `contenido`
+--
+
+CREATE TABLE `contenido` (
+  `id_pedido` bigint(20) UNSIGNED NOT NULL,
+  `id_producto` int(11) NOT NULL,
+  `cantidad` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- --------------------------------------------------------
 
@@ -140,11 +153,11 @@ INSERT INTO `inscribe` (`id_usuario`, `id_evento`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `pago`
+-- Estructura de tabla para la tabla `pedido`
 --
 
-CREATE TABLE `pago` (
-  `id_pago` bigint(20) UNSIGNED NOT NULL,
+CREATE TABLE `pedido` (
+  `id_pedido` bigint(20) UNSIGNED NOT NULL,
   `id_usuario` int(11) NOT NULL,
   `cantidad` decimal(10,2) NOT NULL,
   `metodo` varchar(50) NOT NULL,
@@ -152,10 +165,10 @@ CREATE TABLE `pago` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Volcado de datos para la tabla `pago`
+-- Volcado de datos para la tabla `pedido`
 --
 
-INSERT INTO `pago` (`id_pago`, `id_usuario`, `cantidad`, `metodo`, `estado`) VALUES
+INSERT INTO `pedido` (`id_pedido`, `id_usuario`, `cantidad`, `metodo`, `estado`) VALUES
 (2, 2, 30.00, 'Paypal', 1),
 (3, 3, 20.00, 'Efectivo', 0);
 
@@ -278,6 +291,13 @@ ALTER TABLE `carrito`
   ADD KEY `id_producto` (`id_producto`);
 
 --
+-- Indices de la tabla `contenido`
+--
+ALTER TABLE `contenido`
+  ADD PRIMARY KEY (`id_pedido`,`id_producto`),
+  ADD KEY `contenido_fk_2` (`id_producto`);
+
+--
 -- Indices de la tabla `equipo`
 --
 ALTER TABLE `equipo`
@@ -297,11 +317,11 @@ ALTER TABLE `inscribe`
   ADD KEY `id_evento` (`id_evento`);
 
 --
--- Indices de la tabla `pago`
+-- Indices de la tabla `pedido`
 --
-ALTER TABLE `pago`
-  ADD PRIMARY KEY (`id_usuario`,`id_pago`),
-  ADD UNIQUE KEY `id_pago` (`id_pago`);
+ALTER TABLE `pedido`
+  ADD PRIMARY KEY (`id_usuario`,`id_pedido`),
+  ADD UNIQUE KEY `id_pedido` (`id_pedido`) USING BTREE;
 
 --
 -- Indices de la tabla `producto`
@@ -340,10 +360,10 @@ ALTER TABLE `evento`
   MODIFY `id_evento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
--- AUTO_INCREMENT de la tabla `pago`
+-- AUTO_INCREMENT de la tabla `pedido`
 --
-ALTER TABLE `pago`
-  MODIFY `id_pago` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+ALTER TABLE `pedido`
+  MODIFY `id_pedido` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `producto`
@@ -369,6 +389,13 @@ ALTER TABLE `carrito`
   ADD CONSTRAINT `carrito_ibfk_2` FOREIGN KEY (`id_producto`) REFERENCES `producto` (`id_producto`) ON DELETE CASCADE;
 
 --
+-- Filtros para la tabla `contenido`
+--
+ALTER TABLE `contenido`
+  ADD CONSTRAINT `contenido_fk_1` FOREIGN KEY (`id_pedido`) REFERENCES `pedido` (`id_pedido`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `contenido_fk_2` FOREIGN KEY (`id_producto`) REFERENCES `producto` (`id_producto`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Filtros para la tabla `inscribe`
 --
 ALTER TABLE `inscribe`
@@ -376,10 +403,10 @@ ALTER TABLE `inscribe`
   ADD CONSTRAINT `inscribe_ibfk_2` FOREIGN KEY (`id_evento`) REFERENCES `evento` (`id_evento`) ON DELETE CASCADE;
 
 --
--- Filtros para la tabla `pago`
+-- Filtros para la tabla `pedido`
 --
-ALTER TABLE `pago`
-  ADD CONSTRAINT `pago_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`) ON DELETE CASCADE;
+ALTER TABLE `pedido`
+  ADD CONSTRAINT `pedido_fk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `reserva`
