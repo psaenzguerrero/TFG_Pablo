@@ -242,7 +242,7 @@
                 <?php
                     }else{
                 ?>
-                        <button disabled="disabled">hazte vip</button>
+                        <button disabled="disabled">hazte vip2</button>
                 <?php
                     }
                 }else{

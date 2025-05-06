@@ -749,46 +749,13 @@
         require_once("../vistas/reservasEquipo.php");
         require_once("../vistas/pie.html");
 
-        // $usuario = new Usuario();
-        // $usuarios = $usuario->obtenerUsuariosNoAdmin();
-    
-        // // Obtener la lista de equipos disponibles
-        // $equipo = new Equipo();
-        // $equipos = $equipo->obtenerEquipos(); 
-    
-        // // Obtener los periodos ocupados para la fecha seleccionada
-        // $fecha_seleccionada = isset($_GET["fecha"]) ? $_GET["fecha"] : date("Y-m-d");
-        // $reserva = new Reserva();
-        // $periodos_ocupados = $reserva->obtenerPeriodosOcupados($fecha_seleccionada);
-    
-        // // Si no hay periodos ocupados, inicializar como array vacío
-        // if (!$periodos_ocupados) {
-        //     $periodos_ocupados = [];
-        // }
-    
-        // $reserva = new Reserva();
-        // $reservas = $reserva->obtenerReservas();
-    
-        // require_once("../vistas/cabeza.php");
-        // require_once("../vistas/reservasEquipo.php");
-        // require_once("../vistas/pie.html");
-
-        // require_once("../vistas/cabeza.php");
-        // require_once("../vistas/login.php");
-        // require_once("../vistas/pie.html");
     }
     
 
     //Esto es la piedra angular del controlador, con esto llamo y me muevo entre las funciones usando los action como variable.
     if (isset($_REQUEST["action"])) {
         $action = strtolower($_REQUEST["action"]);
-        // if ($action === "tienda") {
-        //     tienda();
-        // } elseif ($action === "buscarproductos") {
-        //     buscarProductos();
-        // } else {
             $action(); // Llama a la función correspondiente
-        // }
     } else {
         inicio(); // Muestra la pantalla de inicio de sesión por defecto
     }
