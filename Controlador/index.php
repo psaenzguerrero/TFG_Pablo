@@ -158,8 +158,8 @@
     }
 
     function dashboard() {
-        require_once("../Modelos/usuario.php");
         session_start();
+        require_once("../Modelos/usuario.php");
         if (!isset($_SESSION["id_usuario"])) {
             header("Location: index.php?action=login");
             exit;
