@@ -149,8 +149,8 @@
             require_once("../vistas/pie.html");
     }
     function dashboard() {
-        require_once("../Modelos/usuario.php");
         session_start();
+        require_once("../Modelos/usuario.php");
         if (!isset($_SESSION["id_usuario"])) {
             header("Location: index.php?action=login");
             exit;
@@ -731,6 +731,10 @@
         require_once("../vistas/cabeza.php");
         require_once("../vistas/reservasEquipo.php");
         require_once("../vistas/pie.html");
+<<<<<<< HEAD
+=======
+
+>>>>>>> 4dcdb70b54d92c118f94b969c8fc116f6d64e2eb
     }
     
 
@@ -738,7 +742,6 @@
     if (isset($_REQUEST["action"])) {
         $action = strtolower($_REQUEST["action"]);
             $action(); // Llama a la función correspondiente
-        // }
     } else {
         inicio(); // Muestra la pantalla de inicio de sesión por defecto
     }
