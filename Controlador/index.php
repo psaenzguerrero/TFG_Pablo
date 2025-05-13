@@ -63,9 +63,7 @@
                     require_once("../vistas/login.php");
                     require_once("../vistas/pie.html");
                 }
-            }
-    
-            
+            } 
         } else {
             session_start();
             require_once("../vistas/cabeza.php");
@@ -82,7 +80,6 @@
             $pass_usuario2 = $_POST["pass_usuario2"];
             $DNI = $_POST["DNI"];
             $usuario = new Usuario();
-
             if ($usuario->obtenerId($nombre_usuario)) {
                 $error = "Nombre de usuario ya en uso.";
                 require_once("../vistas/cabeza.php");
@@ -95,8 +92,6 @@
                     require_once("../vistas/registro.php");
                     require_once("../vistas/pie.html");
                 }else {
-                    // $usuario->registrarUsuario($nombre_usuario, $pass_usuario);
-
                     if (preg_match('/^\d{8}[A-Z]$/', $DNI)) {
                         $usuario->insertarAdmin($nombre_usuario, $DNI, $pass_usuario);
                         header("Location: index.php?action=dashboard");
@@ -107,11 +102,8 @@
                         require_once("../vistas/registro.php");
                         require_once("../vistas/pie.html");
                     }
-
                 }
-            }
-    
-            
+            }   
         } else {
             session_start();
             require_once("../vistas/cabeza.php");
@@ -156,7 +148,6 @@
             require_once("../vistas/inicio.php");
             require_once("../vistas/pie.html");
     }
-
     function dashboard() {
         require_once("../Modelos/usuario.php");
         session_start();
@@ -166,7 +157,6 @@
         }
         $tipo = new Usuario();
         $_SESSION["tipo_usuario"] = $tipo->obtenerTipoUsu($_SESSION["id_usuario"]);
-        // var_dump($_SESSION);
         require_once("../vistas/cabeza.php");
         require_once("../vistas/paginaInicio.php");
         require_once("../vistas/pie.html");   
@@ -182,17 +172,13 @@
         $tipo = new Usuario();
         $id_usuario = $_SESSION["id_usuario"];
         $puntos = $tipo->obtenerPuntos($id_usuario);
-
         if ($puntos >= 100) {
-            $puntos-=100;
-            
+            $puntos-=100;  
             $puntosFinal = $tipo->actualizarPuntos($puntos, $id_usuario);
             $tipo_usu = $tipo->actualizarTipo($id_usuario);
             require_once("../vistas/cabeza.php");
             require_once("../vistas/paginaInicio.php");
-            require_once("../vistas/pie.html"); 
-
-            
+            require_once("../vistas/pie.html");    
         }else{
             echo "<p>$puntos</p><p>2</p>";
         }
@@ -558,13 +544,11 @@
         $id_evento = $_GET["id_evento"];
     
         // Crear una instancia del modelo Inscripcion
-        
         $inscripcion = new InscripcionEvento();
         $inscripciones = $inscripcion->listaInscrito($id_usuario, $id_evento);
         if ($inscripciones) {
             header("Location: index.php?action=eventosUsuario");
             exit;
-            // echo "<p>problema1</p>";
         }else{
             // Intentar inscribir al usuario
             if ($inscripcion->inscribirUsuario($id_usuario, $id_evento)) {
@@ -578,7 +562,6 @@
         
     }
     
-
     function agregarAlCarrito() {
         require_once("../Modelos/carrito.php");
         session_start();
@@ -748,45 +731,12 @@
         require_once("../vistas/cabeza.php");
         require_once("../vistas/reservasEquipo.php");
         require_once("../vistas/pie.html");
-
-        // $usuario = new Usuario();
-        // $usuarios = $usuario->obtenerUsuariosNoAdmin();
-    
-        // // Obtener la lista de equipos disponibles
-        // $equipo = new Equipo();
-        // $equipos = $equipo->obtenerEquipos(); 
-    
-        // // Obtener los periodos ocupados para la fecha seleccionada
-        // $fecha_seleccionada = isset($_GET["fecha"]) ? $_GET["fecha"] : date("Y-m-d");
-        // $reserva = new Reserva();
-        // $periodos_ocupados = $reserva->obtenerPeriodosOcupados($fecha_seleccionada);
-    
-        // // Si no hay periodos ocupados, inicializar como array vacío
-        // if (!$periodos_ocupados) {
-        //     $periodos_ocupados = [];
-        // }
-    
-        // $reserva = new Reserva();
-        // $reservas = $reserva->obtenerReservas();
-    
-        // require_once("../vistas/cabeza.php");
-        // require_once("../vistas/reservasEquipo.php");
-        // require_once("../vistas/pie.html");
-
-        // require_once("../vistas/cabeza.php");
-        // require_once("../vistas/login.php");
-        // require_once("../vistas/pie.html");
     }
     
 
     //Esto es la piedra angular del controlador, con esto llamo y me muevo entre las funciones usando los action como variable.
     if (isset($_REQUEST["action"])) {
         $action = strtolower($_REQUEST["action"]);
-        // if ($action === "tienda") {
-        //     tienda();
-        // } elseif ($action === "buscarproductos") {
-        //     buscarProductos();
-        // } else {
             $action(); // Llama a la función correspondiente
         // }
     } else {
