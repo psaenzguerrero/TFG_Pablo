@@ -731,10 +731,6 @@
         require_once("../vistas/cabeza.php");
         require_once("../vistas/reservasEquipo.php");
         require_once("../vistas/pie.html");
-<<<<<<< HEAD
-=======
-
->>>>>>> 4dcdb70b54d92c118f94b969c8fc116f6d64e2eb
     }
     
 
