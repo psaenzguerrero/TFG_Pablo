@@ -1,9 +1,6 @@
 <main class="bg-gray-900">
     <section class="relative w-full h-screen z-0">
         <video class="absolute top-0 left-0 w-full h-full object-cover" autoplay muted loop><source src="../img/paginacion/Fondo tecnológico en 4K.mp4" type="video/mp4">Tu navegador no soporta el video.</video>
-        <!-- <div class="absolute top-0 left-0 w-full h-full flex justify-center items-center">
-            <h1 class="text-9xl font-bold text-white text-center w-full pt-5 pb-9 border-white shadow-lg backdrop-blur-md bg-white/20 ">CALL OF GAMER</h1>
-        </div> -->
         <div class="absolute top-0 left-0 w-full h-full flex justify-center items-center">
             <h1 class="text-9xl font-bold text-white text-center w-full pt-5 pb-9 border-white shadow-lg backdrop-blur-md bg-transparent mix-blend-hard-light">
                 CALL OF GAMER
