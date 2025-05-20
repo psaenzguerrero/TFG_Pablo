@@ -650,8 +650,6 @@
             exit;
         }
         if ($_SERVER["REQUEST_METHOD"] === "POST") {
-            print_r($_POST);
-            // $id_usuario = $_POST["id_usuario"];
             $id_usuario = isset($_POST["id_usuario"]) ? $_POST["id_usuario"] : $_SESSION["id_usuario"];
             $id_equipo = $_POST["id_equipo"];
             $fecha_reserva = $_POST["fecha_reserva"];
@@ -717,7 +715,7 @@
         $equipo_seleccionado = isset($_GET["equipo"]) ? $_GET["equipo"] : 1;
         $fecha_seleccionada = isset($_GET["fecha"]) ? $_GET["fecha"] : date("Y-m-d");
         $reserva = new Reserva();
-        $periodos_ocupados = $reserva->obtenerPeriodosOcupados($fecha_seleccionada, $equipo_seleccionado, $usuario_seleccionado);
+        $periodos_ocupados = $reserva->obtenerPeriodosOcupados($fecha_seleccionada, $equipo_seleccionado);
     
         // Si no hay periodos ocupados, inicializar como array vacío
         if (!$periodos_ocupados) {

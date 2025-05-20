@@ -1,168 +1,183 @@
-<main>
-    <section class="pt-50">
-        <div class="container mx-auto mt-10">
-            <!-- Navegación del mes -->
-            <div class="flex justify-between mb-4">
-                <a href="?action=eventos&mes=<?php echo ($mesActual - 1) < 1 ? 12 : $mesActual - 1; ?>&anio=<?php echo ($mesActual - 1) < 1 ? $anioActual - 1 : $anioActual; ?>" class="text-xl">&laquo; Mes Anterior</a>
+<main class="bg-gray-50 min-h-screen ">
+  <section class="pt-50">
+    <div class="container mx-auto px-4">
+      <!-- Navegación del mes -->
+      <div class="flex items-center justify-between mb-6">
+        <a href="?action=eventos&mes=<?php echo ($mesActual - 1) < 1 ? 12 : $mesActual - 1; ?>&anio=<?php echo ($mesActual - 1) < 1 ? $anioActual - 1 : $anioActual; ?>"
+           class="inline-flex items-center space-x-2 px-4 py-2 bg-indigo-600 text-white rounded-lg shadow hover:bg-indigo-700 transition">
+          <span class="text-lg">&laquo;</span>
+          <span>Mes Anterior</span>
+        </a>
 
-                <div class="text-xl font-semibold">
-                    <?php
-                    // Crear un objeto DateTime para el primer día del mes
-                    $fechaInicio = new DateTime("$anioActual-$mesActual-01");
-                    // Obtener el nombre completo del mes y el año
-                    echo $fechaInicio->format('F Y'); // Ejemplo: Marzo 2025
-                    ?>
-                </div>
-
-                <a href="?action=eventos&mes=<?php echo ($mesActual + 1) > 12 ? 1 : $mesActual + 1; ?>&anio=<?php echo ($mesActual + 1) > 12 ? $anioActual + 1 : $anioActual; ?>" class="text-xl">Mes Siguiente &raquo;</a>
-            </div>
-
-            <div class="grid grid-cols-7 gap-4">
-                <!-- Días de la semana -->
-                <div class="text-center font-semibold">Lun</div>
-                <div class="text-center font-semibold">Mar</div>
-                <div class="text-center font-semibold">Mié</div>
-                <div class="text-center font-semibold">Jue</div>
-                <div class="text-center font-semibold">Vie</div>
-                <div class="text-center font-semibold">Sáb</div>
-                <div class="text-center font-semibold">Dom</div>
-
-                <?php
-                // Crear objeto DateTime para determinar el primer día del mes y el número de días
-                $primerDiaDelMes = $fechaInicio->format('N'); // Día de la semana (1 = lunes, 7 = domingo)
-                $diasDelMes = $fechaInicio->format('t'); // Total de días del mes
-
-                // Imprimir los días vacíos del principio del mes (si es necesario)
-                for ($i = 1; $i < $primerDiaDelMes; $i++) {
-                    echo "<div class='day'></div>";
-                }
-
-                // Imprimir todos los días del mes
-                for ($dia = 1; $dia <= $diasDelMes; $dia++) {
-                    $fechaDia = sprintf("%02d", $dia); // Formato de día con 2 dígitos
-                    $eventoDelDia = isset($eventosPorDia[$fechaDia]) ? $eventosPorDia[$fechaDia] : null;
-
-                    // Verificar si el día tiene eventos
-                    if ($eventoDelDia) {
-                        echo "<div class='day bg-green-500 text-white rounded-full p-2 cursor-pointer' data-fecha='" . $anioActual . "-" . $mesActual . "-" . $fechaDia . "' 
-                                data-id_evento='" . $eventoDelDia[0]['id_evento'] . "' 
-                                data-nombre_evento='" . $eventoDelDia[0]['nombre_evento'] . "'
-                                data-tipo_evento='" . $eventoDelDia[0]['tipo_evento'] . "'
-                                data-premio='" . $eventoDelDia[0]['premio'] . "'
-                                data-patrocinadores='" . $eventoDelDia[0]['patrocinadores'] . "'
-                                >" . $fechaDia . "</div>";
-                    } else {
-                        echo "<div class='day p-2 cursor-pointer' data-fecha='" . $anioActual . "-" . $mesActual . "-" . $fechaDia . "'>
-                                " . $fechaDia . "</div>";
-                    }
-                }
-                ?>
-            </div>
+        <div class="text-2xl font-bold text-gray-800">
+          <?php
+            $fechaInicio = new DateTime("$anioActual-$mesActual-01");
+            echo $fechaInicio->format('F Y');
+          ?>
         </div>
 
-        <!-- Modales de eventos -->
-        <!-- Modal para crear un evento -->
-        <div id="modalCrear" class="fixed top-0 left-0 z-50 hidden w-full h-full bg-gray-800 bg-opacity-50 flex items-center justify-center">
-            <div class="bg-white p-6 rounded-lg">
-                <h3 class="text-xl">Crear Evento</h3>
-                <form id="formCrearEvento" method="POST" action="index.php?action=guardarEvento">
-                    <input type="hidden" name="fecha_evento" id="fechaEventoCrear" />
-                    <div class="mb-4">
-                        <label class="block">Nombre del evento</label>
-                        <input type="text" name="nombre_evento" required class="w-full p-2 border border-gray-300 rounded-lg" />
-                    </div>
-                    <div class="mb-4">
-                        <label class="block">Tipo de evento</label>
-                        <input type="text" name="tipo_evento" required class="w-full p-2 border border-gray-300 rounded-lg" />
-                    </div>
-                    <div class="mb-4">
-                        <label class="block">Premio</label>
-                        <input type="text" name="premio" required class="w-full p-2 border border-gray-300 rounded-lg" />
-                    </div>
-                    <div class="mb-4">
-                        <label class="block">Patrocinadores</label>
-                        <input type="text" name="patrocinadores" required class="w-full p-2 border border-gray-300 rounded-lg" />
-                    </div>
-                    <button type="submit" class="bg-blue-500 text-white p-2 rounded-lg">Guardar</button>
-                    <button type="button" class="bg-gray-500 text-white p-2 rounded-lg" id="cerrarModalCrear">Cancelar</button>
-                </form>
-            </div>
+        <a href="?action=eventos&mes=<?php echo ($mesActual + 1) > 12 ? 1 : $mesActual + 1; ?>&anio=<?php echo ($mesActual + 1) > 12 ? $anioActual + 1 : $anioActual; ?>"
+           class="inline-flex items-center space-x-2 px-4 py-2 bg-indigo-600 text-white rounded-lg shadow hover:bg-indigo-700 transition">
+          <span>Mes Siguiente</span>
+          <span class="text-lg">&raquo;</span>
+        </a>
+      </div>
+
+      <!-- Calendario -->
+      <div class="bg-white rounded-lg shadow p-6">
+        <div class="grid grid-cols-7 gap-2 mb-4">
+          <div class="text-center text-gray-600 font-medium uppercase">Lun</div>
+          <div class="text-center text-gray-600 font-medium uppercase">Mar</div>
+          <div class="text-center text-gray-600 font-medium uppercase">Mié</div>
+          <div class="text-center text-gray-600 font-medium uppercase">Jue</div>
+          <div class="text-center text-gray-600 font-medium uppercase">Vie</div>
+          <div class="text-center text-gray-600 font-medium uppercase">Sáb</div>
+          <div class="text-center text-gray-600 font-medium uppercase">Dom</div>
         </div>
 
-        <!-- Modal para modificar o eliminar un evento -->
-        <div id="modalModificar" class="fixed top-0 left-0 z-50 hidden w-full h-full bg-gray-800 bg-opacity-50 flex items-center justify-center">
-            <div class="bg-white p-6 rounded-lg">
-                <h3 class="text-xl">Modificar Evento</h3>
-                <form id="formModificarEvento" method="POST" action="index.php?action=modificarEvento">
-                    <input type="hidden" name="id_evento" id="idEventoModificar" />
-                    <div class="mb-4">
-                        <label class="block">Nombre del evento</label>
-                        <input type="text" name="nombre_evento" id="nombreEventoModificar" required class="w-full p-2 border border-gray-300 rounded-lg" />
-                    </div>
-                    <div class="mb-4">
-                        <label class="block">Tipo de evento</label>
-                        <input type="text" name="tipo_evento" id="tipoEventoModificar" required class="w-full p-2 border border-gray-300 rounded-lg" />
-                    </div>
-                    <div class="mb-4">
-                        <label class="block">Premio</label>
-                        <input type="text" name="premio" id="premioEventoModificar" class="w-full p-2 border border-gray-300 rounded-lg" />
-                    </div>
-                    <div class="mb-4">
-                        <label class="block">Patrocinadores</label>
-                        <input type="text" name="patrocinadores" id="patrocinadoresEventoModificar" class="w-full p-2 border border-gray-300 rounded-lg" />
-                    </div>
-                    <button type="submit" class="bg-blue-500 text-white p-2 rounded-lg">Guardar cambios</button>
-                    <button type="button" class="bg-red-500 text-white p-2 rounded-lg" id="eliminarEvento">Eliminar</button>
-                    <button type="button" class="bg-gray-500 text-white p-2 rounded-lg" id="cerrarModalModificar">Cancelar</button>
-                </form>
-            </div>
+        <div class="grid grid-cols-7 gap-2">
+          <?php
+          $primerDiaDelMes = $fechaInicio->format('N');
+          $diasDelMes    = $fechaInicio->format('t');
+
+          // Espacios iniciales
+          for ($i = 1; $i < $primerDiaDelMes; $i++) {
+            echo '<div></div>';
+          }
+
+          for ($dia = 1; $dia <= $diasDelMes; $dia++) {
+            $fechaDia       = sprintf("%02d", $dia);
+            $eventoDelDia   = $eventosPorDia[$fechaDia] ?? null;
+            $esHoy          = (date('Y-m-d') === "$anioActual-$mesActual-$fechaDia");
+            $baseClasses    = 'aspect-[2/1] flex items-center justify-center rounded-lg cursor-pointer transition';
+            $fechaAttr      = "data-fecha='$anioActual-$mesActual-$fechaDia'";
+
+            if ($eventoDelDia) {
+              // Día con evento
+              echo "<div
+                      class=\"$baseClasses bg-indigo-600 text-white hover:bg-indigo-700 focus:outline-none focus:ring-4 focus:ring-indigo-300\"
+                      $fechaAttr
+                      data-id_evento=\"{$eventoDelDia[0]['id_evento']}\"
+                      data-nombre_evento=\"{$eventoDelDia[0]['nombre_evento']}\"
+                      data-tipo_evento=\"{$eventoDelDia[0]['tipo_evento']}\"
+                      data-premio=\"{$eventoDelDia[0]['premio']}\"
+                      data-patrocinadores=\"{$eventoDelDia[0]['patrocinadores']}\"
+                    >
+                      $dia
+                    </div>";
+            } else {
+              // Día sin evento
+              echo "<div
+                      class=\"$baseClasses bg-gray-100 hover:bg-gray-200 focus:outline-none focus:ring-4 focus:ring-indigo-200 " . ($esHoy ? 'ring-2 ring-indigo-400' : '') . "\"
+                      $fechaAttr
+                    >
+                      $dia
+                    </div>";
+            }
+          }
+          ?>
         </div>
+      </div>
+    </div>
 
-        <script>
-            // JavaScript para abrir el modal de creación de evento
-            document.querySelectorAll('.day').forEach(function(day) {
-                day.addEventListener('click', function() {
-                    const fecha = this.getAttribute('data-fecha');
-                    document.getElementById('fechaEventoCrear').value = fecha;
-                    document.getElementById('modalCrear').classList.remove('hidden');
-                });
-            });
+    <!-- Modal: Crear Evento -->
+    <div id="modalCrear" class="fixed inset-0 z-50 hidden bg-black bg-opacity-50 flex items-center justify-center p-4">
+      <div class="bg-white w-full max-w-md rounded-lg shadow-lg p-6 space-y-4">
+        <h3 class="text-2xl font-semibold">Crear Evento</h3>
+        <form id="formCrearEvento" method="POST" action="index.php?action=guardarEvento" class="space-y-4">
+          <input type="hidden" name="fecha_evento" id="fechaEventoCrear" />
+          <div>
+            <label class="block text-gray-700">Nombre del evento</label>
+            <input type="text" name="nombre_evento" required class="w-full mt-1 p-2 border border-gray-300 rounded-lg" />
+          </div>
+          <div>
+            <label class="block text-gray-700">Tipo de evento</label>
+            <input type="text" name="tipo_evento" required class="w-full mt-1 p-2 border border-gray-300 rounded-lg" />
+          </div>
+          <div>
+            <label class="block text-gray-700">Premio</label>
+            <input type="text" name="premio" required class="w-full mt-1 p-2 border border-gray-300 rounded-lg" />
+          </div>
+          <div>
+            <label class="block text-gray-700">Patrocinadores</label>
+            <input type="text" name="patrocinadores" required class="w-full mt-1 p-2 border border-gray-300 rounded-lg" />
+          </div>
+          <div class="flex justify-end space-x-2">
+            <button type="button" id="cerrarModalCrear" class="px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition">Cancelar</button>
+            <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">Guardar</button>
+          </div>
+        </form>
+      </div>
+    </div>
 
-            // JavaScript para cerrar el modal de creación de evento
-            document.getElementById('cerrarModalCrear').addEventListener('click', function() {
-                document.getElementById('modalCrear').classList.add('hidden');
-            });
-
-            // JavaScript para abrir el modal de modificación de evento
-            document.querySelectorAll('.bg-green-500').forEach(function(day) {
-                day.addEventListener('click', function() {
-                    const idEvento = this.getAttribute('data-id_evento');
-                    const nombreEvento = this.getAttribute('data-nombre_evento');
-                    const tipoEvento = this.getAttribute('data-tipo_evento');
-                    const premioEvento = this.getAttribute('data-premio');
-                    const patrocinadoresEvento = this.getAttribute('data-patrocinadores');
-                    const fechaEvento = this.getAttribute('data-fecha');
-                    document.getElementById('idEventoModificar').value = idEvento;
-                    document.getElementById('nombreEventoModificar').value = nombreEvento;
-                    document.getElementById('tipoEventoModificar').value = tipoEvento; 
-                    document.getElementById('premioEventoModificar').value = premioEvento;
-                    document.getElementById('patrocinadoresEventoModificar').value = patrocinadoresEvento;
-                    document.getElementById('modalModificar').classList.remove('hidden');
-                });
-            });
-
-            // JavaScript para cerrar el modal de modificación de evento
-            document.getElementById('cerrarModalModificar').addEventListener('click', function() {
-                document.getElementById('modalModificar').classList.add('hidden');
-                document.getElementById('modalCrear').classList.add('hidden');
-            });
-
-            // JavaScript para eliminar el evento
-            document.getElementById('eliminarEvento').addEventListener('click', function() {
-                const idEvento = document.getElementById('idEventoModificar').value;
-                window.location.href = `index.php?action=eliminarEvento&id_evento=${idEvento}`;
-            });
-        </script>
-    </section>
+    <!-- Modal: Modificar/Eliminar Evento -->
+    <div id="modalModificar" class="fixed inset-0 z-50 hidden bg-black bg-opacity-50 flex items-center justify-center p-4">
+      <div class="bg-white w-full max-w-md rounded-lg shadow-lg p-6 space-y-4">
+        <h3 class="text-2xl font-semibold">Modificar Evento</h3>
+        <form id="formModificarEvento" method="POST" action="index.php?action=modificarEvento" class="space-y-4">
+          <input type="hidden" name="id_evento" id="idEventoModificar" />
+          <div>
+            <label class="block text-gray-700">Nombre del evento</label>
+            <input type="text" id="nombreEventoModificar" name="nombre_evento" required class="w-full mt-1 p-2 border border-gray-300 rounded-lg" />
+          </div>
+          <div>
+            <label class="block text-gray-700">Tipo de evento</label>
+            <input type="text" id="tipoEventoModificar" name="tipo_evento" required class="w-full mt-1 p-2 border border-gray-300 rounded-lg" />
+          </div>
+          <div>
+            <label class="block text-gray-700">Premio</label>
+            <input type="text" id="premioEventoModificar" name="premio" class="w-full mt-1 p-2 border border-gray-300 rounded-lg" />
+          </div>
+          <div>
+            <label class="block text-gray-700">Patrocinadores</label>
+            <input type="text" id="patrocinadoresEventoModificar" name="patrocinadores" class="w-full mt-1 p-2 border border-gray-300 rounded-lg" />
+          </div>
+          <div class="flex justify-end space-x-2">
+            <button type="button" id="eliminarEvento" class="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition">Eliminar</button>
+            <button type="button" id="cerrarModalModificar" class="px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition">Cancelar</button>
+            <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">Guardar cambios</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
 </main>
 
+<script>
+  // Abrir modal Crear
+  document.querySelectorAll('.aspect-square').forEach(day => {
+    day.addEventListener('click', () => {
+      const fecha = day.getAttribute('data-fecha');
+      document.getElementById('fechaEventoCrear').value = fecha;
+      document.getElementById('modalCrear').classList.remove('hidden');
+    });
+  });
+
+  // Cerrar modal Crear
+  document.getElementById('cerrarModalCrear').addEventListener('click', () => {
+    document.getElementById('modalCrear').classList.add('hidden');
+  });
+
+  // Abrir modal Modificar
+  document.querySelectorAll('[data-id_evento]').forEach(day => {
+    day.addEventListener('click', () => {
+      ['idEventoModificar','nombreEventoModificar','tipoEventoModificar','premioEventoModificar','patrocinadoresEventoModificar'].forEach(id => {
+        const field = document.getElementById(id);
+        const attr  = id.replace(/(.+)EventoModificar/, '$1').toLowerCase();
+        field.value = day.getAttribute(`data-${attr}`);
+      });
+      document.getElementById('modalModificar').classList.remove('hidden');
+    });
+  });
+
+  // Cerrar modal Modificar
+  document.getElementById('cerrarModalModificar').addEventListener('click', () => {
+    document.getElementById('modalModificar').classList.add('hidden');
+  });
+
+  // Eliminar evento
+  document.getElementById('eliminarEvento').addEventListener('click', () => {
+    const id = document.getElementById('idEventoModificar').value;
+    window.location.href = `index.php?action=eliminarEvento&id_evento=${id}`;
+  });
+</script>

@@ -8,10 +8,10 @@ class Reserva {
         $this->conn = new bd();
     }
 
-    public function obtenerPeriodosOcupados($fecha_reserva, $id_equipo, $id_usuario) {
-        $sentencia = "SELECT periodo FROM reserva WHERE fecha_reserva = ? AND id_equipo = ? AND id_usuario = ?";
+    public function obtenerPeriodosOcupados($fecha_reserva, $id_equipo) {
+        $sentencia = "SELECT periodo FROM reserva WHERE fecha_reserva = ? AND id_equipo = ?";
         $consulta = $this->conn->__get("conn")->prepare($sentencia);
-        $consulta->bind_param("sii", $fecha_reserva, $id_equipo, $id_usuario);
+        $consulta->bind_param("si", $fecha_reserva, $id_equipo);
         $consulta->bind_result($periodo);
         $periodos_ocupados = array();
         $consulta->execute();
