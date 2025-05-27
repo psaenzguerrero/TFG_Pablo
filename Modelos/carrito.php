@@ -88,6 +88,25 @@ class Carrito {
         $consulta->close();
         return $resultado;
     }
+    public function eliminarTodo($id_usuario){
+        $sentencia = "DELETE FROM carrito WHERE id_usuario = ?";
+        $consulta = $this->conn->__get("conn")->prepare($sentencia);
+        $consulta->bind_param("i", $id_usuario);
+        $resultado = $consulta->execute();
+        $consulta->close();
+        return $resultado;
+    }
+
+    public function sumarPrecio($id_usuario){
+        $sentencia = "SELECT SUM(cantidad*producto.precio_producto) FROM compra, producto WHERE producto.id_producto = compra.id_producto AND id_usuario = ?";
+        $consulta = $this->$conn->prepare($sentencia);
+        $consulta->bind_param("i", $id_usuario);
+        $consulta->bind_result($precio);
+        $resultado = $consulta->execute();
+        $consulta->fetch();
+        $consulta->close();
+        return $precio;
+    }
 
 }
 ?>

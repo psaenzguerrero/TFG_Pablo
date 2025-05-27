@@ -33,8 +33,8 @@
                         <?php endforeach; ?>
                     </tbody>
                 </table>
-                <form action="#" method="post">
-
+                <form action="index.php?action=compraDelCarrito" method="POST" class="pt-20">
+                    <button type="submit">Comprar Todo</button>
                 </form>
             <?php endif; ?>
         </div>

@@ -640,6 +640,17 @@
         require_once("../vistas/pie.html");
     }
 
+    function compraDelCarrito(){
+        $id_usuario = $_SESSION["id_usuario"];
+        $carrito = new Carrito();
+        $precio = $carrito->compraDelCarrito($id_usuario);
+        $fecha = date();
+
+        $pedido = new Pedido();
+        $pedidos = $pedido->crearPedido($id_usuario,$precio,$fecha);
+
+    }
+
     function reservarEquipoAdmin() {
         require_once("../Modelos/reserva.php");
         require_once("../Modelos/equipo.php"); 
