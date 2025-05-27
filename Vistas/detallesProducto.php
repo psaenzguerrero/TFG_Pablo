@@ -13,17 +13,17 @@
             <!-- Galería de imágenes - Responsive -->
             <div class="lg:w-1/2">
                 <div class="bg-gray-800 rounded-lg overflow-hidden mb-3 md:mb-4">
-                    <img src="https://via.placeholder.com/800x600" alt="<?php echo htmlspecialchars($productoData['nombre_producto']); ?>" class="w-full h-auto">
+                    <img src=".<?php echo htmlspecialchars($productoData['img']); ?>" alt="<?php echo htmlspecialchars($productoData['nombre_producto']); ?>" class="w-full h-auto">
                 </div>
                 <div class="grid grid-cols-3 gap-2">
                     <div class="bg-gray-800 rounded-md overflow-hidden cursor-pointer hover:opacity-80 transition">
-                        <img src="https://via.placeholder.com/300x200" alt="Vista 1" class="w-full h-auto">
+                        <img src=".<?php echo htmlspecialchars($productoData['img']); ?>" alt="Vista 1" class="w-full h-auto">
                     </div>
                     <div class="bg-gray-800 rounded-md overflow-hidden cursor-pointer hover:opacity-80 transition">
-                        <img src="https://via.placeholder.com/300x200" alt="Vista 2" class="w-full h-auto">
+                        <img src=".<?php echo htmlspecialchars($productoData['img']); ?>" alt="Vista 2" class="w-full h-auto">
                     </div>
                     <div class="bg-gray-800 rounded-md overflow-hidden cursor-pointer hover:opacity-80 transition">
-                        <img src="https://via.placeholder.com/300x200" alt="Vista 3" class="w-full h-auto">
+                        <img src=".<?php echo htmlspecialchars($productoData['img']); ?>" alt="Vista 3" class="w-full h-auto">
                     </div>
                 </div>
             </div>
@@ -41,7 +41,7 @@
 
                 <div class="bg-gray-800 rounded-lg p-4 md:p-6 mb-6 md:mb-8">
                     <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-3 md:mb-4 gap-2">
-                        <span class="text-xl md:text-2xl font-bold">$<?php echo htmlspecialchars($productoData['precio']); ?></span>
+                        <span class="text-xl md:text-2xl font-bold">$<?php echo htmlspecialchars($productoData['precio_producto']); ?></span>
                         <span class="text-green-400 text-sm md:text-base">✔ En stock</span>
                     </div>
 
