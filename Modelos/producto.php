@@ -19,6 +19,7 @@
                 array_push($productos, [$id_producto, $nombre_producto, $precio_producto, $tipo_producto, $puntos_compra]);
             }
             $consulta->close();
+            
             return $productos;
         }
 
@@ -107,7 +108,7 @@
             return $productos;
         }
         public function filtrarProductos($filtros) {
-            $sentencia = "SELECT id_producto, nombre_producto, precio_producto, tipo_producto, puntos_compra FROM producto WHERE 1=1";
+            $sentencia = "SELECT id_producto, nombre_producto, precio_producto, tipo_producto, puntos_compra, img FROM producto WHERE 1=1";
             $params = [];
             $tipos = "";
         
