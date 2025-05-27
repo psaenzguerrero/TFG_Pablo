@@ -1,6 +1,6 @@
 <main class="bg-gray-900 text-white min-h-screen">
     <!-- Sección Hero/Banner principal - Responsive -->
-    <section class="relative py-12 md:py-20 bg-[url('https://images.unsplash.com/photo-1542751371-adc38448a05e')] bg-cover bg-center">
+    <section class="relative py-12 md:pt-30 md:pb-10 bg-[url('https://images.unsplash.com/photo-1542751371-adc38448a05e')] bg-cover bg-center">
         <div class="absolute inset-0 bg-black opacity-60"></div>
         <div class="relative container mx-auto px-4 sm:px-6 lg:px-8 z-10">
             <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-3 md:mb-4 text-purple-400"><?php echo htmlspecialchars($productoData['nombre_producto']); ?></h1>
@@ -151,7 +151,7 @@
         <div class="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
             <!-- Producto 1 -->
             <div class="bg-gray-800 rounded-lg overflow-hidden hover:transform hover:scale-[1.02] transition duration-300">
-                <img src="https://via.placeholder.com/300x200" alt="Mouse Gamer" class="w-full h-40 sm:h-48 object-cover">
+                <img src="../img/productos/raton.png" alt="Mouse Gamer" class="w-full h-40 sm:h-48 object-cover">
                 <div class="p-3 md:p-4">
                     <h3 class="font-bold mb-1 md:mb-2 text-sm md:text-base">Mouse Gamer Pro</h3>
                     <div class="flex justify-between items-center">
@@ -165,7 +165,7 @@
             
             <!-- Producto 2 -->
             <div class="bg-gray-800 rounded-lg overflow-hidden hover:transform hover:scale-[1.02] transition duration-300">
-                <img src="https://via.placeholder.com/300x200" alt="Headset Gamer" class="w-full h-40 sm:h-48 object-cover">
+                <img src="../img/productos/cascos.png" alt="Headset Gamer" class="w-full h-40 sm:h-48 object-cover">
                 <div class="p-3 md:p-4">
                     <h3 class="font-bold mb-1 md:mb-2 text-sm md:text-base">Headset Gamer 7.1</h3>
                     <div class="flex justify-between items-center">
@@ -179,9 +179,9 @@
             
             <!-- Producto 3 -->
             <div class="bg-gray-800 rounded-lg overflow-hidden hover:transform hover:scale-[1.02] transition duration-300">
-                <img src="https://via.placeholder.com/300x200" alt="Mousepad XL" class="w-full h-40 sm:h-48 object-cover">
+                <img src="../img/productos/tablet.png" alt="Tablet XL" class="w-full h-40 sm:h-48 object-cover">
                 <div class="p-3 md:p-4">
-                    <h3 class="font-bold mb-1 md:mb-2 text-sm md:text-base">Mousepad XL RGB</h3>
+                    <h3 class="font-bold mb-1 md:mb-2 text-sm md:text-base">Tablet XL RGB</h3>
                     <div class="flex justify-between items-center">
                         <span class="text-purple-400 font-bold text-sm md:text-base">$39.99</span>
                         <button class="bg-gray-700 hover:bg-purple-600 p-1 md:p-2 rounded-full text-sm md:text-base">
@@ -193,7 +193,7 @@
             
             <!-- Producto 4 -->
             <div class="bg-gray-800 rounded-lg overflow-hidden hover:transform hover:scale-[1.02] transition duration-300">
-                <img src="https://via.placeholder.com/300x200" alt="Controlador" class="w-full h-40 sm:h-48 object-cover">
+                <img src="../img/productos/mando.png" alt="Controlador" class="w-full h-40 sm:h-48 object-cover">
                 <div class="p-3 md:p-4">
                     <h3 class="font-bold mb-1 md:mb-2 text-sm md:text-base">Controlador Pro</h3>
                     <div class="flex justify-between items-center">
