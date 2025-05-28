@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 01-04-2025 a las 18:47:56
+-- Tiempo de generación: 28-05-2025 a las 09:33:28
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -42,10 +42,32 @@ INSERT INTO `carrito` (`id_usuario`, `id_producto`, `cantidad`, `fecha_compra`) 
 (3, 2, 2, '2025-02-16'),
 (3, 3, 2, '2025-02-12'),
 (3, 4, 1, '2025-02-15'),
-(13, 2, 2, '2025-02-12'),
+(13, 2, 3, '2025-02-12'),
 (13, 3, 1, '2025-02-12'),
 (13, 4, 4, '2025-02-12'),
 (13, 17, 2, '2025-04-01');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `compra`
+--
+
+CREATE TABLE `compra` (
+  `id_pedido` bigint(20) UNSIGNED NOT NULL,
+  `id_usuario` int(11) NOT NULL,
+  `cantidad` decimal(10,2) NOT NULL,
+  `metodo` varchar(50) NOT NULL,
+  `estado` tinyint(1) DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Volcado de datos para la tabla `compra`
+--
+
+INSERT INTO `compra` (`id_pedido`, `id_usuario`, `cantidad`, `metodo`, `estado`) VALUES
+(2, 2, 30.00, 'Paypal', 1),
+(3, 3, 20.00, 'Efectivo', 0);
 
 -- --------------------------------------------------------
 
@@ -125,7 +147,8 @@ INSERT INTO `evento` (`id_evento`, `nombre_evento`, `tipo_evento`, `fecha_evento
 (5, 'Competencia eSports', 'Videojuegos', '2025-06-10', 'Medalla + $3000', 'Razer'),
 (6, 'Carrera de Drones', 'Tecnología', '2025-07-05', 'Drone Profesional', 'DJI'),
 (7, 'Torneo de Smash', 'Videojuegos', '2025-08-12', 'Trofeo + Suscripción Online', 'Nintendo'),
-(13, 'maite', 'videojuegos', '2025-03-04', '100€', 'Sony');
+(13, 'maite', 'videojuegos', '2025-03-04', '100€', 'Sony'),
+(14, 'Concurso VR', 'Videojuegos', '2025-05-11', '100€', 'Soni');
 
 -- --------------------------------------------------------
 
@@ -158,19 +181,10 @@ INSERT INTO `inscribe` (`id_usuario`, `id_evento`) VALUES
 
 CREATE TABLE `pedido` (
   `id_pedido` bigint(20) UNSIGNED NOT NULL,
-  `id_usuario` int(11) NOT NULL,
-  `cantidad` decimal(10,2) NOT NULL,
-  `metodo` varchar(50) NOT NULL,
-  `estado` tinyint(1) DEFAULT 0
+  `id_usu` int(11) NOT NULL,
+  `precio` float UNSIGNED NOT NULL,
+  `fecha` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
-
---
--- Volcado de datos para la tabla `pedido`
---
-
-INSERT INTO `pedido` (`id_pedido`, `id_usuario`, `cantidad`, `metodo`, `estado`) VALUES
-(2, 2, 30.00, 'Paypal', 1),
-(3, 3, 20.00, 'Efectivo', 0);
 
 -- --------------------------------------------------------
 
@@ -183,28 +197,29 @@ CREATE TABLE `producto` (
   `nombre_producto` varchar(100) NOT NULL,
   `precio_producto` decimal(10,2) NOT NULL,
   `tipo_producto` enum('Equipo','Accesorios','Juegos','Consolas') NOT NULL,
-  `puntos_compra` int(11) NOT NULL
+  `puntos_compra` int(11) NOT NULL,
+  `img` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Volcado de datos para la tabla `producto`
 --
 
-INSERT INTO `producto` (`id_producto`, `nombre_producto`, `precio_producto`, `tipo_producto`, `puntos_compra`) VALUES
-(2, 'Xbox Series X', 499.99, 'Consolas', 500),
-(3, 'Monitor Gaming', 299.99, 'Equipo', 300),
-(4, 'PlayStation 5', 499.99, 'Consolas', 500),
-(5, 'Xbox Series X', 499.99, 'Consolas', 500),
-(6, 'Monitor Gaming', 299.99, 'Equipo', 300),
-(7, 'Nintendo Switch', 299.99, 'Consolas', 300),
-(8, 'Teclado Mecánico', 89.99, 'Equipo', 90),
-(9, 'Ratón Gaming', 59.99, 'Equipo', 60),
-(10, 'Auriculares Inalámbricos', 129.99, 'Equipo', 130),
-(11, 'Proyector 4K', 399.99, 'Accesorios', 400),
-(12, 'Smart TV 55\"', 699.99, 'Equipo', 700),
-(13, 'Tablet Android', 199.99, 'Accesorios', 200),
-(14, 'wi', 80.00, 'Consolas', 40),
-(17, 'agch', 1000.00, 'Accesorios', 101);
+INSERT INTO `producto` (`id_producto`, `nombre_producto`, `precio_producto`, `tipo_producto`, `puntos_compra`, `img`) VALUES
+(2, 'Xbox Series X', 499.99, 'Consolas', 500, './img/productos/xbox.png'),
+(3, 'Monitor Gaming', 299.99, 'Equipo', 300, './img/productos/monitor.png'),
+(4, 'PlayStation 5', 499.99, 'Consolas', 500, './img/productos/play5.png'),
+(5, 'Xbox Series X', 499.99, 'Consolas', 500, './img/productos/xbox.png'),
+(6, 'Monitor Gaming', 299.99, 'Equipo', 300, './img/productos/monitor.png'),
+(7, 'Nintendo Switch', 299.99, 'Consolas', 300, './img/productos/nintendo.png'),
+(8, 'Teclado Mecánico', 89.99, 'Equipo', 90, './img/productos/teclado.png'),
+(9, 'Ratón Gaming', 59.99, 'Equipo', 60, './img/productos/raton.png'),
+(10, 'Auriculares Inalámbricos', 129.99, 'Equipo', 130, './img/productos/cascos.png'),
+(11, 'Proyector 4K', 399.99, 'Accesorios', 400, './img/productos/proyector.png'),
+(12, 'Smart TV 55\"', 699.99, 'Equipo', 700, './img/productos/television.png'),
+(13, 'Tablet Android', 199.99, 'Accesorios', 200, './img/productos/tablet.png'),
+(14, 'wi', 80.00, 'Consolas', 40, './img/productos/wi.png'),
+(17, 'agch', 1000.00, 'Accesorios', 101, './img/productos/xbox.png');
 
 -- --------------------------------------------------------
 
@@ -225,7 +240,11 @@ CREATE TABLE `reserva` (
 --
 
 INSERT INTO `reserva` (`id_usuario`, `id_equipo`, `fecha_reserva`, `periodo`, `snack`) VALUES
+(1, 1, '2025-05-20', 'periodo1', 1),
+(2, 1, '2025-05-31', 'periodo1', 0),
 (2, 2, '2025-03-02', 'periodo1', 0),
+(3, 1, '2025-05-31', 'periodo3', 0),
+(3, 2, '2025-05-31', 'periodo2', 0),
 (3, 3, '2025-03-03', 'periodo1', 1),
 (3, 10, '2025-03-15', 'periodo1', 1),
 (13, 1, '2025-03-13', 'periodo4', 0),
@@ -235,8 +254,10 @@ INSERT INTO `reserva` (`id_usuario`, `id_equipo`, `fecha_reserva`, `periodo`, `s
 (13, 1, '2025-03-14', 'periodo10', 0),
 (13, 1, '2025-03-15', 'periodo1', 0),
 (13, 1, '2025-03-31', 'periodo10', 0),
+(13, 1, '2025-05-31', 'periodo2', 0),
 (13, 2, '2025-03-15', 'periodo1', 0),
 (13, 2, '2025-03-15', 'periodo2', 0),
+(13, 2, '2025-05-31', 'periodo3', 0),
 (13, 3, '2025-03-13', 'periodo2', 0),
 (13, 5, '2025-03-13', 'periodo1', 1),
 (13, 5, '2025-03-13', 'periodo3', 0),
@@ -291,6 +312,13 @@ ALTER TABLE `carrito`
   ADD KEY `id_producto` (`id_producto`);
 
 --
+-- Indices de la tabla `compra`
+--
+ALTER TABLE `compra`
+  ADD PRIMARY KEY (`id_usuario`,`id_pedido`),
+  ADD UNIQUE KEY `id_pedido` (`id_pedido`) USING BTREE;
+
+--
 -- Indices de la tabla `contenido`
 --
 ALTER TABLE `contenido`
@@ -320,8 +348,9 @@ ALTER TABLE `inscribe`
 -- Indices de la tabla `pedido`
 --
 ALTER TABLE `pedido`
-  ADD PRIMARY KEY (`id_usuario`,`id_pedido`),
-  ADD UNIQUE KEY `id_pedido` (`id_pedido`) USING BTREE;
+  ADD PRIMARY KEY (`id_pedido`),
+  ADD UNIQUE KEY `id_pedido` (`id_pedido`),
+  ADD KEY `pedido_fk_2` (`id_usu`);
 
 --
 -- Indices de la tabla `producto`
@@ -348,6 +377,12 @@ ALTER TABLE `usuario`
 --
 
 --
+-- AUTO_INCREMENT de la tabla `compra`
+--
+ALTER TABLE `compra`
+  MODIFY `id_pedido` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT de la tabla `equipo`
 --
 ALTER TABLE `equipo`
@@ -357,13 +392,13 @@ ALTER TABLE `equipo`
 -- AUTO_INCREMENT de la tabla `evento`
 --
 ALTER TABLE `evento`
-  MODIFY `id_evento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_evento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT de la tabla `pedido`
 --
 ALTER TABLE `pedido`
-  MODIFY `id_pedido` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_pedido` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `producto`
@@ -389,10 +424,16 @@ ALTER TABLE `carrito`
   ADD CONSTRAINT `carrito_ibfk_2` FOREIGN KEY (`id_producto`) REFERENCES `producto` (`id_producto`) ON DELETE CASCADE;
 
 --
+-- Filtros para la tabla `compra`
+--
+ALTER TABLE `compra`
+  ADD CONSTRAINT `pedido_fk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Filtros para la tabla `contenido`
 --
 ALTER TABLE `contenido`
-  ADD CONSTRAINT `contenido_fk_1` FOREIGN KEY (`id_pedido`) REFERENCES `pedido` (`id_pedido`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `contenido_fk_1` FOREIGN KEY (`id_pedido`) REFERENCES `compra` (`id_pedido`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `contenido_fk_2` FOREIGN KEY (`id_producto`) REFERENCES `producto` (`id_producto`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
@@ -406,7 +447,7 @@ ALTER TABLE `inscribe`
 -- Filtros para la tabla `pedido`
 --
 ALTER TABLE `pedido`
-  ADD CONSTRAINT `pedido_fk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `pedido_fk_2` FOREIGN KEY (`id_usu`) REFERENCES `usuario` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `reserva`
