@@ -1,10 +1,41 @@
 <main class="bg-gray-900">
-    <section class="relative w-full h-screen z-0">
-        <video class="absolute top-0 left-0 w-full h-full object-cover" autoplay muted loop><source src="../img/paginacion/Fondo tecnológico en 4K.mp4" type="video/mp4">Tu navegador no soporta el video.</video>
-        <div class="absolute top-0 left-0 w-full h-full flex justify-center items-center">
-            <h1 class="text-9xl font-bold text-white text-center w-full pt-5 pb-9 border-white shadow-lg backdrop-blur-md bg-transparent mix-blend-hard-light">
-                CALL OF GAMER
+    <section class="relative w-full h-screen overflow-hidden z-0">
+        <!-- Video de fondo con optimizaciones -->
+        <video class="absolute top-0 left-0 w-full h-full object-cover brightness-75" autoplay muted loop playsinline>
+            <source src="../img/paginacion/Fondo tecnológico en 4K.mp4" type="video/mp4">
+            Tu navegador no soporta el video.
+        </video>
+        
+        <!-- Capa de overlay para mejor contraste -->
+        <div class="absolute inset-0 bg-gradient-to-b from-black/30 to-black/50"></div>
+        
+        <!-- Contenido centrado con animación -->
+        <div class="absolute inset-0 flex flex-col justify-center items-center text-center px-4">
+            <!-- Título principal con animación y mejor jerarquía -->
+            <h1 class="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-extrabold text-white mb-4 animate-fade-in-up">
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600">CALL OF</span>
+                <span class="block mt-2 text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-yellow-400">GAMER</span>
             </h1>
+            
+            <!-- Subtítulo opcional -->
+            <p class="text-xl md:text-2xl text-white/90 max-w-2xl mx-auto mb-8 animate-fade-in-up delay-100">
+                Únete a la competencia definitiva de esports
+            </p>
+            
+            <!-- Botón CTA con hover effect -->
+            <a href="#eventos" class="px-8 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-full hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 shadow-lg animate-fade-in-up delay-200">
+                Ver Eventos
+                <svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-5 h-5 ml-2 -mr-1" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                </svg>
+            </a>
+        </div>
+        
+        <!-- Flecha indicadora de scroll -->
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+            </svg>
         </div>
     </section>
     <!-- Sección del carrusel -->
