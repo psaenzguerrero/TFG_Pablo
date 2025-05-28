@@ -62,3 +62,12 @@ a i {
 .scroll-container:active {
     cursor: grabbing;
 }
+.boxbox{
+    width: 100%;
+    justify-content: space-between;
+}
+@media screen and (min-width: 1024px) {
+    .boxbox {
+        width: 6%;
+    }
+}

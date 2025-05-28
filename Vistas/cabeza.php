@@ -20,7 +20,7 @@
     
     <!-- Hojas de Estilo Externas -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="../estilos.css">
+    <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header class="bg-gray-900 text-white fixed z-50 w-full border-b-2 border-purple-600 shadow-lg flex justify-center">
@@ -85,7 +85,7 @@
             ?>
         </div>
         <!-- Carrito y menú móvil -->
-        <div class="flex items-center space-x-4">
+        <div class="flex items-center boxbox space-x-4">
             <a href="./index.php?action=verCarrito" class="text-purple-400 hover:text-purple-300 transition text-xl relative">
                 <i class="fas fa-shopping-bag"></i>
                 <span class="absolute -top-2 -right-2 bg-purple-600 text-xs rounded-full h-5 w-5 flex items-center justify-center">0</span>
