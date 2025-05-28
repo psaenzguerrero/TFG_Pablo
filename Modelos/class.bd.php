@@ -3,7 +3,7 @@ require_once('../../../cred.php');
 class bd {
     private $conn; 
     public function __construct() {
-        $this->conn=new mysqli("localhost",USU_CONN,PSW_CONN,"tfg_pablo");
+        $this->conn=new mysqli("localhost",'root','' ,"tfg_pablo");
         if ($this->conn->connect_error) {
             die("Error al conectar con la base de datos: " . $this->conn->connect_error);
         }

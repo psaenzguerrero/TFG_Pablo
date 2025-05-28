@@ -28,7 +28,7 @@
                                 <h3 class="text-xl">Título 3</h3>
                                 <p class="text-sm text-gray-600">Texto pequeño 3</p>
                             </div>
-                            <div class="border p-6">
+                            <!-- <div class="border p-6">
                                 <h3 class="text-xl">Título 4</h3>
                                 <p class="text-sm text-gray-600">Texto pequeño 4</p>
                             </div>
@@ -39,7 +39,7 @@
                             <div class="border p-6">
                                 <h3 class="text-xl">Título 6</h3>
                                 <p class="text-sm text-gray-600">Texto pequeño 6</p>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -156,9 +156,6 @@
                         <span class="text-sm text-gray-400">(1.42€/h)</span>
                     </div>
                 </div>
-                <div class="ml-6">
-                    <img src="#" alt="Centro E-Sport en Granada" class="w-24">
-                </div>
             </div>
             <div class="p-6 animated-bg shadow-lg w-full max-w-4xl flex items-center space-x-4 overflow-hidden my-6 clip-path-custom scroll-container">
                 <h2 class="text-xl font-bold text-center text-white">Sala Principal</h2>
@@ -189,9 +186,6 @@
                         <span class="text-sm text-gray-400">(1.42€/h)</span>
                     </div>
                 </div>
-                <div class="ml-6">
-                    <img src="#" alt="Centro E-Sport en Granada" class="w-24">
-                </div>
             </div>
             <div class="p-6 animated-bg shadow-lg w-full max-w-4xl flex items-center space-x-4 overflow-hidden m-6 clip-path-custom scroll-container">
                 <h2 class="text-xl font-bold text-center text-white">Sala Principal</h2>
@@ -221,9 +215,6 @@
                         <span class="text-xl font-bold text-white">40€</span>
                         <span class="text-sm text-gray-400">(1.42€/h)</span>
                     </div>
-                </div>
-                <div class="ml-6">
-                    <img src="#" alt="Centro E-Sport en Granada" class="w-24">
                 </div>
             </div>
         </div>
