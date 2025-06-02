@@ -538,11 +538,9 @@
             header("Location: index.php?action=login");
             exit;
         }
-    
         // Obtener el ID del usuario y el ID del evento
         $id_usuario = $_SESSION["id_usuario"];
         $id_evento = $_GET["id_evento"];
-    
         // Crear una instancia del modelo Inscripcion
         $inscripcion = new InscripcionEvento();
         $inscripciones = $inscripcion->listaInscrito($id_usuario, $id_evento);
@@ -561,7 +559,6 @@
         }
         
     }
-    
     function agregarAlCarrito() {
         require_once("../Modelos/carrito.php");
         session_start();
@@ -581,11 +578,9 @@
                 $resultado = $carrito->aumentarCantidad($id_producto, $id_usuario);
                 // echo "<p>$resultado</p>";
                 header("Location: index.php?action=tienda");
-            }else{
-                
+            }else{ 
                 $cantidad=1;
                 $resultado = $carrito->insertar($id_usuario, $id_producto, $cantidad, $fecha_compra);
-
                 if ($resultado) {
                     header("Location: index.php?action=editarProducto");
                 } else {
@@ -594,7 +589,6 @@
             }
         }
     }
-
     function eliminarDelCarrito() {
         require_once("../Modelos/carrito.php");
         session_start();
@@ -602,7 +596,6 @@
             header("Location: index.php?action=login");
             exit;
         }
-
         if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $id_usuario = $_SESSION["id_usuario"];
             $id_producto = $_POST["id_producto"];
@@ -630,7 +623,6 @@
             header("Location: index.php?action=login");
             exit;
         }
-
         $id_usuario = $_SESSION["id_usuario"];
         $carrito = new Carrito();
         $carritos = $carrito->obtenerPorUsuario($id_usuario);
@@ -645,12 +637,10 @@
         $carrito = new Carrito();
         $precio = $carrito->compraDelCarrito($id_usuario);
         $fecha = date();
-
         $pedido = new Pedido();
         $pedidos = $pedido->crearPedido($id_usuario,$precio,$fecha);
 
     }
-
     function reservarEquipoAdmin() {
         require_once("../Modelos/reserva.php");
         require_once("../Modelos/equipo.php"); 
@@ -680,9 +670,7 @@
                 }
             }
         }
-
         verReservas();
-
         require_once("../vistas/cabeza.php");
         require_once("../vistas/reservasEquipo.php");
         require_once("../vistas/pie.html");
@@ -711,14 +699,9 @@
             // Obtener la lista de equipos disponibles
             $equipo = new Equipo();
             $equipos = $equipo->obtenerEquipos(); 
-        
-            
-
         }elseif (strcmp($_SESSION["tipo_usuario"], "Normal") == 0){
-
             $equipo = new Equipo();
-            $equipos = $equipo->obtenerEquiposNoVip(); 
-
+            $equipos = $equipo->obtenerEquiposNoVip();
         }
 
         // Obtener los periodos ocupados para la fecha seleccionada
@@ -727,19 +710,35 @@
         $fecha_seleccionada = isset($_GET["fecha"]) ? $_GET["fecha"] : date("Y-m-d");
         $reserva = new Reserva();
         $periodos_ocupados = $reserva->obtenerPeriodosOcupados($fecha_seleccionada, $equipo_seleccionado);
-    
+
         // Si no hay periodos ocupados, inicializar como array vacío
         if (!$periodos_ocupados) {
             $periodos_ocupados = [];
         }
-    
         $reserva = new Reserva();
         $reservas = $reserva->obtenerReservas();
-
-
         require_once("../vistas/cabeza.php");
         require_once("../vistas/reservasEquipo.php");
         require_once("../vistas/pie.html");
+    }
+    function usuarios(){
+        require_once("../Modelos/usuario.php");
+        session_start();
+        if (strcmp($_SESSION["tipo_usuario"], "Admin") == 0) {
+            $usuario = new Usuario();
+            $usuarios = $usuario->obtenerPerfiles();
+            // echo "<pre>";
+            // print_r($_SESSION);
+            // echo "</pre>";
+            // die();
+            require_once("../vistas/cabeza.php");
+            require_once("../vistas/perfiles.php");
+            require_once("../vistas/pie.html");
+            
+
+        }else{
+
+        }
     }
     
 

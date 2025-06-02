@@ -41,6 +41,19 @@
             $consulta->close();
             return $usuarios;
         }
+
+        public function obtenerPerfiles(){
+            $sentencia ="SELECT id_usuario, nombre_usuario, tipo_usuario, puntos_usuario, foto FROM usuario WHERE tipo_usuario != 'Admin';";
+            $consulta=$this->conn->__get("conn")->prepare($sentencia);
+            $consulta->bind_result($id_usuario, $nombre_usuario, $tipo_usuario, $puntos_usuario, $foto);
+            $usuarios = array();
+            $consulta->execute();
+            while($consulta->fetch()){
+                array_push($usuarios, [$id_usuario, $nombre_usuario, $tipo_usuario, $puntos_usuario, $foto]);
+            };
+            $consulta->close();
+            return $usuarios;
+        }
         //Obtener el tipo de usuario 
         public function obtenerTipoUsu($id_usuario){
             $sentencia ="SELECT tipo_usuario FROM usuario WHERE id_usuario=?;";

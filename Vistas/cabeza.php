@@ -56,7 +56,7 @@
                         <a href="./index.php?action=eventos" class="text-gray-300 hover:text-purple-400 transition font-medium">Eventos y Torneos</a>
                         <a href="./index.php?action=dashboard"><img src="../img/paginacion/logo2.webp" class="w-16 h-16 hover:transform hover:scale-110 transition duration-300" alt=""></a>
                         <a href="./index.php?action=verReservas" class="text-gray-300 hover:text-purple-400 transition font-medium">Reserva tu sitio</a>
-                        <a href="./index.php?action=alquila" class="text-gray-300 hover:text-purple-400 transition font-medium">Usuarios</a>
+                        <a href="./index.php?action=usuarios" class="text-gray-300 hover:text-purple-400 transition font-medium">Usuarios</a>
                         <a href="./index.php?action=tienda" class="text-gray-300 hover:text-purple-400 transition font-medium">Tienda</a>
                 <?php
                     }else{
@@ -65,7 +65,7 @@
                         <a href="./index.php?action=eventosUsuario" class="text-gray-300 hover:text-purple-400 transition font-medium">Eventos y Torneos</a>
                         <a href="./index.php?action=dashboard"><img src="../img/paginacion/logo2.webp" class="w-16 h-16 hover:transform hover:scale-110 transition duration-300" alt=""></a>
                         <a href="./index.php?action=verReservas" class="text-gray-300 hover:text-purple-400 transition font-medium">Reserva tu sitio</a>
-                        <a href="./index.php?action=alquila" class="text-gray-300 hover:text-purple-400 transition font-medium">Tu Perfil</a>
+                        <a href="./index.php?action=usuarios" class="text-gray-300 hover:text-purple-400 transition font-medium">Tu Perfil</a>
                         <a href="./index.php?action=tienda" class="text-gray-300 hover:text-purple-400 transition font-medium">Tienda</a>
                 <?php
                     }
@@ -78,7 +78,7 @@
                 <a href="./index.php?action=registro" class="text-gray-300 hover:text-purple-400 transition font-medium">Registrate y juega</a>
                 <a href="./index.php?action=inicio"><img src="../img/paginacion/logo2.webp" class="w-16 h-16 hover:transform hover:scale-110 transition duration-300" alt=""></a>
                 <a href="./index.php?action=verReservas" class="text-gray-300 hover:text-purple-400 transition font-medium">Reserva tu sitio</a>
-                <a href="./index.php?action=alquila" class="text-gray-300 hover:text-purple-400 transition font-medium">Tu Perfil</a>
+                <a href="./index.php?action=usuarios" class="text-gray-300 hover:text-purple-400 transition font-medium">Tu Perfil</a>
                 <a href="./index.php?action=tienda" class="text-gray-300 hover:text-purple-400 transition font-medium">Tienda</a>
             <?php
                 }
@@ -108,7 +108,7 @@
                         <a href="./index.php?action=login" class="text-xl text-gray-300 hover:text-purple-400 transition">Inicia tu Cuenta</a>
                         <a href="./index.php?action=registro" class="text-xl text-gray-300 hover:text-purple-400 transition">Registrate y juega</a>
                         <a href="./index.php?action=verReservas" class="text-xl text-gray-300 hover:text-purple-400 transition">Reserva tu sitio</a>
-                        <a href="./index.php?action=alquila" class="text-xl text-gray-300 hover:text-purple-400 transition">Tu Perfil</a>
+                        <a href="./index.php?action=usuarios" class="text-xl text-gray-300 hover:text-purple-400 transition">Tu Perfil</a>
                         <a href="./index.php?action=tienda" class="text-xl text-gray-300 hover:text-purple-400 transition">Tienda</a>
                         <a href="./index.php?action=inicio"><img src="../img/paginacion/logo2.webp" alt="" class="w-20 h-20 hover:transform hover:scale-110 transition duration-300"></a>
                 <?php
@@ -127,7 +127,7 @@
                             }
                         ?>
                         <a href="./index.php?action=verReservas" class="text-xl text-gray-300 hover:text-purple-400 transition">Reserva tu sitio</a>
-                        <a href="./index.php?action=alquila" class="text-xl text-gray-300 hover:text-purple-400 transition">Tu Perfil</a>
+                        <a href="./index.php?action=usuarios" class="text-xl text-gray-300 hover:text-purple-400 transition">Tu Perfil</a>
                         <a href="./index.php?action=tienda" class="text-xl text-gray-300 hover:text-purple-400 transition">Tienda</a>
                         <a href="./index.php?action=dashboard"><img src="../img/paginacion/logo2.webp" alt="" class="w-20 h-20 hover:transform hover:scale-110 transition duration-300"></a>
                 <?php
