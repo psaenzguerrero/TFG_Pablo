@@ -42,17 +42,50 @@
             return $usuarios;
         }
 
-        public function obtenerPerfiles(){
-            $sentencia ="SELECT id_usuario, nombre_usuario, tipo_usuario, puntos_usuario, foto FROM usuario WHERE tipo_usuario != 'Admin';";
-            $consulta=$this->conn->__get("conn")->prepare($sentencia);
+        public function obtenerPerfiles() {
+            $sentencia = "SELECT id_usuario, nombre_usuario, tipo_usuario, puntos_usuario, foto FROM usuario WHERE tipo_usuario != 'Admin';";
+            $consulta = $this->conn->__get("conn")->prepare($sentencia);
             $consulta->bind_result($id_usuario, $nombre_usuario, $tipo_usuario, $puntos_usuario, $foto);
             $usuarios = array();
             $consulta->execute();
-            while($consulta->fetch()){
-                array_push($usuarios, [$id_usuario, $nombre_usuario, $tipo_usuario, $puntos_usuario, $foto]);
-            };
+            
+            while($consulta->fetch()) {
+                $usuarios[] = [
+                    'id_usuario' => $id_usuario,
+                    'nombre_usuario' => $nombre_usuario,
+                    'tipo_usuario' => $tipo_usuario,
+                    'puntos_usuario' => $puntos_usuario,
+                    'foto' => $foto
+                ];
+            }
+            
             $consulta->close();
             return $usuarios;
+        }
+        public function obtenerPerfil($id_usuario) {
+            $sentencia = "SELECT id_usuario, nombre_usuario, tipo_usuario, puntos_usuario, foto 
+                        FROM usuario 
+                        WHERE id_usuario = ?";
+            
+            $consulta = $this->conn->__get("conn")->prepare($sentencia);
+            $consulta->bind_param("i", $id_usuario);
+            $consulta->bind_result($id, $nombre, $tipo, $puntos, $foto);
+            
+            $consulta->execute();
+            
+            $perfil = null;
+            if ($consulta->fetch()) {
+                $perfil = [
+                    'id_usuario' => $id,
+                    'nombre_usuario' => $nombre,
+                    'tipo_usuario' => $tipo,
+                    'puntos_usuario' => $puntos,
+                    'foto' => $foto
+                ];
+            }
+            
+            $consulta->close();
+            return $perfil;
         }
         //Obtener el tipo de usuario 
         public function obtenerTipoUsu($id_usuario){

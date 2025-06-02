@@ -721,24 +721,34 @@
         require_once("../vistas/reservasEquipo.php");
         require_once("../vistas/pie.html");
     }
-    function usuarios(){
+    function usuarios() {
         require_once("../Modelos/usuario.php");
         session_start();
-        if (strcmp($_SESSION["tipo_usuario"], "Admin") == 0) {
+        
+        // Verificar sesión y permisos
+        if (!isset($_SESSION['id_usuario'])) {
+            header("Location: login.php");
+            exit();
+        }
+        $id_usuario = $_SESSION['id_usuario'];
+        
+        if (strcmp($_SESSION["tipo_usuario"], "Normal") == 0) {
+            $usuario = new Usuario();
+            $perfiles = $usuario->obtenerPerfil($id_usuario);
+
+        }elseif (strcmp($_SESSION["tipo_usuario"], "Vip") == 0) {
+            $usuario = new Usuario();
+            $perfiles = $usuario->obtenerPerfil($id_usuario);
+
+        }elseif (strcmp($_SESSION["tipo_usuario"], "Admin") == 0) {
             $usuario = new Usuario();
             $usuarios = $usuario->obtenerPerfiles();
-            // echo "<pre>";
-            // print_r($_SESSION);
-            // echo "</pre>";
-            // die();
-            require_once("../vistas/cabeza.php");
-            require_once("../vistas/perfiles.php");
-            require_once("../vistas/pie.html");
-            
-
-        }else{
-
         }
+
+        // Cargar vistas
+        require_once("../vistas/cabeza.php");
+        require_once("../vistas/perfiles.php");
+        require_once("../vistas/pie.html");
     }
     
 
