@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 02-06-2025 a las 11:43:04
+-- Tiempo de generación: 02-06-2025 a las 14:27:02
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -284,7 +284,7 @@ CREATE TABLE `usuario` (
   `pass_usuario` varchar(255) NOT NULL,
   `tipo_usuario` enum('Admin','Vip','Normal') NOT NULL DEFAULT 'Normal',
   `puntos_usuario` int(11) DEFAULT 0,
-  `foto` varchar(50) NOT NULL
+  `foto` varchar(50) NOT NULL DEFAULT '../img/paginacion/icono.png'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
@@ -299,7 +299,9 @@ INSERT INTO `usuario` (`id_usuario`, `nombre_usuario`, `DNI`, `pass_usuario`, `t
 (14, 'AGCH', '11111111D', '12345', 'Normal', 0, '../img/paginacion/icono.png'),
 (15, 'Maite', '11111112D', '12345', 'Normal', 3000, '../img/paginacion/icono.png'),
 (16, 'Pepe', '12121212D', '12345', 'Normal', 0, '../img/paginacion/icono.png'),
-(17, 'Manu', '12345678D', '12345', 'Normal', 0, '../img/paginacion/icono.png');
+(17, 'Manu', '12345678D', '12345', 'Normal', 0, '../img/paginacion/icono.png'),
+(18, 'nasaro', NULL, 'nasaro', 'Normal', 0, ''),
+(19, 'eri', NULL, 'eri', 'Normal', 0, '../img/paginacion/icono.png');
 
 --
 -- Índices para tablas volcadas
@@ -411,7 +413,7 @@ ALTER TABLE `producto`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- Restricciones para tablas volcadas
