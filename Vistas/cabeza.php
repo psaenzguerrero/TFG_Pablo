@@ -108,7 +108,7 @@
                         <a href="./index.php?action=login" class="text-xl text-gray-300 hover:text-purple-400 transition">Inicia tu Cuenta</a>
                         <a href="./index.php?action=registro" class="text-xl text-gray-300 hover:text-purple-400 transition">Registrate y juega</a>
                         <a href="./index.php?action=verReservas" class="text-xl text-gray-300 hover:text-purple-400 transition">Reserva tu sitio</a>
-                        <a href="./index.php?action=alquila" class="text-xl text-gray-300 hover:text-purple-400 transition">Alquiler de Sala</a>
+                        <a href="./index.php?action=alquila" class="text-xl text-gray-300 hover:text-purple-400 transition">Tu Perfil</a>
                         <a href="./index.php?action=tienda" class="text-xl text-gray-300 hover:text-purple-400 transition">Tienda</a>
                         <a href="./index.php?action=inicio"><img src="../img/paginacion/logo2.webp" alt="" class="w-20 h-20 hover:transform hover:scale-110 transition duration-300"></a>
                 <?php
@@ -127,7 +127,7 @@
                             }
                         ?>
                         <a href="./index.php?action=verReservas" class="text-xl text-gray-300 hover:text-purple-400 transition">Reserva tu sitio</a>
-                        <a href="./index.php?action=alquila" class="text-xl text-gray-300 hover:text-purple-400 transition">Alquiler de Sala</a>
+                        <a href="./index.php?action=alquila" class="text-xl text-gray-300 hover:text-purple-400 transition">Tu Perfil</a>
                         <a href="./index.php?action=tienda" class="text-xl text-gray-300 hover:text-purple-400 transition">Tienda</a>
                         <a href="./index.php?action=dashboard"><img src="../img/paginacion/logo2.webp" alt="" class="w-20 h-20 hover:transform hover:scale-110 transition duration-300"></a>
                 <?php

@@ -5,10 +5,8 @@
             <source src="../img/paginacion/Fondo tecnológico en 4K.mp4" type="video/mp4">
             Tu navegador no soporta el video.
         </video>
-        
         <!-- Capa de overlay para mejor contraste -->
         <div class="absolute inset-0 bg-gradient-to-b from-black/30 to-black/50"></div>
-        
         <!-- Contenido centrado con animación -->
         <div class="absolute inset-0 flex flex-col justify-center items-center text-center px-4">
             <!-- Título principal con animación y mejor jerarquía -->
@@ -16,12 +14,10 @@
                 <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600">CALL OF</span>
                 <span class="block mt-2 text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-yellow-400">GAMER</span>
             </h1>
-            
             <!-- Subtítulo opcional -->
             <p class="text-xl md:text-2xl text-white/90 max-w-2xl mx-auto mb-8 animate-fade-in-up delay-100">
                 Únete a la competencia definitiva de esports
             </p>
-            
             <!-- Botón CTA con hover effect -->
             <a href="#eventos" class="px-8 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-full hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 shadow-lg animate-fade-in-up delay-200">
                 Ver Eventos
@@ -30,7 +26,6 @@
                 </svg>
             </a>
         </div>
-        
         <!-- Flecha indicadora de scroll -->
         <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
             <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -156,7 +151,7 @@
             </div>
         </div>
     </section>
-    <section class="flex flex-col lg:flex-row">
+    <section class="flex flex-col lg:flex-row justify-between">
         <div  class="bg-gray-900 text-white flex flex-col items-center ">
             <div class="p-6 animated-bg shadow-lg w-full max-w-4xl flex items-center space-x-4 overflow-hidden my-6 clip-path-custom scroll-container">
                 <h2 class="text-xl font-bold text-center text-white">Sala Principal</h2>
@@ -249,9 +244,9 @@
                 </div>
             </div>
         </div>
-        <div class="flex items-center justify-center my-16 px-4">
-            <div class="bg-gradient-to-r from-gray-800 to-gray-900 rounded-xl p-8 shadow-2xl border border-gray-700 max-w-2xl w-full transform hover:scale-[1.02] transition-transform duration-300">
-                <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+        <div class="flex items-center justify-center my-16 px-2  mr-0 2xl:mr-30">
+            <div class="bg-gradient-to-r from-gray-800 to-gray-900 rounded-xl px-8 py-8 shadow-2xl border border-gray-700 max-w-2xl w-full transform hover:scale-[1.02] transition-transform duration-300">
+                <div class="flex flex-col md:flex-row lg:flex-col xl:flex-row items-center justify-between gap-6">
                     <div class="text-center md:text-left">
                         <h2 class="text-2xl md:text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500 mb-2">
                             Mejora tu Experiencia
@@ -260,7 +255,6 @@
                             Desbloquea beneficios exclusivos como miembro VIP
                         </p>
                     </div>
-                    
                     <div class="flex-shrink-0">
                         <?php if (isset($_SESSION["id_usuario"])): ?>
                             <?php if (isset($_SESSION["tipo_usuario"]) && $_SESSION["tipo_usuario"] === 'Normal'): ?>
@@ -279,10 +273,7 @@
                                 </button>
                             <?php endif; ?>
                         <?php else: ?>
-                            <button 
-                                class="inline-flex items-center px-6 py-3 bg-gray-600 text-gray-300 font-medium rounded-lg cursor-not-allowed opacity-75"
-                                onclick="showLoginAlert()"
-                            >
+                            <button class="inline-flex items-center px-6 py-3 bg-gray-600 text-gray-300 font-medium rounded-lg cursor-not-allowed opacity-75" onclick="showLoginAlert()">
                                 Inicia sesión para ser VIP
                                 <svg xmlns="http://www.w3.org/2000/svg" class="ml-2 h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                                     <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
