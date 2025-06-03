@@ -3,6 +3,11 @@
 
     class Compra {
 
+        public $conn;
+        public function __construct() {
+            $this->conn = new bd();
+        }
+
         public function crearCompra($id_pedido,$id_usuario, $precio, $metodo){
             $sentecia = "INSERT INTO compra (id_pedido,id_usuario, cantidad, metodo) VALUES (?,?,?,?)";
             $consulta = $this->conn->__get("conn")->prepare($sentencia);

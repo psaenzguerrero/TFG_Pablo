@@ -633,33 +633,39 @@
     }
 
     function compraDelCarrito(){
-        $id_usuario = $_SESSION["id_usuario"];
+        require_once("../Modelos/carrito.php");
+        require_once("../Modelos/compra.php");
+        require_once("../Modelos/pedido.php");
 
+        session_start();
+
+        $id_usuario = $_SESSION["id_usuario"];
+        $carrito = new Carrito();
+        $pedido = new Pedido();
+        $compra = new Compra();
         //Primer paso creamos el pedido
 
-        $fecha = date();
-        $pedido = new Pedido();
+        $fecha = date("Y/m/d");
         $precio_d = -1;
         $pedidos = $pedido->crearPedido($id_usuario,$precio_d,$fecha);
         
         //Segundo paso comprobamos los productos del carrito del usuario, los contamos y los almacenamos en la tabla de contenido
 
-        $id_pedido = $pedido->obtenerId($id_usuario,$precio_d);
+        $producto = $carrito->obtenerContenido($id_usuario);
+        $id_pedido = $pedido->obtenerId($id_usuario);
 
-
+        foreach($producto as $p)
+            $contenido = $pedido->crearContenido($id_pedido, $p["id_producto"], $p["cantidad"]);
         //Tercer paso combinamos los precios totales de cada producto, los sumamos y con eso ya tenemos $precio
 
-        $carrito = new Carrito();
         $precio = $carrito->sumarPrecioTotal($id_usuario);
-
-        
 
         //Cuarto paso aparece un modal al usuario para que seleccione el metodo de pago
 
-
+        $metodo = $_POST["payment"];
 
         //Quinto paso creamos el insert en la tabla compra con el metodo de pago
-        $compra = new Compra();
+        
         $comprado = $compra->crearCompra($id_pedido,$id_usuario,$precio,$metodo);
 
         //Sexto paso borramos el carrito del usuario una vez se haya comprobado la compra
