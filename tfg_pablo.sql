@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 02-06-2025 a las 14:27:02
+-- Tiempo de generación: 03-06-2025 a las 12:57:44
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -57,17 +57,8 @@ CREATE TABLE `compra` (
   `id_pedido` bigint(20) UNSIGNED NOT NULL,
   `id_usuario` int(11) NOT NULL,
   `cantidad` decimal(10,2) NOT NULL,
-  `metodo` varchar(50) NOT NULL,
-  `estado` tinyint(1) DEFAULT 0
+  `metodo` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
-
---
--- Volcado de datos para la tabla `compra`
---
-
-INSERT INTO `compra` (`id_pedido`, `id_usuario`, `cantidad`, `metodo`, `estado`) VALUES
-(2, 2, 30.00, 'Paypal', 1),
-(3, 3, 20.00, 'Efectivo', 0);
 
 -- --------------------------------------------------------
 

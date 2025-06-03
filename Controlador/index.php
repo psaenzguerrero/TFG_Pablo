@@ -639,13 +639,13 @@
 
         $fecha = date();
         $pedido = new Pedido();
-        $precio_d = 0;
+        $precio_d = -1;
         $pedidos = $pedido->crearPedido($id_usuario,$precio_d,$fecha);
         
         //Segundo paso comprobamos los productos del carrito del usuario, los contamos y los almacenamos en la tabla de contenido
 
         $id_pedido = $pedido->obtenerId($id_usuario,$precio_d);
-        
+
 
         //Tercer paso combinamos los precios totales de cada producto, los sumamos y con eso ya tenemos $precio
 

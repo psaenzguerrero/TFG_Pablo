@@ -118,5 +118,20 @@ class Carrito {
         $consulta->close();
         return $precio;
     }
+    public function obtenerContenido($id_usuario){
+        $sentencia = "SELECT id_producto, cantidad FROM carrito WHERE id_usuario = ?";
+        $consulta = $this->$conn->prepare($sentencia);
+        $consulta->bind_param("i", $id_usuario);
+        $consulta->execute();
+        $resultado = $consulta->get_result();
+        $contenido = [];
+
+        while ($fila = $resultado->fetch_assoc()) {
+            $contenido[] = $fila;
+        }
+
+        $consulta->close();
+        return $contenido;
+    }
 }
 ?>
