@@ -12,4 +12,13 @@
             return $resultado;
         }
 
+        public function obtenerId($id_usuario, $precio){
+            $sentencia = "SELECT id_pedido FROM pedido WHERE precio = 0 AND id_usuario = ?";
+            $consulta = $this->conn->__get("conn")->prepare($sentencia);
+            $consulta->bind_param("id", $id_usuario, $precio);
+            $resultado = $consulta->execute();
+            $consulta->close();
+            return $resultado;
+        }
+
     }

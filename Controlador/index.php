@@ -634,11 +634,44 @@
 
     function compraDelCarrito(){
         $id_usuario = $_SESSION["id_usuario"];
-        $carrito = new Carrito();
-        $precio = $carrito->compraDelCarrito($id_usuario);
+
+        //Primer paso creamos el pedido
+
         $fecha = date();
         $pedido = new Pedido();
-        $pedidos = $pedido->crearPedido($id_usuario,$precio,$fecha);
+        $precio_d = 0;
+        $pedidos = $pedido->crearPedido($id_usuario,$precio_d,$fecha);
+        
+        //Segundo paso comprobamos los productos del carrito del usuario, los contamos y los almacenamos en la tabla de contenido
+
+        $id_pedido = $pedido->obtenerId($id_usuario,$precio_d);
+        
+
+        //Tercer paso combinamos los precios totales de cada producto, los sumamos y con eso ya tenemos $precio
+
+        $carrito = new Carrito();
+        $precio = $carrito->sumarPrecioTotal($id_usuario);
+
+        
+
+        //Cuarto paso aparece un modal al usuario para que seleccione el metodo de pago
+
+
+
+        //Quinto paso creamos el insert en la tabla compra con el metodo de pago
+        $compra = new Compra();
+        $comprado = $compra->crearCompra($id_pedido,$id_usuario,$precio,$metodo);
+
+        //Sexto paso borramos el carrito del usuario una vez se haya comprobado la compra
+
+        $carrito = new Carrito();
+        $precio = $carrito->eliminarTodo($id_usuario);
+
+        //Setimo paso volvemos a la tienda con un alert o algo sasi diciendo gracias por tu compra
+
+        require_once("../vistas/cabeza.php");
+        require_once("../vistas/tienda.php");
+        require_once("../vistas/pie.html");
 
     }
     function reservarEquipoAdmin() {

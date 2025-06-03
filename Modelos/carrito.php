@@ -107,6 +107,16 @@ class Carrito {
         $consulta->close();
         return $precio;
     }
-
+    
+    public function sumarPrecioTotal($id_usuario){
+        $sentencia = "SELECT SUM(cantidad * precio_producto) FROM carrito c JOIN producto p WHERE c.id_producto = p.id_producto AND id_usuario = ?";
+        $consulta = $this->$conn->prepare($sentencia);
+        $consulta->bind_param("i", $id_usuario);
+        $consulta->bind_result($precio);
+        $resultado = $consulta->execute();
+        $consulta->fetch();
+        $consulta->close();
+        return $precio;
+    }
 }
 ?>
