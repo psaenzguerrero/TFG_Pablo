@@ -727,7 +727,7 @@
         
         // Verificar sesión y permisos
         if (!isset($_SESSION['id_usuario'])) {
-            header("Location: login.php");
+            header("Location: index.php?action=login");
             exit();
         }
         $id_usuario = $_SESSION['id_usuario'];

@@ -15,7 +15,7 @@
 }
 .carousel-wrapper {
     display: flex;
-    transition: transform 0.5s ease-in-out;
+    transition: transform 1s ease-in-out;
 }
 .carousel-item {
     min-width: 100%;

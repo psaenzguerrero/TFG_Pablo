@@ -35,122 +35,86 @@
     </section>
     <!-- Sección del carrusel -->
     <section class="relative">
-        <div class="carousel-container">
-            <div id="carousel" class="carousel-wrapper pb-20">
-                <!-- carruel 1 -->
-                <div class="carousel-item bg-gray-500 h-full">
-                    <div class="flex flex-col items-center p-8 text-center">
-                        <div class="text-2xl font-bold mb-8">Título Centrando</div>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 grid-rows-2 gap-6 sm:gap-8 lg:gap-12 w-full lg:w-4/5">
-                            <div class="border p-6">
-                                <h3 class="text-xl">Título 1</h3>
-                                <p class="text-sm text-gray-600">Texto pequeño 1</p>
-                            </div>
-                            <div class="border p-6">
-                                <h3 class="text-xl">Título 2</h3>
-                                <p class="text-sm text-gray-600">Texto pequeño 2</p>
-                            </div>
-                            <div class="border p-6">
-                                <h3 class="text-xl">Título 3</h3>
-                                <p class="text-sm text-gray-600">Texto pequeño 3</p>
-                            </div>
-                            <!-- <div class="border p-6">
-                                <h3 class="text-xl">Título 4</h3>
-                                <p class="text-sm text-gray-600">Texto pequeño 4</p>
-                            </div>
-                            <div class="border p-6">
-                                <h3 class="text-xl">Título 5</h3>
-                                <p class="text-sm text-gray-600">Texto pequeño 5</p>
-                            </div>
-                            <div class="border p-6">
-                                <h3 class="text-xl">Título 6</h3>
-                                <p class="text-sm text-gray-600">Texto pequeño 6</p>
-                            </div> -->
+    <div class="carousel-container">
+        <div id="carousel" class="carousel-wrapper pb-20">
+            <!-- carruel 1 -->
+            <div class="carousel-item bg-[url('../img/paginacion/c1.jpg')] bg-cover bg-center h-full">
+                <div class="flex flex-col items-center p-8 text-center">
+                    <div class="text-2xl font-bold mb-8 text-white">Título Centrando</div>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 lg:gap-12 w-full lg:w-4/5">
+                        <div class="border border-white p-6 pb-50 md:pb-100 bg-black/50">
+                            <h3 class="text-xl text-white">Título 1</h3>
+                            <p class="text-sm text-white">Texto pequeño 1</p>
+                        </div>
+                        <div class="border border-white p-6 pb-50 md:pb-100 bg-black/50">
+                            <h3 class="text-xl text-white">Título 2</h3>
+                            <p class="text-sm text-white">Texto pequeño 2</p>
+                        </div>
+                        <div class="border border-white p-6 pb-50 md:pb-100 bg-black/50">
+                            <h3 class="text-xl text-white">Título 3</h3>
+                            <p class="text-sm text-white">Texto pequeño 3</p>
                         </div>
                     </div>
                 </div>
-                <!-- carruel 2 -->
-                <div class="carousel-item bg-red-500">
-                    <div class="flex flex-col items-center p-8 text-center">
-                        <div class="text-2xl font-bold mb-8">
-                            Título Centrando
+            </div>
+            <!-- carruel 2 -->
+            <div class="carousel-item bg-[url('../img/paginacion/c2.png')] bg-cover bg-center h-full">
+                <div class="flex flex-col items-center p-8 text-center">
+                    <div class="text-2xl font-bold mb-8 text-white">
+                        Título Centrando
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 lg:gap-12 w-full lg:w-4/5">
+                        <div class="border border-white p-6 pb-50 md:pb-100 bg-black/50">
+                            <h3 class="text-xl text-white">Título 1</h3>
+                            <p class="text-sm text-white">Texto pequeño 1</p>
                         </div>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 grid-rows-2 gap-6 sm:gap-8 lg:gap-12 w-full lg:w-4/5">
-                            <div class="border p-6">
-                                <h3 class="text-xl">Título 1</h3>
-                                <p class="text-sm text-gray-600">Texto pequeño 1</p>
-                            </div>
-                            <div class="border p-6">
-                                <h3 class="text-xl">Título 2</h3>
-                                <p class="text-sm text-gray-600">Texto pequeño 2</p>
-                            </div>
-                            <div class="border p-6">
-                                <h3 class="text-xl">Título 3</h3>
-                                <p class="text-sm text-gray-600">Texto pequeño 3</p>
-                            </div>
-                            <div class="border p-6">
-                                <h3 class="text-xl">Título 4</h3>
-                                <p class="text-sm text-gray-600">Texto pequeño 4</p>
-                            </div>
-                            <div class="border p-6">
-                                <h3 class="text-xl">Título 5</h3>
-                                <p class="text-sm text-gray-600">Texto pequeño 5</p>
-                            </div>
-                            <div class="border p-6">
-                                <h3 class="text-xl">Título 6</h3>
-                                <p class="text-sm text-gray-600">Texto pequeño 6</p>
-                            </div>
+                        <div class="border border-white p-6 pb-50 md:pb-100 bg-black/50">
+                            <h3 class="text-xl text-white">Título 2</h3>
+                            <p class="text-sm text-white">Texto pequeño 2</p>
+                        </div>
+                        <div class="border border-white p-6 pb-50 md:pb-100 bg-black/50">
+                            <h3 class="text-xl text-white">Título 3</h3>
+                            <p class="text-sm text-white">Texto pequeño 3</p>
                         </div>
                     </div>
-                </div>    
-                <!-- carruel 3 -->
-                <div class="carousel-item bg-yellow-500">
-                    <div class="flex flex-col items-center p-8 text-center">
-                        <div class="text-2xl font-bold mb-8">
-                            Título Centrando
+                </div>
+            </div>    
+            <!-- carruel 3 -->
+            <div class="carousel-item bg-[url('../img/paginacion/c3.png')] bg-cover bg-center h-full">
+                <div class="flex flex-col items-center p-8 text-center">
+                    <div class="text-2xl font-bold mb-8 text-white">
+                        Título Centrando
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 lg:gap-12 w-full lg:w-4/5">
+                        <div class="border border-white p-6 pb-50 md:pb-100 bg-black/50">
+                            <h3 class="text-xl text-white">Título 1</h3>
+                            <p class="text-sm text-white">Texto pequeño 1</p>
                         </div>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 grid-rows-2 gap-6 sm:gap-8 lg:gap-12 w-full lg:w-4/5">
-                            <div class="border p-6">
-                                <h3 class="text-xl">Título 1</h3>
-                                <p class="text-sm text-gray-600">Texto pequeño 1</p>
-                            </div>
-                            <div class="border p-6">
-                                <h3 class="text-xl">Título 2</h3>
-                                <p class="text-sm text-gray-600">Texto pequeño 2</p>
-                            </div>
-                            <div class="border p-6">
-                                <h3 class="text-xl">Título 3</h3>
-                                <p class="text-sm text-gray-600">Texto pequeño 3</p>
-                            </div>
-                            <div class="border p-6">
-                                <h3 class="text-xl">Título 4</h3>
-                                <p class="text-sm text-gray-600">Texto pequeño 4</p>
-                            </div>
-                            <div class="border p-6">
-                                <h3 class="text-xl">Título 5</h3>
-                                <p class="text-sm text-gray-600">Texto pequeño 5</p>
-                            </div>
-                            <div class="border p-6">
-                                <h3 class="text-xl">Título 6</h3>
-                                <p class="text-sm text-gray-600">Texto pequeño 6</p>
-                            </div>
+                        <div class="border border-white p-6 pb-50 md:pb-100 bg-black/50">
+                            <h3 class="text-xl text-white">Título 2</h3>
+                            <p class="text-sm text-white">Texto pequeño 2</p>
+                        </div>
+                        <div class="border border-white p-6 pb-50 md:pb-100 bg-black/50">
+                            <h3 class="text-xl text-white">Título 3</h3>
+                            <p class="text-sm text-white">Texto pequeño 3</p>
                         </div>
                     </div>
-                </div> 
-            </div>
-            <!-- Flechas de Navegación -->
-            <button class="absolute top-1/2 left-4 transform -translate-y-1/2 text-white text-3xl" id="prev-btn">&#10094;</button>
-            <button class="absolute top-1/2 right-4 transform -translate-y-1/2 text-white text-3xl" id="next-btn">&#10095;</button>
-            <!-- Puntos de Indicadores -->
-            <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-3">
-                <span class="carousel-nav-dot" id="dot-1"><svg class="w-8 h-8 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7.119 8h9.762a1 1 0 0 1 .772 1.636l-4.881 5.927a1 1 0 0 1-1.544 0l-4.88-5.927A1 1 0 0 1 7.118 8Z"/></svg></span>
-
-                <span class="carousel-nav-dot" id="dot-2"><svg class="w-8 h-8 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7.119 8h9.762a1 1 0 0 1 .772 1.636l-4.881 5.927a1 1 0 0 1-1.544 0l-4.88-5.927A1 1 0 0 1 7.118 8Z"/></svg></span>
-
-                <span class="carousel-nav-dot" id="dot-3"><svg class="w-8 h-8 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7.119 8h9.762a1 1 0 0 1 .772 1.636l-4.881 5.927a1 1 0 0 1-1.544 0l-4.88-5.927A1 1 0 0 1 7.118 8Z"/></svg></span>
-            </div>
+                </div>
+            </div> 
         </div>
-    </section>
+        <!-- Flechas de Navegación -->
+        <button class="absolute top-1/2 left-4 transform -translate-y-1/2 text-white text-3xl" id="prev-btn">&#10094;</button>
+        <button class="absolute top-1/2 right-4 transform -translate-y-1/2 text-white text-3xl" id="next-btn">&#10095;</button>
+        <!-- Puntos de Indicadores -->
+        <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-3">
+            <span class="carousel-nav-dot" id="dot-1"><svg class="w-8 h-8 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7.119 8h9.762a1 1 0 0 1 .772 1.636l-4.881 5.927a1 1 0 0 1-1.544 0l-4.88-5.927A1 1 0 0 1 7.118 8Z"/></svg></span>
+
+            <span class="carousel-nav-dot" id="dot-2"><svg class="w-8 h-8 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7.119 8h9.762a1 1 0 0 1 .772 1.636l-4.881 5.927a1 1 0 0 1-1.544 0l-4.88-5.927A1 1 0 0 1 7.118 8Z"/></svg></span>
+
+            <span class="carousel-nav-dot" id="dot-3"><svg class="w-8 h-8 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7.119 8h9.762a1 1 0 0 1 .772 1.636l-4.881 5.927a1 1 0 0 1-1.544 0l-4.88-5.927A1 1 0 0 1 7.118 8Z"/></svg></span>
+        </div>
+    </div>
+</section>
     <section class="flex flex-col lg:flex-row justify-between">
         <div  class="bg-gray-900 text-white flex flex-col items-center ">
             <div class="p-6 animated-bg shadow-lg w-full max-w-4xl flex items-center space-x-4 overflow-hidden my-6 clip-path-custom scroll-container">
