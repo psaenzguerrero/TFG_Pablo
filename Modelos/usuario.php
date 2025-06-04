@@ -10,7 +10,7 @@
         public function login(String $nombre_usuario, String $pass_usuario) {
             $sentencia = "SELECT id_usuario FROM usuario WHERE nombre_usuario = ? AND pass_usuario = ?";
             $consulta = $this->conn->__get("conn")->prepare($sentencia);
-            $consulta->bind_param("ss", $nombre_usuario, $pass_usuario);         
+            $consulta->bind_param("ss", $nombre_usuario, sha1($pass_usuario));         
             $consulta->bind_result($res);
             $consulta->execute();
             $consulta->fetch();
@@ -186,10 +186,12 @@
 
     
         public function registrarUsuario($nombre_usuario, $pass_usuario) {
+            
+            $pass = sha1($pass_usuario);
             // $hashed_password = password_hash($pass_usuario, PASSWORD_BCRYPT);
             $sentencia = "INSERT INTO usuario (nombre_usuario, pass_usuario) VALUES (?, ?)";
             $consulta = $this->conn->__get("conn")->prepare($sentencia);
-            $consulta->bind_param("ss", $nombre_usuario, $pass_usuario);
+            $consulta->bind_param("ss", $nombre_usuario, $pass);
             
             $resultado = $consulta->execute();
             $consulta->close();
