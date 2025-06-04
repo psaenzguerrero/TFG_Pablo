@@ -634,12 +634,13 @@
     function compraDelCarrito(){
         require_once("../Modelos/carrito.php");
         require_once("../Modelos/pedido.php");
-
+        require_once("../Modelos/usuario.php");
         session_start();
 
         $id_usuario = $_SESSION["id_usuario"];
         $carrito = new Carrito();
         $pedido = new Pedido();
+        $usuario = new Usuario();
 
         //Primer paso creamos el pedido
 
@@ -677,7 +678,11 @@
         $carrito = new Carrito();
         $precio = $carrito->eliminarTodo($id_usuario);
 
-        //Octavo paso volvemos a la tienda con un alert o algo sasi diciendo gracias por tu compra
+        //Octavo paso sumamos los puntos de la compra
+
+        $puntos = $usuario->actualizarPuntos($id_usuario);
+
+        //Noveno paso volvemos a la tienda con un alert o algo sasi diciendo gracias por tu compra
 
         header("Location: index.php?action=tienda");
 

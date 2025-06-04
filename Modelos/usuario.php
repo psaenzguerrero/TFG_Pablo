@@ -162,10 +162,10 @@
             $consulta->close();
         }
 
-        public function actualizarPuntos($puntos_usuario, $id_usuario) {
-            $sentencia = "UPDATE usuario SET puntos_usuario = ? WHERE id_usuario = ?";
+        public function actualizarPuntos($id_usuario) {
+            $sentencia = "UPDATE usuario SET puntos_usuario = puntos_usuario + 200 WHERE id_usuario = ?";
             $consulta = $this->conn->__get('conn')->prepare($sentencia);
-            $consulta->bind_param('si', $puntos_usuario, $id_usuario);
+            $consulta->bind_param('i', $id_usuario);
             $consulta->execute();
             $consulta->close();
         }
