@@ -101,11 +101,6 @@
                                                     <input id="credit-card" name="payment" type="radio" value="tarjeta" class="mt-1 h-4 w-4 text-indigo-600 focus:ring-indigo-500">
                                                     <label for="credit-card" class="ml-3 block">
                                                         <span class="font-medium text-gray-900">Tarjeta de crédito/débito</span>
-                                                        <div class="flex mt-1">
-                                                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/visa/visa-original.svg" class="h-6 mr-2" alt="Visa">
-                                                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mastercard/mastercard-original.svg" class="h-6 mr-2" alt="Mastercard">
-                                                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apple/apple-original.svg" class="h-6" alt="Apple Pay">
-                                                        </div>
                                                     </label>
                                                 </div>
                                                 
@@ -114,7 +109,6 @@
                                                     <input id="paypal" name="payment" type="radio" value="paypal" class="mt-1 h-4 w-4 text-indigo-600 focus:ring-indigo-500">
                                                     <label for="paypal" class="ml-3 block">
                                                         <span class="font-medium text-gray-900">PayPal</span>
-                                                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/paypal/paypal-original.svg" class="h-6 mt-1" alt="PayPal">
                                                     </label>
                                                 </div>
                                                 
