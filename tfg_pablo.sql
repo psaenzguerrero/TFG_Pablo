@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 03-06-2025 a las 12:57:44
+-- Tiempo de generación: 04-06-2025 a las 12:51:58
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -34,32 +34,6 @@ CREATE TABLE `carrito` (
   `fecha_compra` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
---
--- Volcado de datos para la tabla `carrito`
---
-
-INSERT INTO `carrito` (`id_usuario`, `id_producto`, `cantidad`, `fecha_compra`) VALUES
-(3, 2, 2, '2025-02-16'),
-(3, 3, 2, '2025-02-12'),
-(3, 4, 1, '2025-02-15'),
-(13, 2, 3, '2025-02-12'),
-(13, 3, 1, '2025-02-12'),
-(13, 4, 4, '2025-02-12'),
-(13, 17, 2, '2025-04-01');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `compra`
---
-
-CREATE TABLE `compra` (
-  `id_pedido` bigint(20) UNSIGNED NOT NULL,
-  `id_usuario` int(11) NOT NULL,
-  `cantidad` decimal(10,2) NOT NULL,
-  `metodo` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
-
 -- --------------------------------------------------------
 
 --
@@ -71,6 +45,23 @@ CREATE TABLE `contenido` (
   `id_producto` int(11) NOT NULL,
   `cantidad` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Volcado de datos para la tabla `contenido`
+--
+
+INSERT INTO `contenido` (`id_pedido`, `id_producto`, `cantidad`) VALUES
+(1, 2, 10),
+(1, 7, 1),
+(1, 8, 1),
+(1, 9, 1),
+(1, 10, 1),
+(2, 3, 1),
+(3, 11, 1),
+(4, 2, 1),
+(4, 3, 1),
+(4, 10, 1),
+(6, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -174,8 +165,20 @@ CREATE TABLE `pedido` (
   `id_pedido` bigint(20) UNSIGNED NOT NULL,
   `id_usu` int(11) NOT NULL,
   `precio` float UNSIGNED NOT NULL,
-  `fecha` date NOT NULL
+  `fecha` date NOT NULL,
+  `metodo` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Volcado de datos para la tabla `pedido`
+--
+
+INSERT INTO `pedido` (`id_pedido`, `id_usu`, `precio`, `fecha`, `metodo`) VALUES
+(1, 13, 5579.86, '2025-06-04', 'riñon'),
+(2, 13, 299.99, '2025-06-04', 'efectivo'),
+(3, 13, 399.99, '2025-06-04', 'efectivo'),
+(4, 3, 929.97, '2025-06-04', 'paypal'),
+(6, 3, 499.99, '2025-06-04', 'paypal');
 
 -- --------------------------------------------------------
 
@@ -306,13 +309,6 @@ ALTER TABLE `carrito`
   ADD KEY `id_producto` (`id_producto`);
 
 --
--- Indices de la tabla `compra`
---
-ALTER TABLE `compra`
-  ADD PRIMARY KEY (`id_usuario`,`id_pedido`),
-  ADD UNIQUE KEY `id_pedido` (`id_pedido`) USING BTREE;
-
---
 -- Indices de la tabla `contenido`
 --
 ALTER TABLE `contenido`
@@ -371,12 +367,6 @@ ALTER TABLE `usuario`
 --
 
 --
--- AUTO_INCREMENT de la tabla `compra`
---
-ALTER TABLE `compra`
-  MODIFY `id_pedido` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
 -- AUTO_INCREMENT de la tabla `equipo`
 --
 ALTER TABLE `equipo`
@@ -392,7 +382,7 @@ ALTER TABLE `evento`
 -- AUTO_INCREMENT de la tabla `pedido`
 --
 ALTER TABLE `pedido`
-  MODIFY `id_pedido` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id_pedido` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `producto`
@@ -418,16 +408,10 @@ ALTER TABLE `carrito`
   ADD CONSTRAINT `carrito_ibfk_2` FOREIGN KEY (`id_producto`) REFERENCES `producto` (`id_producto`) ON DELETE CASCADE;
 
 --
--- Filtros para la tabla `compra`
---
-ALTER TABLE `compra`
-  ADD CONSTRAINT `pedido_fk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
 -- Filtros para la tabla `contenido`
 --
 ALTER TABLE `contenido`
-  ADD CONSTRAINT `contenido_fk_1` FOREIGN KEY (`id_pedido`) REFERENCES `compra` (`id_pedido`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `contenido_fk_1` FOREIGN KEY (`id_pedido`) REFERENCES `pedido` (`id_pedido`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `contenido_fk_2` FOREIGN KEY (`id_producto`) REFERENCES `producto` (`id_producto`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --

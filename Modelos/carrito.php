@@ -8,22 +8,6 @@ class Carrito {
         $this->conn = new bd();
     }
 
-    // // Obtener todas las compras
-    public function obtenerCompras() {
-        $sentencia = "SELECT compra.id_usuario, compra.id_producto, compra.fecha_compra, producto.precio_producto FROM compra, producto WHERE producto.id_producto = compra.id_producto";
-        $consulta = $this->conn->__get("conn")->prepare($sentencia);
-        $consulta->execute();
-        $resultado = $consulta->get_result();
-        $compras = [];
-
-        while ($fila = $resultado->fetch_assoc()) {
-            $compras[] = $fila;
-        }
-
-        $consulta->close();
-        return $compras;
-    }
-
     // Obtener compras por ID de usuario
     public function obtenerPorUsuario($id_usuario) {
         $sentencia = "SELECT carrito.id_usuario, carrito.id_producto, producto.nombre_producto, carrito.fecha_compra, carrito.cantidad, producto.precio_producto FROM carrito, producto WHERE producto.id_producto = carrito.id_producto AND id_usuario = ?";

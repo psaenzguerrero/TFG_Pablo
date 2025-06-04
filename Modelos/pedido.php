@@ -8,10 +8,10 @@
             $this->conn = new bd();
         }
 
-        public function crearPedido($id_usuario, $precio, $fecha){
-            $sentencia = "INSERT INTO pedido (id_usu, precio, fecha) VALUES (?,?,?)";
+        public function crearPedido($id_usuario, $precio, $fecha, $metodo){
+            $sentencia = "INSERT INTO pedido (id_usu, precio, fecha, metodo) VALUES (?,?,?,?)";
             $consulta = $this->conn->__get("conn")->prepare($sentencia);
-            $consulta->bind_param("ids", $id_usuario, $precio, $fecha);
+            $consulta->bind_param("idss", $id_usuario, $precio, $fecha, $metodo);
             $resultado = $consulta->execute();
             $consulta->close();
             return $resultado;
@@ -41,6 +41,15 @@
             $sentencia = "UPDATE pedido SET precio = precio + ? WHERE id_usu = ? AND precio = 0";
             $consulta = $this->conn->__get("conn")->prepare($sentencia);
             $consulta->bind_param("di", $precio, $id_usuario );
+            $resultado = $consulta->execute();
+            $consulta->close();
+            return $resultado;
+        }
+
+        public function actualizarMetodo($id_usuario, $metodo){
+            $sentencia = "UPDATE pedido SET metodo = ? WHERE id_usu = ? AND metodo = 'vacio'";
+            $consulta = $this->conn->__get("conn")->prepare($sentencia);
+            $consulta->bind_param("si", $metodo, $id_usuario );
             $resultado = $consulta->execute();
             $consulta->close();
             return $resultado;

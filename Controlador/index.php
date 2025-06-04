@@ -633,7 +633,6 @@
 
     function compraDelCarrito(){
         require_once("../Modelos/carrito.php");
-        require_once("../Modelos/compra.php");
         require_once("../Modelos/pedido.php");
 
         session_start();
@@ -641,12 +640,13 @@
         $id_usuario = $_SESSION["id_usuario"];
         $carrito = new Carrito();
         $pedido = new Pedido();
-        $compra = new Compra();
+
         //Primer paso creamos el pedido
 
         $fecha = date("Y/m/d");
         $precio_d = 0;
-        $pedidos = $pedido->crearPedido($id_usuario,$precio_d,$fecha);
+        $metodo_v="vacio";
+        $pedidos = $pedido->crearPedido($id_usuario,$precio_d,$fecha, $metodo_v);
         
         //Segundo paso comprobamos los productos del carrito del usuario, los contamos y los almacenamos en la tabla de contenido
 
@@ -666,7 +666,7 @@
 
         //Quinto paso creamos el insert en la tabla compra con el metodo de pago
         
-        $comprado = $compra->crearCompra($id_pedido,$id_usuario,$precio,$metodo);
+        $comprado = $pedido->actualizarMetodo($id_usuario,$metodo);
         
         //Sexto paso actualizamos el pedido
 
