@@ -2,7 +2,7 @@
 // Verificación de seguridad adicional
 if (strcmp($_SESSION["tipo_usuario"], "Normal") == 0 || strcmp($_SESSION["tipo_usuario"], "Vip") == 0) {
     ?>
-        <main class="max-w-7xl mx-auto px-4 py-50 sm:px-6 lg:px-8">
+        <main class="max-w-7xl mx-auto px-4 py-60 sm:px-6 lg:px-8">
             <section class="bg-white rounded-lg shadow-md overflow-hidden">
                 <div class="flex flex-col md:flex-row items-center p-6">
                     <!-- Foto de perfil -->
@@ -41,7 +41,7 @@ if (strcmp($_SESSION["tipo_usuario"], "Normal") == 0 || strcmp($_SESSION["tipo_u
 }elseif (strcmp($_SESSION["tipo_usuario"], "Admin") == 0) {
     ?>
         <main class="bg-gray-100 min-h-screen p-6">
-            <section class="container mx-auto">
+            <section class="container mx-auto py-40">
                 <div class="bg-white rounded-lg shadow-md overflow-hidden">
                     <div class="p-6 border-b border-gray-200">
                         <h2 class="text-2xl font-semibold text-gray-800">Gestión de Perfiles de Usuario</h2>
@@ -90,7 +90,6 @@ if (strcmp($_SESSION["tipo_usuario"], "Normal") == 0 || strcmp($_SESSION["tipo_u
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                         <a href="editar_usuario.php?id=<?php echo $perfil['id_usuario']; ?>" class="text-indigo-600 hover:text-indigo-900 mr-3">Editar</a>
-                                        <a href="eliminar_usuario.php?id=<?php echo $perfil['id_usuario']; ?>" class="text-red-600 hover:text-red-900">Eliminar</a>
                                     </td>
                                 </tr>
                                 <?php endforeach; ?>
