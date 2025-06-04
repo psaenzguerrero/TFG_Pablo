@@ -437,8 +437,14 @@
             $nombre_evento = $_POST["nombre_evento"];
             $tipo_evento = $_POST["tipo_evento"];
             $fecha_evento = $_POST["fecha_evento"];
-            $premio = $_POST["premio"];
-            $patrocinadores = $_POST["patrocinadores"];
+            $fechaActual = new DateTime();
+            $fechaEvento = new DateTime($fecha_evento); // Convertir la fecha del evento a objeto DateTime
+        
+            if ($fechaEvento < $fechaActual) {
+                // Redirigir con un mensaje de error
+                header("Location: index.php?action=eventos");
+                exit; 
+            }
     
             // Crear una instancia del modelo Evento
             $evento = new Evento();
@@ -474,6 +480,8 @@
                 echo "Hubo un error al eliminar el evento.";
             }
         }
+
+        
     }
     
     // Modificar un evento
@@ -700,6 +708,12 @@
             $id_usuario = isset($_POST["id_usuario"]) ? $_POST["id_usuario"] : $_SESSION["id_usuario"];
             $id_equipo = $_POST["id_equipo"];
             $fecha_reserva = $_POST["fecha_reserva"];
+            $fechaActual = new DateTime();
+            $fechaReserva = new DateTime($fecha_reserva);
+            if ($fechaReserva < $fechaActual) {
+                header("Location: index.php?action=reservarEquipoAdmin");
+                exit;
+            }
             $periodo = $_POST["periodo"];
             $snack = isset($_POST["snack"]) ? 1 : 0;
         

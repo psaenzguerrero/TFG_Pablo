@@ -68,7 +68,7 @@
             } else {
               // Día sin evento
               echo "<div
-                      class=\"$baseClasses bg-gray-100 hover:bg-gray-200 focus:outline-none focus:ring-4 focus:ring-indigo-200 " . ($esHoy ? 'ring-2 ring-indigo-400' : '') . "\"
+                      class=\"$baseClasses day bg-gray-100 hover:bg-gray-200 focus:outline-none focus:ring-4 focus:ring-indigo-200 " . ($esHoy ? 'ring-2 ring-indigo-400' : '') . "\"
                       $fechaAttr
                     >
                       $dia
@@ -133,10 +133,13 @@
             <input type="text" id="patrocinadoresEventoModificar" name="patrocinadores" class="w-full mt-1 p-2 border border-gray-300 rounded-lg" />
           </div>
           <div class="flex justify-end space-x-2">
-            <button type="button" id="eliminarEvento" class="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition">Eliminar</button>
             <button type="button" id="cerrarModalModificar" class="px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition">Cancelar</button>
             <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">Guardar cambios</button>
           </div>
+        </form>
+        <form action="index.php?action=eliminarEvento" method="POST" class="pt-4">
+          <input type="hidden" name="id_evento" id="idEventoEliminar" />
+          <button type="submit" class="w-full px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition">Eliminar Evento</button>
         </form>
       </div>
     </div>
@@ -145,7 +148,7 @@
 
 <script>
   // Abrir modal Crear
-  document.querySelectorAll('.aspect-square').forEach(day => {
+  document.querySelectorAll('.day').forEach(day => {
     day.addEventListener('click', () => {
       const fecha = day.getAttribute('data-fecha');
       document.getElementById('fechaEventoCrear').value = fecha;
@@ -174,10 +177,25 @@
   document.getElementById('cerrarModalModificar').addEventListener('click', () => {
     document.getElementById('modalModificar').classList.add('hidden');
   });
-
-  // Eliminar evento
-  document.getElementById('eliminarEvento').addEventListener('click', () => {
-    const id = document.getElementById('idEventoModificar').value;
-    window.location.href = `index.php?action=eliminarEvento&id_evento=${id}`;
+  // Cuando haces clic en un día con evento
+  document.querySelectorAll('[data-id_evento]').forEach(day => {
+    day.addEventListener('click', function() {
+      // Obtener los datos del evento
+      const idEvento = this.getAttribute('data-id_evento');
+      
+      // Establecer valores en el formulario de modificación
+      document.getElementById('idEventoModificar').value = idEvento;
+      document.getElementById('nombreEventoModificar').value = this.getAttribute('data-nombre_evento');
+      document.getElementById('tipoEventoModificar').value = this.getAttribute('data-tipo_evento');
+      document.getElementById('premioEventoModificar').value = this.getAttribute('data-premio');
+      document.getElementById('patrocinadoresEventoModificar').value = this.getAttribute('data-patrocinadores');
+      
+      // Establecer el mismo ID en el formulario de eliminación
+      document.getElementById('idEventoEliminar').value = idEvento;
+      
+      // Mostrar el modal
+      document.getElementById('modalModificar').classList.remove('hidden');
+    });
   });
+
 </script>
