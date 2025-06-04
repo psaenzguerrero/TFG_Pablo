@@ -52,10 +52,10 @@ class Carrito {
         return $cont;
     }
 
-    public function aumentarCantidad($id_producto, $id_usuario){
-        $sentencia = "UPDATE carrito SET cantidad = cantidad+1 WHERE id_producto = ? AND id_usuario = ?";
+    public function aumentarCantidad($id_producto, $id_usuario, $cantidad){
+        $sentencia = "UPDATE carrito SET cantidad = cantidad + ? WHERE id_producto = ? AND id_usuario = ?";
         $consulta = $this->conn->__get("conn")->prepare($sentencia);
-        $consulta->bind_param("ii", $id_producto, $id_usuario);
+        $consulta->bind_param("iii", $cantidad, $id_producto, $id_usuario );
         $resultado = $consulta->execute();
         $consulta->close();
         return $resultado;
@@ -111,9 +111,9 @@ class Carrito {
     public function sumarPrecioTotal($id_usuario){
         $sentencia = "SELECT SUM(cantidad * precio_producto) FROM carrito c JOIN producto p WHERE c.id_producto = p.id_producto AND id_usuario = ?";
         $consulta = $this->conn->__get("conn")->prepare($sentencia);
-        $consulta->bind_param("i", $id_usuario);
+        $consulta->bind_param("i", $id_usuario); 
+        $consulta->execute();
         $consulta->bind_result($precio);
-        $resultado = $consulta->execute();
         $consulta->fetch();
         $consulta->close();
         return $precio;

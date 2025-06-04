@@ -52,7 +52,7 @@
                             <label class="text-sm md:text-base">Cantidad:</label>
                             <div class="flex border border-gray-600 rounded-md w-full sm:w-auto">
                                 <button type="button" class="px-3 py-1 hover:bg-gray-700 text-sm md:text-base">-</button>
-                                <input type="number" value="1" min="1" class="w-12 text-center bg-transparent border-0 text-sm md:text-base">
+                                <input type="number" name="cantidad" value="1" min="1" class="w-12 text-center bg-transparent border-0 text-sm md:text-base">
                                 <button type="button" class="px-3 py-1 hover:bg-gray-700 text-sm md:text-base">+</button>
                             </div>
                         </div>

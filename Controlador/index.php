@@ -571,15 +571,14 @@
             $id_usuario = $_SESSION["id_usuario"];
             $id_producto = $_POST["id_producto"];
             $fecha_compra = date("Y-m-d H:i:s");
+            $cantidad=$_POST["cantidad"];
             $carrito = new Carrito();
             $contador = $carrito->obtenerProductoCantidad($id_producto, $id_usuario);
             
             if ($contador != null) {
-                $resultado = $carrito->aumentarCantidad($id_producto, $id_usuario);
-                // echo "<p>$resultado</p>";
+                $resultado = $carrito->aumentarCantidad($id_producto, $id_usuario, $cantidad);
                 header("Location: index.php?action=tienda");
             }else{ 
-                $cantidad=1;
                 $resultado = $carrito->insertar($id_usuario, $id_producto, $cantidad, $fecha_compra);
                 if ($resultado) {
                     header("Location: index.php?action=editarProducto");
@@ -646,7 +645,7 @@
         //Primer paso creamos el pedido
 
         $fecha = date("Y/m/d");
-        $precio_d = -1;
+        $precio_d = 0;
         $pedidos = $pedido->crearPedido($id_usuario,$precio_d,$fecha);
         
         //Segundo paso comprobamos los productos del carrito del usuario, los contamos y los almacenamos en la tabla de contenido
@@ -654,8 +653,9 @@
         $producto = $carrito->obtenerContenido($id_usuario);
         $id_pedido = $pedido->obtenerId($id_usuario);
 
-        foreach($producto as $p)
+        foreach($producto as $p){
             $contenido = $pedido->crearContenido($id_pedido, $p["id_producto"], $p["cantidad"]);
+        }
         //Tercer paso combinamos los precios totales de cada producto, los sumamos y con eso ya tenemos $precio
 
         $precio = $carrito->sumarPrecioTotal($id_usuario);
@@ -667,17 +667,19 @@
         //Quinto paso creamos el insert en la tabla compra con el metodo de pago
         
         $comprado = $compra->crearCompra($id_pedido,$id_usuario,$precio,$metodo);
+        
+        //Sexto paso actualizamos el pedido
 
-        //Sexto paso borramos el carrito del usuario una vez se haya comprobado la compra
+        $actualizar = $pedido->actualizarPrecio($id_usuario, $precio);
+
+        //Septimo paso borramos el carrito del usuario una vez se haya comprobado la compra
 
         $carrito = new Carrito();
         $precio = $carrito->eliminarTodo($id_usuario);
 
-        //Setimo paso volvemos a la tienda con un alert o algo sasi diciendo gracias por tu compra
+        //Octavo paso volvemos a la tienda con un alert o algo sasi diciendo gracias por tu compra
 
-        require_once("../vistas/cabeza.php");
-        require_once("../vistas/tienda.php");
-        require_once("../vistas/pie.html");
+        header("Location: index.php?action=tienda");
 
     }
     function reservarEquipoAdmin() {
