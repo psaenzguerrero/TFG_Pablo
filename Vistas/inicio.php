@@ -40,19 +40,25 @@
             <!-- carruel 1 -->
             <div class="carousel-item bg-[url('../img/paginacion/c1.jpg')] bg-cover bg-center h-full">
                 <div class="flex flex-col items-center p-8 text-center">
-                    <div class="text-2xl font-bold mb-8 text-white">Título Centrando</div>
+                    <div class="text-2xl font-bold mb-8 text-white">EL MEJOR AMBIENTE PARA JUGAR</div>
                     <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 lg:gap-12 w-full lg:w-4/5">
-                        <div class="border border-white p-6 pb-50 md:pb-100 bg-black/50">
-                            <h3 class="text-xl text-white">Título 1</h3>
-                            <p class="text-sm text-white">Texto pequeño 1</p>
+                        <div class="border border-white p-6 pb-10 md:pb-20 bg-black/50">
+                            <h3 class="text-2xl text-white">Disfruta de Nuestras Salas</h3>
+                            <p class="text-md text-white pt-20">
+                                Disfruta de nuestras salas de videojuegos, un espacio diseñado para los amantes de la diversión digital. Equipadas con las últimas consolas, PCs gaming de alto rendimiento y una amplia selección de títulos, nuestras salas te ofrecen una experiencia inmersiva y emocionante. Ya sea que prefieras competir en juegos multijugador, explorar mundos virtuales o simplemente relajarte con tus favoritos, aquí encontrarás el entorno perfecto para vivir horas de entretenimiento. ¡Invita a tus amigos y sumérgete en la aventura!
+                            </p>
                         </div>
-                        <div class="border border-white p-6 pb-50 md:pb-100 bg-black/50">
-                            <h3 class="text-xl text-white">Título 2</h3>
-                            <p class="text-sm text-white">Texto pequeño 2</p>
+                        <div class="border border-white p-6 pb-10 md:pb-20 bg-black/50">
+                            <h3 class="text-2xl text-white">Juega a los Ultimos Titulos</h3>
+                            <p class="text-md text-white pt-20">
+                                ¡Juega a los últimos títulos ahora! En nuestras salas de videojuegos, tendrás acceso a los lanzamientos más recientes y populares, desde emocionantes shooters y épicos RPG hasta deportes y aventuras en mundos abiertos. Con tecnología de última generación y equipos de alto rendimiento, disfrutarás de gráficos impresionantes y una jugabilidad fluida. No esperes más: vive la emoción de los juegos que están marcando tend
+                            </p>
                         </div>
-                        <div class="border border-white p-6 pb-50 md:pb-100 bg-black/50">
-                            <h3 class="text-xl text-white">Título 3</h3>
-                            <p class="text-sm text-white">Texto pequeño 3</p>
+                        <div class="border border-white p-6 pb-10 md:pb-20 bg-black/50">
+                            <h3 class="text-2xl text-white">Explora Nuevos Mundos</h3>
+                            <p class="text-md text-white pt-20">
+                                Explora nuevos mundos en nuestras salas de videojuegos, donde cada partida es una puerta a universos increíbles. Sumérgete en paisajes futuristas, reinos fantásticos o galaxias lejanas con experiencias diseñadas para transportarte más allá de la realidad. Con gráficos de vanguardia, sonido envolvente y controles de precisión, cada aventura se siente auténtica y emocionante. ¿Listo para descubrir lo desconocido? 🌌🎮 ¡Tu próxima gran odisea digital comienza aquí!
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -61,20 +67,29 @@
             <div class="carousel-item bg-[url('../img/paginacion/c2.png')] bg-cover bg-center h-full">
                 <div class="flex flex-col items-center p-8 text-center">
                     <div class="text-2xl font-bold mb-8 text-white">
-                        Título Centrando
+                        SALAS ESPECIALIZADAS EN EL VR
                     </div>
                     <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 lg:gap-12 w-full lg:w-4/5">
-                        <div class="border border-white p-6 pb-50 md:pb-100 bg-black/50">
-                            <h3 class="text-xl text-white">Título 1</h3>
-                            <p class="text-sm text-white">Texto pequeño 1</p>
+                        <div class="border border-white p-6 pb-10 md:pb-20 bg-black/50">
+                            <h3 class="text-2xl text-white">Prueba las Nuevas Tecnologias</h3>
+                            <p class="text-md text-white pt-20">
+                                ¡Prueba las nuevas tecnologías y lleva tu experiencia gaming al siguiente nivel! En nuestras salas, encontrarás realidad virtual (VR) inmersiva, cascos de última generación, simuladores de movimiento y controles hápticos que te harán sentir dentro del juego. Experimenta gráficos en 4K HDR, sonido 3D spatial y equipos con alta tasa de refresco para una jugabilidad ultrafluida. ¿Te atreves a sentir cada golpe, cada giro y cada explosión como nunca antes? La revolución gaming ya está aquí – ¡sé parte de ella!
+                            </p>
                         </div>
-                        <div class="border border-white p-6 pb-50 md:pb-100 bg-black/50">
-                            <h3 class="text-xl text-white">Título 2</h3>
-                            <p class="text-sm text-white">Texto pequeño 2</p>
+                        <div class="border border-white p-6 pb-10 md:pb-20 bg-black/50">
+                            <h3 class="text-2xl text-white">Explora nueva sensaciones</h3>
+                            <p class="text-md text-white pt-20">
+                                En nuestras salas de videojuegos, no solo juegas, vives la experiencia. Con tecnología de punta, cada partida se convierte en una aventura multisensorial ¿Listo para romper los límites entre el juego y la realidad? ¡Tu adrenalina, curiosidad y emoción tienen una nueva dirección! 🔥🎮
+                            </p>
                         </div>
-                        <div class="border border-white p-6 pb-50 md:pb-100 bg-black/50">
-                            <h3 class="text-xl text-white">Título 3</h3>
-                            <p class="text-sm text-white">Texto pequeño 3</p>
+                        <div class="border border-white p-6 pb-10 md:pb-20 bg-black/50">
+                            <h3 class="text2-xl text-white">Disfruta de la Tecnologia Moderna</h3>
+                            <p class="text-md text-white pt-20">
+                                🔥 Pantallas ultranítidas 4K/8K con tasas de refresco de 144Hz o más para una fluidez alucinante.
+                                🎮 Mandos de última generación con retroadaptación háptica y gatillos adaptables, para sentir cada acción con precisión milimétrica.
+                                🕶️ Equipos de Realidad Virtual (VR) de vanguardia con seguimiento ocular y motion tracking para una inmersión total.
+                                🌌 Sistemas de sonido envolvente Dolby Atmos que te hacen sentir el entorno del juego en 360°.
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -83,20 +98,35 @@
             <div class="carousel-item bg-[url('../img/paginacion/c3.png')] bg-cover bg-center h-full">
                 <div class="flex flex-col items-center p-8 text-center">
                     <div class="text-2xl font-bold mb-8 text-white">
-                        Título Centrando
+                        EVENTOS Y TORNEOS TODOS LOS MESES
                     </div>
                     <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 lg:gap-12 w-full lg:w-4/5">
-                        <div class="border border-white p-6 pb-50 md:pb-100 bg-black/50">
-                            <h3 class="text-xl text-white">Título 1</h3>
-                            <p class="text-sm text-white">Texto pequeño 1</p>
+                        <div class="border border-white p-6 pb-10 md:pb-20 bg-black/50">
+                            <h3 class="text-2xl text-white">Inscribite en los Torneos</h3>
+                            <p class="text-md text-white pt-20">
+                                🔥 ¡Inscríbete en los torneos y demuestra que eres el mejor! 🔥
+                                ¿Crees tener lo necesario para dominar la competencia? En nuestras salas de videojuegos organizamos torneos emocionantes donde podrás enfrentartea los mejores jugadores y poner a prueba tus habilidades.
+                                🎮 Variedad de juegos: Desde shooters y battle royales hasta deportes y fighting games, siempre hay un desafío para ti.
+                                📅 Eventos regulares: Torneos semanales, ligas mensuales y competencias exclusivas
+                                ¿Listo para aceptar el reto?
+                            </p>
                         </div>
-                        <div class="border border-white p-6 pb-50 md:pb-100 bg-black/50">
-                            <h3 class="text-xl text-white">Título 2</h3>
-                            <p class="text-sm text-white">Texto pequeño 2</p>
+                        <div class="border border-white p-6 pb-10 md:pb-20 bg-black/50">
+                            <h3 class="text-2xl text-white">Lucha por la Victoria</h3>
+                            <p class="text-sm text-white pt-20">
+                                El escenario está listo, los controles calibrados y el premio espera... ¿tienes el coraje de convertirte en leyenda?
+
+                                ⚔️ Batallas Épicas: Enfréntate a rivales dignos en duelos que pondrán a prueba tu estrategia, reflejos y nervios de acero.
+                                🏅 Gloria Eterna: Los campeones no solo ganan premios, ¡sino respeto en la escena competitiva! Tu nombre brillará en nuestro *Hall of Fame
+                            </p>
                         </div>
-                        <div class="border border-white p-6 pb-50 md:pb-100 bg-black/50">
-                            <h3 class="text-xl text-white">Título 3</h3>
-                            <p class="text-sm text-white">Texto pequeño 3</p>
+                        <div class="border border-white p-6 pb-10 md:pb-20 bg-black/50">
+                            <h3 class="text-2xl text-white">Disfruta Tus Logros</h3>
+                            <p class="text-sm text-white pt-20">
+                                Disfruta Tus Logros y Celebra Tus Victorias
+
+                                En nuestras salas de videojuegos, cada partida ganada, cada récord superado y cada torneo conquistado merece ser celebrado. Presume tus habilidades y comparte tus momentos épicos con la comunidad gamer.
+                            </p>
                         </div>
                     </div>
                 </div>
