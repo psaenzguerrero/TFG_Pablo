@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-06-2025 a las 12:51:58
+-- Tiempo de generación: 05-06-2025 a las 09:05:41
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -34,6 +34,14 @@ CREATE TABLE `carrito` (
   `fecha_compra` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
+--
+-- Volcado de datos para la tabla `carrito`
+--
+
+INSERT INTO `carrito` (`id_usuario`, `id_producto`, `cantidad`, `fecha_compra`) VALUES
+(3, 2, 1, '2025-06-04'),
+(13, 3, 1, '2025-06-04');
+
 -- --------------------------------------------------------
 
 --
@@ -61,7 +69,9 @@ INSERT INTO `contenido` (`id_pedido`, `id_producto`, `cantidad`) VALUES
 (4, 2, 1),
 (4, 3, 1),
 (4, 10, 1),
-(6, 2, 1);
+(6, 2, 1),
+(7, 6, 1),
+(8, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -130,7 +140,8 @@ INSERT INTO `evento` (`id_evento`, `nombre_evento`, `tipo_evento`, `fecha_evento
 (6, 'Carrera de Drones', 'Tecnología', '2025-07-05', 'Drone Profesional', 'DJI'),
 (7, 'Torneo de Smash', 'Videojuegos', '2025-08-12', 'Trofeo + Suscripción Online', 'Nintendo'),
 (13, 'maite', 'videojuegos', '2025-03-04', '100€', 'Sony'),
-(14, 'Concurso VR', 'Videojuegos', '2025-05-11', '100€', 'Soni');
+(14, 'Concurso VR', 'Videojuegos', '2025-05-11', '100€', 'Soni'),
+(15, 'play6', 'pvp', '2025-06-12', '100$', 'eag');
 
 -- --------------------------------------------------------
 
@@ -178,7 +189,9 @@ INSERT INTO `pedido` (`id_pedido`, `id_usu`, `precio`, `fecha`, `metodo`) VALUES
 (2, 13, 299.99, '2025-06-04', 'efectivo'),
 (3, 13, 399.99, '2025-06-04', 'efectivo'),
 (4, 3, 929.97, '2025-06-04', 'paypal'),
-(6, 3, 499.99, '2025-06-04', 'paypal');
+(6, 3, 499.99, '2025-06-04', 'paypal'),
+(7, 3, 299.99, '2025-06-04', 'transferencia'),
+(8, 13, 499.99, '2025-06-04', 'paypal');
 
 -- --------------------------------------------------------
 
@@ -286,16 +299,18 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`id_usuario`, `nombre_usuario`, `DNI`, `pass_usuario`, `tipo_usuario`, `puntos_usuario`, `foto`) VALUES
-(1, 'Juan Pérez', '12345678A', 'pass123', 'Admin', 100, '../img/paginacion/icono.png'),
-(2, 'María López', '87654321B', 'pass456', 'Normal', 200, '../img/paginacion/icono.png'),
-(3, 'Carlos García', '45612378C', 'pass789', 'Normal', 50, '../img/paginacion/icono.png'),
-(13, 'Pablo', '75570672D', '12345', 'Vip', 200, '../img/paginacion/icono.png'),
-(14, 'AGCH', '11111111D', '12345', 'Normal', 0, '../img/paginacion/icono.png'),
-(15, 'Maite', '11111112D', '12345', 'Normal', 3000, '../img/paginacion/icono.png'),
-(16, 'Pepe', '12121212D', '12345', 'Normal', 0, '../img/paginacion/icono.png'),
-(17, 'Manu', '12345678D', '12345', 'Normal', 0, '../img/paginacion/icono.png'),
-(18, 'nasaro', NULL, 'nasaro', 'Normal', 0, ''),
-(19, 'eri', NULL, 'eri', 'Normal', 0, '../img/paginacion/icono.png');
+(1, 'Juan Pérez', '12345678A', 'f7c3bc1d808e04732adf679965ccc34ca7ae3441', 'Admin', 100, '../img/paginacion/icono.png'),
+(2, 'María López', '87654321B', 'f7c3bc1d808e04732adf679965ccc34ca7ae3441', 'Normal', 200, '../img/paginacion/icono.png'),
+(3, 'Carlos García', '45612378C', 'f7c3bc1d808e04732adf679965ccc34ca7ae3441', 'Normal', 250, '../img/paginacion/icono.png'),
+(13, 'Pablo', '75570672D', 'f7c3bc1d808e04732adf679965ccc34ca7ae3441', 'Vip', 400, '../img/paginacion/icono.png'),
+(14, 'AGCH', '11111111D', 'f7c3bc1d808e04732adf679965ccc34ca7ae3441', 'Normal', 0, '../img/paginacion/icono.png'),
+(15, 'Maite', '11111112D', 'f7c3bc1d808e04732adf679965ccc34ca7ae3441', 'Normal', 3000, '../img/paginacion/icono.png'),
+(16, 'Pepe', '12121212D', 'f7c3bc1d808e04732adf679965ccc34ca7ae3441', 'Normal', 0, '../img/paginacion/icono.png'),
+(17, 'Manu', '12345678D', 'f7c3bc1d808e04732adf679965ccc34ca7ae3441', 'Normal', 0, '../img/paginacion/icono.png'),
+(18, 'nasaro', NULL, 'f7c3bc1d808e04732adf679965ccc34ca7ae3441', 'Normal', 0, ''),
+(19, 'eri', NULL, 'f7c3bc1d808e04732adf679965ccc34ca7ae3441', 'Normal', 0, '../img/paginacion/icono.png'),
+(20, 'risas1', NULL, 'f7c3bc1d808e04732adf679965ccc34ca7ae3441', 'Normal', 0, '../img/paginacion/icono.png'),
+(21, 'risas2', NULL, 'f7c3bc1d808e04732adf679965ccc34ca7ae3441', 'Normal', 0, '../img/paginacion/icono.png');
 
 --
 -- Índices para tablas volcadas
@@ -376,13 +391,13 @@ ALTER TABLE `equipo`
 -- AUTO_INCREMENT de la tabla `evento`
 --
 ALTER TABLE `evento`
-  MODIFY `id_evento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_evento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de la tabla `pedido`
 --
 ALTER TABLE `pedido`
-  MODIFY `id_pedido` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_pedido` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `producto`
@@ -394,7 +409,7 @@ ALTER TABLE `producto`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- Restricciones para tablas volcadas
