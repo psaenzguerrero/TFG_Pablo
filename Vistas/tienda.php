@@ -173,7 +173,7 @@
                             class="bg-white p-5 rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer transform hover:-translate-y-1 border border-gray-100 hover:border-indigo-100 group"
                             onclick="abrirModal(<?php echo htmlspecialchars($producto['id_producto']); ?>)">
                             <div class="relative">
-                                <!-- Aquí iría la imagen del producto si tuvieras -->
+                                <!-- Aquí va la imagen del producto -->
                                 <div class="bg-gradient-to-br from-indigo-50 to-gray-100 h-40 rounded-lg mb-4 flex items-center justify-center group-hover:from-indigo-100 group-hover:to-gray-200 transition-all">
                                     <img class="w-40" src="../img/productos/<?php echo htmlspecialchars($producto['img']); ?>" alt="foto">
                                 </div>

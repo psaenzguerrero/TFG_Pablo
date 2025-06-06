@@ -55,7 +55,7 @@
             if ($eventoDelDia) {
               // Día con evento
               echo "<div
-                      class=\"$baseClasses bg-indigo-600 text-white hover:bg-indigo-700 focus:outline-none focus:ring-4 focus:ring-indigo-300\"
+                      class=\"$baseClasses text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 focus:outline-none focus:ring-4 focus:ring-indigo-300\"
                       $fechaAttr
                       data-id_evento=\"{$eventoDelDia[0]['id_evento']}\"
                       data-nombre_evento=\"{$eventoDelDia[0]['nombre_evento']}\"
