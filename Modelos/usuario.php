@@ -1,5 +1,6 @@
 <?php
     require_once("class.bd.php");
+    error_reporting(E_ALL & ~E_NOTICE);
     
     class Usuario {
         public $conn;
