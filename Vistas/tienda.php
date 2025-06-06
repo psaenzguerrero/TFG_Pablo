@@ -210,26 +210,26 @@
 </main>
 
 <script>
-    function abrirModal(idProducto) {
-        window.location.href = `index.php?action=editarProducto&id_producto=${idProducto}`;
-    }
+    // function abrirModal(idProducto) {
+    //     window.location.href = `index.php?action=editarProducto&id_producto=${idProducto}`;
+    // }
 
-    // Mejora para los checkboxes
-    document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
-        checkbox.addEventListener('change', function() {
-            const checkIcon = this.parentElement.querySelector('svg');
-            if (this.checked) {
-                this.parentElement.classList.add('bg-indigo-500', 'border-indigo-500');
-                checkIcon.classList.remove('hidden');
-            } else {
-                this.parentElement.classList.remove('bg-indigo-500', 'border-indigo-500');
-                checkIcon.classList.add('hidden');
-            }
-        });
+    // // Mejora para los checkboxes
+    // document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+    //     checkbox.addEventListener('change', function() {
+    //         const checkIcon = this.parentElement.querySelector('svg');
+    //         if (this.checked) {
+    //             this.parentElement.classList.add('bg-indigo-500', 'border-indigo-500');
+    //             checkIcon.classList.remove('hidden');
+    //         } else {
+    //             this.parentElement.classList.remove('bg-indigo-500', 'border-indigo-500');
+    //             checkIcon.classList.add('hidden');
+    //         }
+    //     });
         
-        // Trigger change event for pre-checked boxes
-        if (checkbox.checked) {
-            checkbox.dispatchEvent(new Event('change'));
-        }
-    });
+    //     // Trigger change event for pre-checked boxes
+    //     if (checkbox.checked) {
+    //         checkbox.dispatchEvent(new Event('change'));
+    //     }
+    // });
 </script>
