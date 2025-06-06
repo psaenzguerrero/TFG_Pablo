@@ -329,7 +329,7 @@
             exit;
         }
 
-        // Si se envió el ID del producto
+        // Si se envio el ID del producto
         if (isset($_GET["id_producto"])) {
             $id_producto = intval($_GET["id_producto"]);
             $producto = new Producto();
@@ -364,7 +364,7 @@
             // Crear una instancia del modelo Evento
             $producto = new Producto();
     
-            // Llamar al método guardarEvento para insertar los datos en la base de datos
+            // Llamar al metodo guardarEvento para insertar los datos en la base de datos
             $resultado = $producto->actualizar($id_producto,$nombre_producto,$precio_producto,$tipo_producto,$puntos_compra);
             // Comprobar si la inserción fue exitosa
             if ($resultado) {
@@ -401,11 +401,11 @@
         $evento = new Evento();
         $eventos = $evento->obtenerEventosPorMes($anioActual, $mesActual);
 
-        // Obtener el primer día del mes y la cantidad de días del mes
+        // Obtener el primer dia del mes y la cantidad de dias del mes
         $primerDiaDelMes = date("N", strtotime("$anioActual-$mesActual-01"));
         $diasDelMes = cal_days_in_month(CAL_GREGORIAN, $mesActual, $anioActual);
 
-        // Crear un array para almacenar los eventos por día
+        // Crear un array para almacenar los eventos por dia
         $eventosPorDia = [];
         foreach ($eventos as $evento) {
             $fechaEvento = new DateTime($evento['fecha_evento']);
@@ -431,14 +431,14 @@
             exit;
         }
     
-        // Comprobar si el formulario se ha enviado por POST
+        // Comprobar si el formulario se ha enviado 
         if ($_SERVER["REQUEST_METHOD"] === "POST") {
             // Obtener los valores del formulario
             $nombre_evento = $_POST["nombre_evento"];
             $tipo_evento = $_POST["tipo_evento"];
             $fecha_evento = $_POST["fecha_evento"];
             $fechaActual = new DateTime();
-            $fechaEvento = new DateTime($fecha_evento); // Convertir la fecha del evento a objeto DateTime
+            $fechaEvento = new DateTime($fecha_evento); // Convertir la fecha a objeto DateTime
         
             if ($fechaEvento < $fechaActual) {
                 // Redirigir con un mensaje de error
@@ -449,13 +449,13 @@
             // Crear una instancia del modelo Evento
             $evento = new Evento();
     
-            // Llamar al método guardarEvento para insertar los datos en la base de datos
+            // Llamar al metodo guardarEvento para insertar los datos en la base de datos
             $resultado = $evento->guardarEvento($nombre_evento, $tipo_evento, $fecha_evento, $premio, $patrocinadores);
-            // Comprobar si la inserción fue exitosa
+            // Comprobar si la inserción fue ok
             if ($resultado) {
-                header("Location: index.php?action=eventos"); // Redirigir si todo salió bien
+                header("Location: index.php?action=eventos"); // Redirigir si todo ok
             } else {
-                echo "Hubo un error al guardar el evento."; // Mostrar error si algo salió mal
+                echo "Hubo un error al guardar el evento."; // Mostrar error si todo no ok
             }
         }
     }
@@ -812,7 +812,7 @@
     }
     
 
-    //Esto es la piedra angular del controlador, con esto llamo y me muevo entre las funciones usando los action como variable.
+    //Esto es la piedra angular del controlador, con esto llamo y me muevo entre las funciones usando el action como variable.
     if (isset($_REQUEST["action"])) {
         $action = strtolower($_REQUEST["action"]);
             $action(); // Llama a la función correspondiente

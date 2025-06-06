@@ -89,7 +89,6 @@
         <div class="flex items-center boxbox space-x-4">
             <a href="./index.php?action=verCarrito" class="text-purple-400 hover:text-purple-300 transition text-xl relative">
                 <i class="fas fa-shopping-bag"></i>
-                <span class="absolute -top-2 -right-2 bg-purple-600 text-xs rounded-full h-5 w-5 flex items-center justify-center">0</span>
             </a>
             <button id="menu-toggle" class="lg:hidden text-purple-400 focus:outline-none">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
