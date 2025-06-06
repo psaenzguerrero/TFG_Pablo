@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 06-06-2025 a las 12:33:06
+-- Tiempo de generación: 06-06-2025 a las 14:19:02
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -40,7 +40,7 @@ CREATE TABLE `carrito` (
 
 INSERT INTO `carrito` (`id_usuario`, `id_producto`, `cantidad`, `fecha_compra`) VALUES
 (3, 2, 1, '2025-06-04'),
-(13, 3, 1, '2025-06-04');
+(13, 3, 2, '2025-06-04');
 
 -- --------------------------------------------------------
 
@@ -310,7 +310,8 @@ INSERT INTO `usuario` (`id_usuario`, `nombre_usuario`, `DNI`, `pass_usuario`, `t
 (18, 'nasaro', NULL, 'f7c3bc1d808e04732adf679965ccc34ca7ae3441', 'Normal', 0, ''),
 (19, 'eri', NULL, 'f7c3bc1d808e04732adf679965ccc34ca7ae3441', 'Normal', 0, '../img/paginacion/icono.png'),
 (20, 'risas1', NULL, 'f7c3bc1d808e04732adf679965ccc34ca7ae3441', 'Normal', 0, '../img/paginacion/icono.png'),
-(21, 'risas2', NULL, 'f7c3bc1d808e04732adf679965ccc34ca7ae3441', 'Normal', 0, '../img/paginacion/icono.png');
+(21, 'risas2', NULL, 'f7c3bc1d808e04732adf679965ccc34ca7ae3441', 'Normal', 0, '../img/paginacion/icono.png'),
+(22, 'risas3', NULL, '146833d35aa3250e408d01cc8276ba7b80f8352a', 'Normal', 0, '../img/paginacion/icono.png');
 
 --
 -- Índices para tablas volcadas
@@ -409,7 +410,7 @@ ALTER TABLE `producto`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- Restricciones para tablas volcadas
