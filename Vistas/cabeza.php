@@ -10,6 +10,7 @@
     
     <!-- Scripts Externos -->
     <script defer src="../index.js"></script>
+    <script defer src="../index-calendar.js"></script>
     <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
     
     
