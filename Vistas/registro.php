@@ -12,31 +12,22 @@
 
                     <div>
                         <label for="nombre_usuario" class="block text-gray-700 text-sm font-bold mb-2">Nombre de Usuario:</label>
-                        <input type="text" name="nombre_usuario" 
-                            value="<?php echo isset($_POST["nombre_usuario"]) ? htmlspecialchars($_POST["nombre_usuario"]) : (isset($_COOKIE["nombre_usuario"]) ? htmlspecialchars($_COOKIE["nombre_usuario"]) : ''); ?>" 
-                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 focus:shadow-outline" 
-                            required>
+                        <input type="text" name="nombre_usuario" value="<?php echo isset($_POST["nombre_usuario"]) ? htmlspecialchars($_POST["nombre_usuario"]) : (isset($_COOKIE["nombre_usuario"]) ? htmlspecialchars($_COOKIE["nombre_usuario"]) : ''); ?>" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 focus:shadow-outline" required>
                     </div>
 
                     <div>
                         <label for="pass_usuario" class="block text-gray-700 text-sm font-bold mb-2">Contraseña:</label>
-                        <input type="password" name="pass_usuario" 
-                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 focus:shadow-outline" 
-                            required>
+                        <input type="password" name="pass_usuario" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 focus:shadow-outline" required>
                     </div>
 
                     <div>
                         <label for="pass_usuario2" class="block text-gray-700 text-sm font-bold mb-2">Repita su Contraseña:</label>
-                        <input type="password" name="pass_usuario2" 
-                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 focus:shadow-outline" 
-                            required>
+                        <input type="password" name="pass_usuario2" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 focus:shadow-outline" required>
                     </div>
 
                     <div>
                         <label for="DNI" class="block text-gray-700 text-sm font-bold mb-2">Meta su DNI:</label>
-                        <input type="text" name="DNI" 
-                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 focus:shadow-outline" 
-                            required>
+                        <input type="text" name="DNI" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 focus:shadow-outline" required>
                     </div>
 
                     <div class="flex items-center">
@@ -62,24 +53,17 @@
 
                     <div>
                         <label for="nombre_usuario" class="block text-gray-700 text-sm font-bold mb-2">Nombre de Usuario:</label>
-                        <input type="text" name="nombre_usuario" 
-                            value="<?php echo isset($_POST["nombre_usuario"]) ? htmlspecialchars($_POST["nombre_usuario"]) : (isset($_COOKIE["nombre_usuario"]) ? htmlspecialchars($_COOKIE["nombre_usuario"]) : ''); ?>" 
-                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 focus:shadow-outline" 
-                            required>
+                        <input type="text" name="nombre_usuario" value="<?php echo isset($_POST["nombre_usuario"]) ? htmlspecialchars($_POST["nombre_usuario"]) : (isset($_COOKIE["nombre_usuario"]) ? htmlspecialchars($_COOKIE["nombre_usuario"]) : ''); ?>" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 focus:shadow-outline" required>
                     </div>
 
                     <div>
                         <label for="pass_usuario" class="block text-gray-700 text-sm font-bold mb-2">Contraseña:</label>
-                        <input type="password" name="pass_usuario" 
-                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 focus:shadow-outline" 
-                            required>
+                        <input type="password" name="pass_usuario" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 focus:shadow-outline" required>
                     </div>
 
                     <div>
                         <label for="pass_usuario2" class="block text-gray-700 text-sm font-bold mb-2">Repita su Contraseña:</label>
-                        <input type="password" name="pass_usuario2" 
-                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 focus:shadow-outline" 
-                            required>
+                        <input type="password" name="pass_usuario2" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 focus:shadow-outline" required>
                     </div>
 
                     <div class="flex items-center">

@@ -30,11 +30,6 @@ if (strcmp($_SESSION["tipo_usuario"], "Normal") == 0 || strcmp($_SESSION["tipo_u
                         </div>
                     </div>
                 </div>
-                
-                <!-- Sección adicional (si necesitas añadir más contenido) -->
-                <div class="bg-gray-50 px-6 py-4 border-t border-gray-200">
-                    <!-- Puedes añadir más información aquí -->
-                </div>
             </section>
         </main>
     <?php
@@ -52,6 +47,7 @@ if (strcmp($_SESSION["tipo_usuario"], "Normal") == 0 || strcmp($_SESSION["tipo_u
                         <table class="min-w-full divide-y divide-gray-200">
                             <thead class="bg-gray-50">
                                 <tr>
+                                    
                                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
                                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Usuario</th>
                                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Puntos</th>

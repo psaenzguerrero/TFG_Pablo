@@ -111,14 +111,12 @@
             $sentencia = "SELECT id_producto, nombre_producto, precio_producto, tipo_producto, puntos_compra, img FROM producto WHERE 1=1";
             $params = [];
             $tipos = "";
-        
             // filtrar por nombre
             if (!empty($filtros['nombre'])) {
                 $sentencia .= " AND nombre_producto LIKE ?";
                 $params[] = "%" . $filtros['nombre'] . "%";
                 $tipos .= "s";
             }
-        
             // filtra por precio
             if (!empty($filtros['minPrecio'])) {
                 $sentencia .= " AND precio_producto >= ?";
@@ -130,7 +128,6 @@
                 $params[] = $filtros['maxPrecio'];
                 $tipos .= "d";
             }
-        
             // filtra por puntos
             if (!empty($filtros['minPuntos'])) {
                 $sentencia .= " AND puntos_compra >= ?";
@@ -142,7 +139,6 @@
                 $params[] = $filtros['maxPuntos'];
                 $tipos .= "i";
             }
-        
             // filtra por tipo
             if (!empty($filtros['tipo'])) {
                 $placeholders = implode(",", array_fill(0, count($filtros['tipo']), "?"));
@@ -150,16 +146,14 @@
                 $params = array_merge($params, $filtros['tipo']);
                 $tipos .= str_repeat("s", count($filtros['tipo']));
             }
-        
             $consulta = $this->conn->__get("conn")->prepare($sentencia);
             if (!empty($params)) {
                 $consulta->bind_param($tipos, ...$params);
             }
-        
             $consulta->execute();
             $resultado = $consulta->get_result();
             $productos = [];
-        
+            
             while ($fila = $resultado->fetch_assoc()) {
                 $productos[] = $fila;
             }

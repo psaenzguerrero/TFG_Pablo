@@ -3,8 +3,7 @@
     <div class="container mx-auto px-4">
       <!-- Navegación del mes -->
       <div class="flex items-center justify-between mb-6">
-        <a href="?action=eventos&mes=<?php echo ($mesActual - 1) < 1 ? 12 : $mesActual - 1; ?>&anio=<?php echo ($mesActual - 1) < 1 ? $anioActual - 1 : $anioActual; ?>"
-           class="inline-flex items-center space-x-2 px-4 py-2 bg-indigo-600 text-white rounded-lg shadow hover:bg-indigo-700 transition">
+        <a href="?action=eventos&mes=<?php echo ($mesActual - 1) < 1 ? 12 : $mesActual - 1; ?>&anio=<?php echo ($mesActual - 1) < 1 ? $anioActual - 1 : $anioActual; ?>" class="inline-flex items-center space-x-2 px-4 py-2 bg-indigo-600 text-white rounded-lg shadow hover:bg-indigo-700 transition">
           <span class="text-lg">&laquo;</span>
           <span>Mes Anterior</span>
         </a>
@@ -16,8 +15,7 @@
           ?>
         </div>
 
-        <a href="?action=eventos&mes=<?php echo ($mesActual + 1) > 12 ? 1 : $mesActual + 1; ?>&anio=<?php echo ($mesActual + 1) > 12 ? $anioActual + 1 : $anioActual; ?>"
-           class="inline-flex items-center space-x-2 px-4 py-2 bg-indigo-600 text-white rounded-lg shadow hover:bg-indigo-700 transition">
+        <a href="?action=eventos&mes=<?php echo ($mesActual + 1) > 12 ? 1 : $mesActual + 1; ?>&anio=<?php echo ($mesActual + 1) > 12 ? $anioActual + 1 : $anioActual; ?>" class="inline-flex items-center space-x-2 px-4 py-2 bg-indigo-600 text-white rounded-lg shadow hover:bg-indigo-700 transition">
           <span>Mes Siguiente</span>
           <span class="text-lg">&raquo;</span>
         </a>
@@ -38,7 +36,7 @@
         <div class="grid grid-cols-7 gap-2">
           <?php
           $primerDiaDelMes = $fechaInicio->format('N');
-          $diasDelMes    = $fechaInicio->format('t');
+          $diasDelMes = $fechaInicio->format('t');
 
           // Espacios iniciales
           for ($i = 1; $i < $primerDiaDelMes; $i++) {
@@ -67,10 +65,7 @@
                     </div>";
             } else {
               // Día sin evento
-              echo "<div
-                      class=\"$baseClasses day bg-gray-100 hover:bg-gray-200 focus:outline-none focus:ring-4 focus:ring-indigo-200 " . ($esHoy ? 'ring-2 ring-indigo-400' : '') . "\"
-                      $fechaAttr
-                    >
+              echo "<div class=\"$baseClasses day bg-gray-100 hover:bg-gray-200 focus:outline-none focus:ring-4 focus:ring-indigo-200 " . ($esHoy ? 'ring-2 ring-indigo-400' : '') . "\" $fechaAttr>
                       $dia
                     </div>";
             }
@@ -80,7 +75,7 @@
       </div>
     </div>
 
-    <!-- Modal: Crear Evento -->
+    <!-- Crear Evento -->
     <div id="modalCrear" class="fixed inset-0 z-50 hidden bg-black bg-opacity-50 flex items-center justify-center p-4">
       <div class="bg-white w-full max-w-md rounded-lg shadow-lg p-6 space-y-4">
         <h3 class="text-2xl font-semibold">Crear Evento</h3>
@@ -110,7 +105,7 @@
       </div>
     </div>
 
-    <!-- Modal: Modificar/Eliminar Evento -->
+    <!-- Modificar o Eliminar Evento -->
     <div id="modalModificar" class="fixed inset-0 z-50 hidden bg-black bg-opacity-50 flex items-center justify-center p-4">
       <div class="bg-white w-full max-w-md rounded-lg shadow-lg p-6 space-y-4">
         <h3 class="text-2xl font-semibold">Modificar Evento</h3>

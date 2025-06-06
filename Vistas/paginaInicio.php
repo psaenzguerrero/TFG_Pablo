@@ -52,7 +52,7 @@
                 </a>
             </div>
 
-            <!-- Sección de estadísticas (opcional) -->
+            <!-- Sección de estadísticas -->
             <div class="mt-12 bg-white rounded-lg shadow-md p-6">
                 <h2 class="text-xl font-semibold text-gray-800 mb-4">Resumen del Sistema</h2>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4">

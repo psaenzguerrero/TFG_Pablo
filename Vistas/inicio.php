@@ -1,15 +1,12 @@
 <main class="bg-gray-900">
     <section class="relative w-full h-screen overflow-hidden z-0">
-        <!-- Video de fondo con optimizaciones -->
-        <video class="absolute top-0 left-0 w-full h-full object-cover brightness-75" autoplay muted loop playsinline>
-            <source src="../img/paginacion/Fondo tecnológico en 4K.mp4" type="video/mp4">
+        <video class="absolute top-0 left-0 w-full h-full object-cover brightness-75" autoplay muted loop playsinline><source src="../img/paginacion/Fondo tecnológico en 4K.mp4" type="video/mp4">
             Tu navegador no soporta el video.
         </video>
-        <!-- Capa de overlay para mejor contraste -->
+        <!-- Capa de overlay -->
         <div class="absolute inset-0 bg-gradient-to-b from-black/30 to-black/50"></div>
-        <!-- Contenido centrado con animación -->
         <div class="absolute inset-0 flex flex-col justify-center items-center text-center px-4">
-            <!-- Título principal con animación y mejor jerarquía -->
+            <!-- Titulo principal -->
             <h1 class="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-extrabold text-white mb-4 animate-fade-in-up">
                 <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600">CALL OF</span>
                 <span class="block mt-2 text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-yellow-400">GAMER</span>

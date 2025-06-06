@@ -18,41 +18,26 @@
                     <label for="nombre_usuario" class="block text-sm font-medium text-gray-600 mb-1 ml-1 group-focus-within:text-purple-600 transition-colors">
                         Nombre de Usuario
                     </label>
-                    <input 
-                        type="text" 
-                        name="nombre_usuario" 
-                        class="w-full px-4 py-3 border-0 bg-gray-50/70 rounded-xl focus:ring-2 focus:ring-purple-500 focus:bg-white shadow-sm transition-all duration-300"
-                        <?php if(isset($_COOKIE["nombre_usuario"])) echo 'value='.$_COOKIE["nombre_usuario"].''; ?> 
-                        required>
+                    <input type="text" name="nombre_usuario" class="w-full px-4 py-3 border-0 bg-gray-50/70 rounded-xl focus:ring-2 focus:ring-purple-500 focus:bg-white shadow-sm transition-all duration-300"<?php if(isset($_COOKIE["nombre_usuario"])) echo 'value='.$_COOKIE["nombre_usuario"].''; ?> required>
                 </div>
                 
                 <div class="group">
                     <label for="pass_usuario" class="block text-sm font-medium text-gray-600 mb-1 ml-1 group-focus-within:text-purple-600 transition-colors">
                         Contraseña
                     </label>
-                    <input 
-                        type="password" 
-                        name="pass_usuario" 
-                        class="w-full px-4 py-3 border-0 bg-gray-50/70 rounded-xl focus:ring-2 focus:ring-purple-500 focus:bg-white shadow-sm transition-all duration-300" 
-                        required>
+                    <input type="password" name="pass_usuario" class="w-full px-4 py-3 border-0 bg-gray-50/70 rounded-xl focus:ring-2 focus:ring-purple-500 focus:bg-white shadow-sm transition-all duration-300" required>
                 </div>
                 
                 <div class="flex items-center pl-1">
                     <div class="flex items-center h-5">
-                        <input 
-                            type="checkbox" 
-                            name="recuerdame" 
-                            value="1"
-                            class="h-4 w-4 text-purple-600 focus:ring-purple-500 border-gray-300 rounded transition-all checked:scale-110">
+                        <input type="checkbox" name="recuerdame" value="1"class="h-4 w-4 text-purple-600 focus:ring-purple-500 border-gray-300 rounded transition-all checked:scale-110">
                     </div>
                     <label for="recuerdame" class="ml-2 block text-sm text-gray-600 hover:text-purple-600 cursor-pointer transition-colors">
                         Recuérdame
                     </label>
                 </div>
                 
-                <button 
-                    type="submit" 
-                    class="w-full bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-medium py-3 px-4 rounded-xl shadow-lg hover:shadow-purple-200 transition-all duration-300 transform hover:-translate-y-0.5 active:translate-y-0">
+                <button type="submit" class="w-full bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-medium py-3 px-4 rounded-xl shadow-lg hover:shadow-purple-200 transition-all duration-300 transform hover:-translate-y-0.5 active:translate-y-0">
                     <span class="drop-shadow-md">Ingresar</span>
                 </button>
             </form>

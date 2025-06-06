@@ -1,5 +1,4 @@
 <main class="bg-gray-900 text-white min-h-screen">
-    <!-- Sección Hero/Banner principal - Responsive -->
     <section class="relative py-12 md:pt-30 md:pb-10 bg-[url('https://images.unsplash.com/photo-1542751371-adc38448a05e')] bg-cover bg-center">
         <div class="absolute inset-0 bg-black opacity-60"></div>
         <div class="relative container mx-auto px-4 sm:px-6 lg:px-8 z-10">
@@ -7,10 +6,8 @@
             <p class="text-lg sm:text-xl md:text-2xl max-w-2xl">El equipo definitivo para tu experiencia gaming</p>
         </div>
     </section>
-    <!-- Sección principal del producto - Responsive -->
     <section class="py-10 md:py-16 container mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex flex-col lg:flex-row gap-8 md:gap-12">
-            <!-- Galería de imágenes - Responsive -->
             <div class="lg:w-1/2">
                 <div class="bg-gray-800 rounded-lg overflow-hidden mb-3 md:mb-4">
                     <img src="../img/productos/<?php echo htmlspecialchars($productoData['img']); ?>" alt="<?php echo htmlspecialchars($productoData['nombre_producto']); ?>" class="w-full h-auto">
@@ -27,7 +24,6 @@
                     </div>
                 </div>
             </div>
-            <!-- Detalles del producto - Responsive -->
             <div class="lg:w-1/2">
                 <div class="mb-6">
                     <span class="inline-block bg-purple-600 text-xs px-2 py-1 rounded-full mb-2 md:mb-3">NUEVO</span>
@@ -62,7 +58,6 @@
                         </button>
                     </form>
                 </div>
-
                 <div class="flex flex-wrap gap-2">
                     <div class="flex items-center bg-gray-800 px-2 py-1 md:px-3 md:py-2 rounded-md text-xs md:text-sm">
                         <span class="text-purple-400 mr-1 md:mr-2">⚡</span>
@@ -80,8 +75,6 @@
             </div>
         </div>
     </section>
-
-    <!-- Sección de características - Responsive -->
     <section class="py-10 md:py-16 bg-gray-800">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <h2 class="text-2xl md:text-3xl font-bold mb-8 md:mb-12 text-center">Características</h2>
@@ -143,13 +136,10 @@
             </div>
         </div>
     </section>
-
-    <!-- Sección de productos relacionados - Responsive -->
     <section class="py-10 md:py-16 container mx-auto px-4 sm:px-6 lg:px-8">
         <h2 class="text-2xl md:text-3xl font-bold mb-8 md:mb-12">Productos relacionados</h2>
         
         <div class="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
-            <!-- Producto 1 -->
             <div class="bg-gray-800 rounded-lg overflow-hidden hover:transform hover:scale-[1.02] transition duration-300">
                 <img src="../img/productos/raton.png" alt="Mouse Gamer" class="w-full h-40 sm:h-48 object-cover">
                 <div class="p-3 md:p-4">
@@ -162,8 +152,6 @@
                     </div>
                 </div>
             </div>
-            
-            <!-- Producto 2 -->
             <div class="bg-gray-800 rounded-lg overflow-hidden hover:transform hover:scale-[1.02] transition duration-300">
                 <img src="../img/productos/cascos.png" alt="Headset Gamer" class="w-full h-40 sm:h-48 object-cover">
                 <div class="p-3 md:p-4">
@@ -176,8 +164,6 @@
                     </div>
                 </div>
             </div>
-            
-            <!-- Producto 3 -->
             <div class="bg-gray-800 rounded-lg overflow-hidden hover:transform hover:scale-[1.02] transition duration-300">
                 <img src="../img/productos/tablet.png" alt="Tablet XL" class="w-full h-40 sm:h-48 object-cover">
                 <div class="p-3 md:p-4">
@@ -190,8 +176,6 @@
                     </div>
                 </div>
             </div>
-            
-            <!-- Producto 4 -->
             <div class="bg-gray-800 rounded-lg overflow-hidden hover:transform hover:scale-[1.02] transition duration-300">
                 <img src="../img/productos/mando.png" alt="Controlador" class="w-full h-40 sm:h-48 object-cover">
                 <div class="p-3 md:p-4">

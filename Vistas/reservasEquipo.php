@@ -27,6 +27,7 @@
                                     <label for="usuario" class="block text-sm font-medium text-gray-700 mb-1">Usuario</label>
                                     <select id="usuario" name="id_usuario" class="block w-full px-4 py-2.5 text-base text-gray-900 bg-gray-50 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500" required>
                                         <option selected disabled class="text-gray-400">Selecciona un usuario</option>
+
                                         <?php if (isset($usuarios) && is_array($usuarios)): ?>
                                             <?php foreach ($usuarios as $usuario): ?>
                                                 <option value="<?php echo $usuario[0]; ?>"
@@ -36,6 +37,7 @@
                                                 </option>
                                             <?php endforeach; ?>
                                         <?php endif; ?>
+                                        
                                     </select>
                                 </div>
 
@@ -47,6 +49,7 @@
                                 <div>
                                     <label for="equipo" class="block text-sm font-medium text-gray-700 mb-1">Equipo</label>
                                     <select id="equipo" name="id_equipo" class="block w-full px-4 py-2.5 text-base text-gray-900 bg-gray-50 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500" required>
+                                        
                                         <?php if (isset($equipos) && is_array($equipos)): ?>
                                             <?php foreach ($equipos as $equipo): ?>
                                                 <option value="<?php echo $equipo['id_equipo']; ?>"  <?php if(isset($_GET['equipo'])){ echo (($_GET['equipo'] == $equipo['id_equipo']) ?  'selected' : '');} ?> class="text-gray-900">
@@ -54,6 +57,7 @@
                                                 </option>
                                             <?php endforeach; ?>
                                         <?php endif; ?>
+
                                     </select>
                                 </div>
 
@@ -219,6 +223,7 @@
                 <section class="max-w-2xl mx-auto pt-20">
                     <div class="bg-white rounded-xl shadow-md overflow-hidden p-6">
                         <h1 class="text-3xl font-bold text-gray-800 mb-6 pb-2 border-b border-gray-200">Reservar Equipo</h1>
+
                         <?php if (isset($error)): ?>
                             <div class="bg-red-50 border-l-4 border-red-500 p-4 mb-6 rounded">
                                 <div class="flex items-center">
@@ -233,6 +238,7 @@
                                 </div>
                             </div>
                         <?php endif; ?>
+
                         <form method="POST" action="index.php?action=reservarEquipoAdmin" class="space-y-6">
                             <div class="space-y-4">
                                 <div>
