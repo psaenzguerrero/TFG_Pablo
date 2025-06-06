@@ -32,10 +32,6 @@
 
             $consulta->close();
             return $compras;
-
-            // $resultado = $consulta->execute();
-            // $consulta->close();
-            // return $resultado;
         }
     }
     

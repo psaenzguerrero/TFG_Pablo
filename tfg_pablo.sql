@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 05-06-2025 a las 09:05:41
+-- Tiempo de generación: 06-06-2025 a las 12:33:06
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -141,7 +141,8 @@ INSERT INTO `evento` (`id_evento`, `nombre_evento`, `tipo_evento`, `fecha_evento
 (7, 'Torneo de Smash', 'Videojuegos', '2025-08-12', 'Trofeo + Suscripción Online', 'Nintendo'),
 (13, 'maite', 'videojuegos', '2025-03-04', '100€', 'Sony'),
 (14, 'Concurso VR', 'Videojuegos', '2025-05-11', '100€', 'Soni'),
-(15, 'play6', 'pvp', '2025-06-12', '100$', 'eag');
+(15, 'play6', 'pvp', '2025-06-12', '100$', 'eag'),
+(17, 'Concurso VR', 'Videojuegos', '2025-06-21', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -213,20 +214,19 @@ CREATE TABLE `producto` (
 --
 
 INSERT INTO `producto` (`id_producto`, `nombre_producto`, `precio_producto`, `tipo_producto`, `puntos_compra`, `img`) VALUES
-(2, 'Xbox Series X', 499.99, 'Consolas', 500, './img/productos/xbox.png'),
-(3, 'Monitor Gaming', 299.99, 'Equipo', 300, './img/productos/monitor.png'),
-(4, 'PlayStation 5', 499.99, 'Consolas', 500, './img/productos/play5.png'),
-(5, 'Xbox Series X', 499.99, 'Consolas', 500, './img/productos/xbox.png'),
-(6, 'Monitor Gaming', 299.99, 'Equipo', 300, './img/productos/monitor.png'),
-(7, 'Nintendo Switch', 299.99, 'Consolas', 300, './img/productos/nintendo.png'),
-(8, 'Teclado Mecánico', 89.99, 'Equipo', 90, './img/productos/teclado.png'),
-(9, 'Ratón Gaming', 59.99, 'Equipo', 60, './img/productos/raton.png'),
-(10, 'Auriculares Inalámbricos', 129.99, 'Equipo', 130, './img/productos/cascos.png'),
-(11, 'Proyector 4K', 399.99, 'Accesorios', 400, './img/productos/proyector.png'),
-(12, 'Smart TV 55\"', 699.99, 'Equipo', 700, './img/productos/television.png'),
-(13, 'Tablet Android', 199.99, 'Accesorios', 200, './img/productos/tablet.png'),
-(14, 'wi', 80.00, 'Consolas', 40, './img/productos/wi.png'),
-(17, 'agch', 1000.00, 'Accesorios', 101, './img/productos/xbox.png');
+(2, 'Xbox Series X', 499.99, 'Consolas', 500, 'xbox.png'),
+(3, 'Monitor Gaming', 299.99, 'Equipo', 300, 'monitor.png'),
+(4, 'PlayStation 5', 499.99, 'Consolas', 500, 'play5.png'),
+(5, 'Xbox Series X', 499.99, 'Consolas', 500, 'xbox.png'),
+(6, 'Monitor Gaming', 299.99, 'Equipo', 300, 'monitor.png'),
+(7, 'Nintendo Switch', 299.99, 'Consolas', 300, 'nintendo.png'),
+(8, 'Teclado Mecánico', 89.99, 'Equipo', 90, 'teclado.png'),
+(9, 'Ratón Gaming', 59.99, 'Equipo', 60, 'raton.png'),
+(10, 'Auriculares Inalámbricos', 129.99, 'Equipo', 130, 'cascos.png'),
+(11, 'Proyector 4K', 399.99, 'Accesorios', 400, 'proyector.png'),
+(12, 'Smart TV 55\"', 699.99, 'Equipo', 700, 'television.png'),
+(13, 'Tablet Android', 199.99, 'Accesorios', 200, 'tablet.png'),
+(14, 'wi', 80.00, 'Consolas', 40, 'wi.png');
 
 -- --------------------------------------------------------
 
@@ -391,7 +391,7 @@ ALTER TABLE `equipo`
 -- AUTO_INCREMENT de la tabla `evento`
 --
 ALTER TABLE `evento`
-  MODIFY `id_evento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id_evento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT de la tabla `pedido`
