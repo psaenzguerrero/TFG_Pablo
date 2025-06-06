@@ -13,17 +13,17 @@
             <!-- Galería de imágenes - Responsive -->
             <div class="lg:w-1/2">
                 <div class="bg-gray-800 rounded-lg overflow-hidden mb-3 md:mb-4">
-                    <img src=".<?php echo htmlspecialchars($productoData['img']); ?>" alt="<?php echo htmlspecialchars($productoData['nombre_producto']); ?>" class="w-full h-auto">
+                    <img src="../img/productos/<?php echo htmlspecialchars($productoData['img']); ?>" alt="<?php echo htmlspecialchars($productoData['nombre_producto']); ?>" class="w-full h-auto">
                 </div>
                 <div class="grid grid-cols-3 gap-2">
                     <div class="bg-gray-800 rounded-md overflow-hidden cursor-pointer hover:opacity-80 transition">
-                        <img src=".<?php echo htmlspecialchars($productoData['img']); ?>" alt="Vista 1" class="w-full h-auto">
+                        <img src="../img/productos/<?php echo htmlspecialchars($productoData['img']); ?>" alt="Vista 1" class="w-full h-auto">
                     </div>
                     <div class="bg-gray-800 rounded-md overflow-hidden cursor-pointer hover:opacity-80 transition">
-                        <img src=".<?php echo htmlspecialchars($productoData['img']); ?>" alt="Vista 2" class="w-full h-auto">
+                        <img src="../img/productos/<?php echo htmlspecialchars($productoData['img']); ?>" alt="Vista 2" class="w-full h-auto">
                     </div>
                     <div class="bg-gray-800 rounded-md overflow-hidden cursor-pointer hover:opacity-80 transition">
-                        <img src=".<?php echo htmlspecialchars($productoData['img']); ?>" alt="Vista 3" class="w-full h-auto">
+                        <img src="../img/productos/<?php echo htmlspecialchars($productoData['img']); ?>" alt="Vista 3" class="w-full h-auto">
                     </div>
                 </div>
             </div>

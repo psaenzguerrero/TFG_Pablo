@@ -14,7 +14,7 @@
                     <label for="nombre_producto" class="block text-gray-700 font-semibold mb-2">Nombre del Producto</label>
                     <input type="text" id="nombre_producto" name="nombre_producto" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
                 </div>
-
+                
                 <div class="mb-4">
                     <label for="precio_producto" class="block text-gray-700 font-semibold mb-2">Precio del Producto</label>
                     <input type="number" id="precio_producto" name="precio_producto" step="0.01" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
