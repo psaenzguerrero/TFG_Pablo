@@ -122,6 +122,7 @@
             $id_usuario = $_POST["id_usuario"];
             $DNI = $_POST["DNI"];
             
+            //Pregmatch de dni sacado de una practica y actualizado con letras y todo
             if (preg_match('/^\d{8}[A-Z]$/', $DNI)) {
                 $usuario->actualizar( $DNI, $id_usuario);
                 header("Location: index.php?action=dashboard");
@@ -151,6 +152,7 @@
     function dashboard() {
         session_start();
         require_once("../Modelos/usuario.php");
+        //Comprobacion extra de seguridad para que ningun usuario no registrado se meta en sitio que no debe abuso de esto en muchas funciones
         if (!isset($_SESSION["id_usuario"])) {
             header("Location: index.php?action=login");
             exit;
@@ -184,7 +186,7 @@
         }
     }
 
-    //FUNCIONES DE BUSQUEDA EN TIENDA ¡¡¡¡NO HACE FALTA REGISTRO!!!!
+    //FUNCIONES DE BUSQUEDA EN TIENDA LO QUE COSTO
     
     function tienda() {
         require_once("../Modelos/producto.php");
@@ -240,7 +242,7 @@
         require_once("../vistas/footer.html");
     }
 
-    ////FUNCIONES TIENDA ADMIN////
+    ///////////////////////////FUNCIONES TIENDA ADMIN/////////////////
 
     function agregarProducto() {
         require_once("../Modelos/producto.php");
@@ -377,7 +379,7 @@
         }
     }
    
-    //////EVENTOS VERSION ADMIN//////
+    /////////////////////////////////EVENTOS VERSION ADMIN///////////////
 
     function eventos() {
         require_once("../Modelos/evento.php");
@@ -705,6 +707,7 @@
             exit;
         }
         if ($_SERVER["REQUEST_METHOD"] === "POST") {
+            //Llamamos a todos los post de la vist
             $id_usuario = isset($_POST["id_usuario"]) ? $_POST["id_usuario"] : $_SESSION["id_usuario"];
             $id_equipo = $_POST["id_equipo"];
             $fecha_reserva = $_POST["fecha_reserva"];
