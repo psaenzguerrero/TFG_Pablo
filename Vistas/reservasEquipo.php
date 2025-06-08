@@ -144,7 +144,7 @@
     <?php
             } elseif (strcmp($tipo, "Vip") == 0) {
     ?>
-                <section class="max-w-2xl mx-auto pt-20">
+                <section class="max-w-2xl mx-auto pt-40">
                     <div class="bg-white rounded-xl shadow-md overflow-hidden p-6">
                         <h1 class="text-3xl font-bold text-gray-800 mb-6 pb-2 border-b border-gray-200">Reservar Equipo</h1>
                         <?php if (isset($error)): ?>
@@ -220,7 +220,7 @@
     <?php
             } elseif (strcmp($tipo, "Normal") == 0) {
     ?>
-                <section class="max-w-2xl mx-auto pt-20">
+                <section class="max-w-2xl mx-auto pt-40">
                     <div class="bg-white rounded-xl shadow-md overflow-hidden p-6">
                         <h1 class="text-3xl font-bold text-gray-800 mb-6 pb-2 border-b border-gray-200">Reservar Equipo</h1>
 
