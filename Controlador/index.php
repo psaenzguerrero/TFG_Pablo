@@ -28,13 +28,13 @@
                 $error = "Credenciales incorrectas.";
                 require_once("../vistas/header.php");
                 require_once("../vistas/login.php");
-                require_once("../vistas/footer.html");
+                require_once("../vistas/footer.php");
             }
         } else {
             session_start();
             require_once("../vistas/header.php");
             require_once("../vistas/login.php");
-            require_once("../vistas/footer.html");
+            require_once("../vistas/footer.php");
         }
     }
     function registro(){
@@ -50,25 +50,25 @@
                 $error = "Nombre de usuario ya en uso.";
                 require_once("../vistas/header.php");
                 require_once("../vistas/registro.php");
-                require_once("../vistas/footer.html");
+                require_once("../vistas/footer.php");
             }else {
                 if ($pass_usuario != $pass_usuario2) {
                     $error = "Las contraseñas no son iguales.";
                     require_once("../vistas/header.php");
                     require_once("../vistas/registro.php");
-                    require_once("../vistas/footer.html");
+                    require_once("../vistas/footer.php");
                 }else {
                     $usuario->registrarUsuario($nombre_usuario, $pass_usuario);
                     require_once("../vistas/header.php");
                     require_once("../vistas/login.php");
-                    require_once("../vistas/footer.html");
+                    require_once("../vistas/footer.php");
                 }
             } 
         } else {
             session_start();
             require_once("../vistas/header.php");
             require_once("../vistas/registro.php");
-            require_once("../vistas/footer.html");
+            require_once("../vistas/footer.php");
         }
     }
     function registroAdmin(){
@@ -84,13 +84,13 @@
                 $error = "Nombre de usuario ya en uso.";
                 require_once("../vistas/header.php");
                 require_once("../vistas/registro.php");
-                require_once("../vistas/footer.html");
+                require_once("../vistas/footer.php");
             }else {
                 if ($pass_usuario != $pass_usuario2) {
                     $error = "Las contraseñas no son iguales.";
                     require_once("../vistas/header.php");
                     require_once("../vistas/registro.php");
-                    require_once("../vistas/footer.html");
+                    require_once("../vistas/footer.php");
                 }else {
                     if (preg_match('/^\d{8}[A-Z]$/', $DNI)) {
                         $usuario->insertarAdmin($nombre_usuario, $DNI, $pass_usuario);
@@ -100,7 +100,7 @@
                         $error = "El DNI no es valido.";
                         require_once("../vistas/header.php");
                         require_once("../vistas/registro.php");
-                        require_once("../vistas/footer.html");
+                        require_once("../vistas/footer.php");
                     }
                 }
             }   
@@ -108,7 +108,7 @@
             session_start();
             require_once("../vistas/header.php");
             require_once("../vistas/registro.php");
-            require_once("../vistas/footer.html");
+            require_once("../vistas/footer.php");
         }
     }
 
@@ -131,23 +131,21 @@
                 $error = "El DNI no es valido.";
                 require_once("../vistas/header.php");
                 require_once("../vistas/registro.php");
-                require_once("../vistas/footer.html");
+                require_once("../vistas/footer.php");
             }
 
         }else {
             require_once("../vistas/header.php");
             require_once("../vistas/activarUsuario.php");
-            require_once("../vistas/footer.html");
-        }
-            
-        
+            require_once("../vistas/footer.php");
+        }        
     }
 
     function inicio(){
         session_start();
             require_once("../vistas/header.php");
             require_once("../vistas/inicio.php");
-            require_once("../vistas/footer.html");
+            require_once("../vistas/footer.php");
     }
     function dashboard() {
         session_start();
@@ -161,7 +159,7 @@
         $_SESSION["tipo_usuario"] = $tipo->obtenerTipoUsu($_SESSION["id_usuario"]);
         require_once("../vistas/header.php");
         require_once("../vistas/paginaInicio.php");
-        require_once("../vistas/footer.html");   
+        require_once("../vistas/footer.php");   
     }
 
     function mejoraUsu(){
@@ -180,7 +178,7 @@
             $tipo_usu = $tipo->actualizarTipo($id_usuario);
             require_once("../vistas/header.php");
             require_once("../vistas/paginaInicio.php");
-            require_once("../vistas/footer.html");    
+            require_once("../vistas/footer.php");    
         }else{
             echo "<p>$puntos</p><p>2</p>";
         }
@@ -209,7 +207,7 @@
         // Pasar los productos a la vista
         require_once("../vistas/header.php");
         require_once("../vistas/tienda.php");
-        require_once("../vistas/footer.html");
+        require_once("../vistas/footer.php");
     }
 
     function buscarProductos() {
@@ -239,7 +237,7 @@
     
         require_once("../vistas/header.php");
         require_once("../vistas/tienda.php");
-        require_once("../vistas/footer.html");
+        require_once("../vistas/footer.php");
     }
 
     ///////////////////////////FUNCIONES TIENDA ADMIN/////////////////
@@ -261,7 +259,7 @@
                 $error = "Por favor, complete todos los campos correctamente.";
                 require_once("../vistas/header.php");
                 require_once("../vistas/agregarProducto.php");
-                require_once("../vistas/footer.html");
+                require_once("../vistas/footer.php");
                 return;
             }
             $producto = new Producto();
@@ -272,12 +270,12 @@
                 $error = "Hubo un error al agregar el producto.";
                 require_once("../vistas/header.php");
                 require_once("../vistas/agregarProducto.php");
-                require_once("../vistas/footer.html");
+                require_once("../vistas/footer.php");
             }
         } else {
             require_once("../vistas/header.php");
             require_once("../vistas/agregarProducto.php");
-            require_once("../vistas/footer.html");
+            require_once("../vistas/footer.php");
         }
     }
 
@@ -296,7 +294,7 @@
                 if ($productoData) {                
                     require_once("../vistas/header.php");
                     require_once("../vistas/editarProducto.php");
-                    require_once("../vistas/footer.html");
+                    require_once("../vistas/footer.php");
                 } else {
                     header("Location: index.php?action=tienda");
                 }
@@ -311,7 +309,7 @@
                 if ($productoData) {                
                     require_once("../vistas/header.php");
                     require_once("../vistas/detallesProducto.php");
-                    require_once("../vistas/footer.html");
+                    require_once("../vistas/footer.php");
                 } else {
                     header("Location: index.php?action=tienda");
                 }
@@ -418,7 +416,7 @@
         // Pasar las variables a la vista
         require_once("../vistas/header.php");
         require_once("../vistas/calendario.php");
-        require_once("../vistas/footer.html");
+        require_once("../vistas/footer.php");
     }
 
     
@@ -535,7 +533,7 @@
 
         require_once("../vistas/header.php");
         require_once("../vistas/eventosUsuarios.php");
-        require_once("../vistas/footer.html");
+        require_once("../vistas/footer.php");
     }
 
     function inscribir() {
@@ -638,7 +636,7 @@
 
         require_once("../vistas/header.php");
         require_once("../vistas/carritoUsu.php");
-        require_once("../vistas/footer.html");
+        require_once("../vistas/footer.php");
     }
 
     function compraDelCarrito(){
@@ -736,13 +734,13 @@
         verReservas();
         require_once("../vistas/header.php");
         require_once("../vistas/reservasEquipo.php");
-        require_once("../vistas/footer.html");
+        require_once("../vistas/footer.php");
     }
     
     function verReservas() {
         require_once("../Modelos/reserva.php");
         require_once("../Modelos/usuario.php");
-        require_once("../Modelos/equipo.php"); // Asegúrate de tener un modelo para equipos
+        require_once("../Modelos/equipo.php");
         if(session_status() === PHP_SESSION_NONE) session_start();
     
         if (!isset($_SESSION["id_usuario"])) {
@@ -782,7 +780,7 @@
         $reservas = $reserva->obtenerReservas();
         require_once("../vistas/header.php");
         require_once("../vistas/reservasEquipo.php");
-        require_once("../vistas/footer.html");
+        require_once("../vistas/footer.php");
     }
     function usuarios() {
         require_once("../Modelos/usuario.php");
@@ -811,7 +809,7 @@
         // Cargar vistas
         require_once("../vistas/header.php");
         require_once("../vistas/perfiles.php");
-        require_once("../vistas/footer.html");
+        require_once("../vistas/footer.php");
     }
     
 

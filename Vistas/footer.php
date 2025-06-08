@@ -15,30 +15,19 @@
             <div class="space-y-4">
                 <h3 class="text-white font-semibold text-lg">Empresa</h3>
                 <ul class="space-y-2">
-                    <li><a href="#" class="hover:text-white transition-colors duration-200">Acerca de nosotros</a></li>
-                    <li><a href="#" class="hover:text-white transition-colors duration-200">Carreras</a></li>
-                    <li><a href="#" class="hover:text-white transition-colors duration-200">Blog</a></li>
-                    <li><a href="#" class="hover:text-white transition-colors duration-200">Contacto</a></li>
+                    <li><a href="./index.php?action=login" class="hover:text-white transition-colors duration-200">Inicia tu destino</a></li>
+                    <li><a href="./index.php?action=login" class="hover:text-white transition-colors duration-200">Carrera al puf</a></li>
+                    <li><a href="./index.php?action=login" class="hover:text-white transition-colors duration-200">Blog</a></li>
+                    <li><a href="./index.php?action=login" class="hover:text-white transition-colors duration-200">Contacto</a></li>
                 </ul>
             </div>
             <div class="space-y-4">
                 <h3 class="text-white font-semibold text-lg">Productos</h3>
                 <ul class="space-y-2">
-                    <li><a href="#" class="hover:text-white transition-colors duration-200">Características</a></li>
-                    <li><a href="#" class="hover:text-white transition-colors duration-200">Planes</a></li>
-                    <li><a href="#" class="hover:text-white transition-colors duration-200">Documentación</a></li>
-                    <li><a href="#" class="hover:text-white transition-colors duration-200">API</a></li>
-                    <li><a href="#" class="hover:text-white transition-colors duration-200">Changelog</a></li>
-                </ul>
-            </div>
-            <div class="space-y-4">
-                <h3 class="text-white font-semibold text-lg">Recursos</h3>
-                <ul class="space-y-2">
-                    <li><a href="#" class="hover:text-white transition-colors duration-200">Centro de ayuda</a></li>
-                    <li><a href="#" class="hover:text-white transition-colors duration-200">Comunidad</a></li>
-                    <li><a href="#" class="hover:text-white transition-colors duration-200">Guías</a></li>
-                    <li><a href="#" class="hover:text-white transition-colors duration-200">Webinars</a></li>
-                    <li><a href="#" class="hover:text-white transition-colors duration-200">Status</a></li>
+                    <li><a href="./index.php?action=tienda" class="hover:text-white transition-colors duration-200">Características</a></li>
+                    <li><a href="./index.php?action=tienda" class="hover:text-white transition-colors duration-200">Planes</a></li>
+                    <li><a href="./index.php?action=tienda" class="hover:text-white transition-colors duration-200">Documentación</a></li>
+                    <li><a href="./index.php?action=tienda" class="hover:text-white transition-colors duration-200">La papela del camion</a></li>
                 </ul>
             </div>
             <div class="space-y-4">
@@ -49,14 +38,14 @@
                     <li><a href="#" class="hover:text-white transition-colors duration-200">Cookies</a></li>
                     <li><a href="#" class="hover:text-white transition-colors duration-200">Licencias</a></li>
                 </ul>
-                <div class="pt-4">
-                    <h3 class="text-white font-semibold text-lg">Contacto</h3>
-                    <address class="mt-2 not-italic">
-                        <p class="text-gray-400">Av. Ejemplo 1234</p>
-                        <p class="text-gray-400">Ciudad, País</p>
-                        <p class="text-gray-400">info@empresa.com</p>
-                    </address>
-                </div>
+            </div>
+            <div class="space-y-4">
+                <h3 class="text-white font-semibold text-lg">Contacto</h3>
+                <address class="mt-2 not-italic">
+                    <p class="text-gray-400">Av. Doctor Ortiz 12</p>
+                    <p class="text-gray-400">GRANA, ESP</p>
+                    <p class="text-gray-400">info@tfgpablo.com</p>
+                </address>
             </div>
         </div>
         <div class="border-t border-gray-800 py-8 flex flex-col md:flex-row justify-between items-center">
