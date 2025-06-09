@@ -85,7 +85,7 @@ if (strcmp($_SESSION["tipo_usuario"], "Normal") == 0 || strcmp($_SESSION["tipo_u
                                         </span>
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                        <a href="editar_usuario.php?id=<?php echo $perfil['id_usuario']; ?>" class="text-indigo-600 hover:text-indigo-900 mr-3">Editar</a>
+                                        <a href="#" class="text-indigo-600 hover:text-indigo-900 mr-3">Editar</a>
                                     </td>
                                 </tr>
                                 <?php endforeach; ?>
